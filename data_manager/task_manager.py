@@ -62,8 +62,10 @@ class Task_manager(object):
     #任务的task_type和task_name以及manager不可以重复
     def _insert_task(self, task_name, task_type, manager, deadline, completion_date, time_required):
         cursor = self._conn.cursor()
-        if self._search_task(task_name = task_name, task_type = task_type, manager = manager) != []:
+        if self._search_task(task_name = task_name, task_type = task_type, manager = manager) == []:
             cursor.execute("insert into task_table value(%s, %s, %s, %s, %s, %s);", [task_name, task_type, manager, deadline, completion_date, time_required])
+            self._conn.commit()
+            cursor.close()
             return True
         return False
 
@@ -71,6 +73,8 @@ class Task_manager(object):
         if self._search_task(task_name = task_name, task_type = task_type, manager = manager) != []:
             cursor = self._conn.cursor()
             cursor.execute("delete from task_table where task_name=%s and task_type=%s and manager=%s;", [task_name, task_type, manager])
+            self._conn.commit()
+            cursor.close()
             return True
         return False
 
@@ -78,4 +82,4 @@ class Task_manager(object):
 
 if __name__ == "__main__":
 	task_data = Task_manager("root", "Gzm20125")
-	task_data._insert_task(task_name = "first task", task_type = "uknown", manager = "gzm1997", deadline = "2017-8-11", completion_date = "2017-8-12", time_required = "1")
+	print(task_data._insert_task(task_name = "first task", task_type = "uknown", manager = "gzm1997", deadline = "2017-8-11", completion_date = "2017-8-12", time_required = "1"))
