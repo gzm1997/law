@@ -1,3 +1,4 @@
+#-*- coding=utf-8 -*-
 from flask import Flask, render_template, request, session, jsonify, abort, redirect, url_for
 from data_manager import user_manager, case_manager, task_manager
 import send_email

@@ -151,11 +151,11 @@
                     <div>
                         <select id="case_level" class="selectpicker show-tick form-control" data-live-search="false">
                             
-                            {% set ys = '一审' %}
-                            {% set es = '二审' %}
-                            {% set zc = '仲裁' %}
-                            {% set zs = '再审' %}
-                            {% set zx = '执行' %}
+                            {% set ys = '0' %}
+                            {% set es = '1' %}
+                            {% set zc = '2' %}
+                            {% set zs = '3' %}
+                            {% set zx = '4' %}
 
                             {% if tc.case_level|string() == type1 %}
                                 <option selected="selected" value="0">==请选择==</option>
@@ -164,27 +164,27 @@
                             {% endif %}
 
                             {% if tc.case_level|string() == ys %}
-                                <option selected="selected" value="一审">一审</option>
+                                <option selected="selected" value="1">一审</option>
                             {% else %}
-                                <option value="一审">一审</option>
+                                <option value="1">一审</option>
                             {% endif %}
                             
                             {% if tc.case_level|string() == es %}
-                                <option selected="selected" value="二审">二审</option>
+                                <option selected="selected" value="2">二审</option>
                             {% else %}
-                                <option value="二审">二审</option>
+                                <option value="2">二审</option>
                             {% endif %}
                             
                             {% if tc.case_level|string() == zc %}
-                                <option selected="selected" value="仲裁">仲裁</option>
+                                <option selected="selected" value="3">仲裁</option>
                             {% else %}
-                                <option value="仲裁">仲裁</option>
+                                <option value="3">仲裁</option>
                             {% endif %}
                             
                             {% if tc.case_level|string() == zs %}
-                                <option selected="selected" value="再审">再审</option>
+                                <option selected="selected" value="4">再审</option>
                             {% else %}
-                                <option value="再审">再审</option>
+                                <option value="4">再审</option>
                             {% endif %}
                             
                             {% if tc.case_level|string() == zx %}

@@ -155,40 +155,40 @@
                     <div>
                         <select id="case_level" class="selectpicker show-tick form-control" data-live-search="false">
                             {% set case_level0 = '0' %}
-                            {% set case_level1 = '一审' %}
-                            {% set case_level2 = '二审' %}
-                            {% set case_level3 = '仲裁' %}
-                            {% set case_level4 = '再审' %}
-                            {% set case_level5 = '执行' %}
+                            {% set case_level1 = '1' %}
+                            {% set case_level2 = '2' %}
+                            {% set case_level3 = '3' %}
+                            {% set case_level4 = '4' %}
+                            {% set case_level5 = '5' %}
                             {% if tc.case_level|string() == case_level0 %}
                                 <option selected="selected" value="0">==请选择==</option>
                             {% else %}
                                 <option value="0">==请选择==</option>
                             {% endif %}
                             {% if tc.case_level|string() == case_level1 %}
-                                <option selected="selected" value="一审">一审</option>
+                                <option selected="selected" value="1">一审</option>
                             {% else %}
-                                <option value="一审">一审</option>
+                                <option value="1">一审</option>
                             {% endif %}
                             {% if tc.case_level|string() == case_level2 %}
-                                <option selected="selected" value="二审">二审</option>
+                                <option selected="selected" value="2">二审</option>
                             {% else %}
-                                <option value="二审">二审</option>
+                                <option value="2">二审</option>
                             {% endif %}
                             {% if tc.case_level|string() == case_level3 %}
-                                <option selected="selected" value="仲裁">仲裁</option>
+                                <option selected="selected" value="3">仲裁</option>
                             {% else %}
-                                <option value="仲裁">仲裁</option>
+                                <option value="3">仲裁</option>
                             {% endif %}
                             {% if tc.case_level|string() == case_level4 %}
-                                <option selected="selected" value="再审">再审</option>
+                                <option selected="selected" value="4">再审</option>
                             {% else %}
-                                <option value="再审">再审</option>
+                                <option value="4">再审</option>
                             {% endif %}
                             {% if tc.case_level|string() == case_level5 %}
-                                <option value="执行">执行</option>
+                                <option selected="selected" value="5">执行</option>
                             {% else %}
-                                <option value="执行">执行</option>
+                                <option value="5">执行</option>
                             {% endif %}
                         </select>
                     </div>
