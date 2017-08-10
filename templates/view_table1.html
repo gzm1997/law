@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/table.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>纠纷案件审批表(庭前)</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">纠纷案件审批表</h2>
+
+        <table class="table table-bordered table-hover">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>案号</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="case_id">{{ table_content.case_id }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案件名称</div>
+                </td>
+                <td class="col-md-9">
+                    <div>
+                        <p id="case_name">{{ table_content.case_name }}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-hover">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>OA档案号</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="OA_id">{{ table_content.OA_id }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>公司名称</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <p id="company_name">{{ table_content.company_name }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>经办部门</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="department">{{ table_content.department }}</p>
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>经办人</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="manager">{{ table_content.manager }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>联系电话</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <p id="phone">{{ table_content.phone }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>提交日期</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="submit_time">{{ table_content.submit_time }}</p>
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>案件类型</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="case_type">{{ table_content.case_type }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案由</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <p id="case_reason">{{ table_content.case_reason }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案件审级</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                         <p id="case_level">{{ table_content.case_level }}</p>           
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>受理机构</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="reception_agency">{{ table_content.reception_agency }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>经办法官及电话</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <p id="judge_phone">{{ table_content.judge_phone }}</p>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案卷保管人</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <p id="custodian">{{ table_content.custodian }}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    案件当事人及诉讼/仲裁请求
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3">
+                                原告（申请人）
+                            </td>
+                            <td class="col-md-9">
+                                <p id="plain_tiff">{{ table_content.plain_tiff }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                被告（被申请人）
+                            </td>
+                            <td class="col-md-9">
+                                <p id="defendant">{{ table_content.defendant }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                第三人
+                            </td>
+                            <td class="col-md-9">
+                                <p id="third_person">{{ table_content.third_person }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                标的金额
+                            </td>
+                            <td class="col-md-9">
+                                <p id="amount">{{ table_content.amount }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                请求
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="request" disabled="disabled">{{ table_content.request }}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                抗辩要点
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="to_argue" disabled="disabled">{{ table_content.to_argue }}</textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    附件清单
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-1">序号</td>
+                            <td class="col-md-6">附件名称</td>
+                            <td class="col-md-1">份数</td>
+                            <td class="col-md-4">用章方式</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-1">
+                                <p id="serial_number">{{ table_content.serial_number }}</p>
+                            </td>
+                            <td class="col-md-5">
+                                <p id="attachment_name">{{ table_content.attachment_name }}</p>
+                            </td>
+                            <td class="col-md-2">
+                                <p id="page_num" >{{ table_content.page_num }}</p>
+                            </td>
+                            <td class="col-md-4">
+                                <div>
+                                    <p id="yz_way" >{{ table_content.yz_way }}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    办理情况登记
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3">
+                                经办人登记
+                            </td>
+                            <td class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="text-left p1">终审意见是否落实:</p>
+                                        <p id="w_implement">{{ table_content.w_implement }}</p>
+                                    </div>
+                                    <textarea cols="50" rows="3" id="registration_details" disabled>{{ table_content.registration_details }}</textarea>
+                                </div>
+                                <div class="time-area form-group">
+                                    <label for="register_time" class="control-label col-md-3">立案时间:</label>
+                                    <p class="col-md-2" id="register_time">{{ table_content.register_time }}</p>
+                                    <label for="submit_add_time" class="control-label col-md-3">提交补充证据时间:</label>
+                                    <p class="col-md-2" id="submit_add_time">{{ table_content.submit_add_time }}</p>
+                                </div>
+                                <div class="time-area form-group">
+                                    <label for="court_time" class="control-label col-md-3">开庭时间:</label>
+                                    <p class="col-md-2" id="court_time">{{ table_content.court_time }}</p>
+                                    <label for="get_paper_time" class="control-label col-md-3">领取法律文书时间:</label>
+                                    <p class="col-md-2" id="get_paper_time">{{ table_content.get_paper_time }}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团法务部负责人意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea rows="5" placeholder="" id="group_justice_add_advise" disabled="disabled">{{ table_content.group_justice_add_advise }}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团主管法务备案
+                            </td>
+                            <td class="col-md-9">
+                                <textarea rows="5" placeholder="" id="group_manager_filing" disabled>{{ table_content.group_manager_filing }}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团档案室备案
+                            </td>
+                            <td class="col-md-9">
+                                <textarea rows="5" placeholder="" id="group_doc_filing" disabled>{{ table_content.group_doc_filing }}</textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
