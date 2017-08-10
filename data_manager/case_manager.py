@@ -250,12 +250,12 @@ if __name__ == "__main__":
         "group_justice_filing": "group_justice_filing"
     }
 
-    print(m._edit_law_case("gzm", "2017-8-8", "test_case", to_do = "create"))
-    print(m._edit_law_case("gzm", "2017-8-8", "first case", to_do = "delete"))
-    print(m._search_law_case("gzm", "2017-8-8", "first case"))
+    print(m._edit_law_case("gzm1997", "2017-8-8", "test_case", to_do = "create"))
+    print(m._edit_law_case("gzm1997", "2017-8-8", "first case", to_do = "delete"))
+    print(m._search_law_case("gzm1997", "2017-8-8", "first case"))
     m._update_t1("2017-8-8", t1)
     m._update_t2("2017-8-8", t2)
     m._update_t3("2017-8-8", t3)
-    print(m._edit_law_case("gzm", "2017-8-9", "second_case", to_do = "create"))
+    print(m._edit_law_case("gzm1997", "2017-8-9", "second_case", to_do = "create"))
     print("search law_case by username:")
-    print(m._search_law_case(username = "gzm"))
+    print(m._search_law_case(username = "gzm1997"))

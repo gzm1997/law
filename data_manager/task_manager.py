@@ -74,3 +74,8 @@ class Task_manager(object):
             return True
         return False
 
+
+
+if __name__ == "__main__":
+	task_data = Task_manager("root", "Gzm20125")
+	task_data._insert_task(task_name = "first task", task_type = "uknown", manager = "gzm1997", deadline = "2017-8-11", completion_date = "2017-8-12", time_required = "1")

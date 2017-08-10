@@ -106,9 +106,32 @@
 					<tr>
 						<td>案件列表</td>
 					</tr>
+
+					{% for case in case_list %}
+  						<tr>
+							<td>
+								<a href="">
+									{{ case.case_name }}
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					
 					<tr>
-						<td>name1</td>
+						<td>创建案件</td>
 					</tr>
+					<tr>
+						<td class="col-md-4">
+							<input type="text" class="form-control" id="case_name" placeholder="案件名称">
+						</td>
+						<td class="col-md-4">
+							<input type="text" class="form-control" id="case_id" placeholder="案件id">
+						</td>		
+						<td class="col-md-4">
+							<input class="form-control" type="submit" name="submit">
+						</td>				
+					</tr>
+
 				</table>
 			</td>
 			<td class="col-md-6">
@@ -116,9 +139,29 @@
 					<tr>
 						<td>任务列表</td>
 					</tr>
+
+					{% for task in task_list %}
+  						<tr>
+							<td>
+								<a href="">
+									{{ task.task_name }}
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+<!--
 					<tr>
-						<td>name1</td>
+						<td class="col-md-4">
+							<input type="text" class="form-control" id="case_name" placeholder="任务名称">
+						</td>
+						<td class="col-md-4">
+							<input type="text" class="form-control" id="case_id" placeholder="任务id">
+						</td>		
+						<td class="col-md-4">
+							<input class="form-control" type="submit" name="submit">
+						</td>				
 					</tr>
+-->
 				</table>
 			</td>
 		</tr>
