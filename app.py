@@ -174,7 +174,7 @@ def user():
 def home():
     if "username" in session:
         print("already login")
-        user_url = "/user?username" + session["username"]
+        user_url = "/user?username=" + session["username"]
         return render_template("home.html", login = True, user_url = user_url , username = session["username"])
     else:
         print("not login yet")
