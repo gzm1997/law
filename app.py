@@ -109,7 +109,7 @@ def add_case():
     if case_data._search_law_case(case_name=case_name) != []:
         return jsonify(case_name="case_name has been used")
 
-
+#/table?case_id=2017-8-10&t_type=t1
 @app.route("/table", methods=["GET", "POST"])
 def table():
     if request.method == "GET":
@@ -165,8 +165,13 @@ def user():
         print("username", username)
         email = user_data._search_user(username=username)["email"]
         print("email", email)
+
         case_list = case_data._search_law_case(username=username)
         task_list = task_data._search_task(manager = username)
+
+        for case in case_list:
+            case["case_detail_url"] = "/case?case_id=" + case["case_id"]
+
         user_url = "/user?username=" + session["username"]
         return render_template("user.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list)
     abort(401)
@@ -181,6 +186,15 @@ def home():
     else:
         print("not login yet")
         return render_template("home.html", login = False)
+
+#/case?case_id=2017-8-10
+@app.route("/case")
+def case():
+    case_id = request.args.get('case_id')
+    table_urls = ["/table?case_id=" + case_id + "&t_tyepe=" + "t1", "/table?case_id=" + case_id + "&t_tyepe=" + "t2", "/table?case_id=" + case_id + "&t_tyepe=" + "t3"]
+    return render_template("case.html", table_urls = table_urls)
+
+
 
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
