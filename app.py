@@ -192,7 +192,12 @@ def home():
 def case():
     case_id = request.args.get('case_id')
     table_urls = ["/table?case_id=" + case_id + "&t_tyepe=" + "t1", "/table?case_id=" + case_id + "&t_tyepe=" + "t2", "/table?case_id=" + case_id + "&t_tyepe=" + "t3"]
-    return render_template("case.html", table_urls = table_urls)
+
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = "/user?username=" + username
+    return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username)
 
 
 
