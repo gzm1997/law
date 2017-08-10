@@ -185,7 +185,7 @@
                                 <option selected="selected" value="再审">再审</option>
                             {% else %}
                                 <option value="再审">再审</option>
-                            { endif }
+                            {% endif %}
                             
                             {% if table_content.case_level|string() == zx %}
                                 <option selected="selected" value="执行">执行</option>
@@ -414,7 +414,9 @@
                                 集团档案室备案
                             </td>
                             <td class="col-md-9">
-                                <textarea rows="5" placeholder="" id="group_doc_filing">{{ table_content.group_doc_filing }}</textarea>
+                                <textarea rows="5" placeholder="" id="group_doc_filing">
+                                    {{ table_content.group_doc_filing }}
+                                </textarea>
                             </td>
                         </tr>
                     </table>
