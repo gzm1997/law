@@ -104,12 +104,12 @@
 			<td class="col-md-6">
 				<table class="table table-bordered">
 					<tr>
-						<td>案件列表</td>
+						<td class="col-md-12">案件列表</td>
 					</tr>
 
 					{% for case in case_list %}
   						<tr>
-							<td>
+							<td class="col-md-12">
 								<a href="">
 									{{ case.case_name }}
 								</a>
@@ -128,7 +128,11 @@
 							<input type="text" class="form-control" id="case_id" placeholder="案件id">
 						</td>		
 						<td class="col-md-4">
-							<input class="form-control" type="submit" name="submit">
+							<button>
+								<a href="#">
+									创建
+								</a>
+							</button>
 						</td>				
 					</tr>
 
