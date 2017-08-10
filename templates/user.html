@@ -69,6 +69,28 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
+	<div class="message warning">
+		<div class="inset">
+			<div class="login-head">
+				<h1>User</h1>
+		 		<div class="alert-close"> </div> 			
+			</div>
+
+			<li>
+				<input readonly="readonly" type="text" class="text" name="email" value= {{ Myemail }} ><a href="#" ></a>
+			</li>
+			
+
+			<li>
+				<input readonly="readonly" type="text" name="username" value=  {{ Myusername }} > <a href="#"></a>
+			</li>
+
+			<div class="submit">
+				<a href="/logout"><input style="position: relative;left: 30%; bottom: 10px" type="submit" name="Sign out" value="Sign out"></a>
+				<div id="sh5" class="clear" style="text-align: center;"> </div>	
+			</div>
+		</div>					
+	</div>
 </body>
 
 </html>
