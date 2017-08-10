@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, jsonify, abort
+from flask import Flask, render_template, request, session, jsonify, abort, redirect
 from data_manager import user_manager, case_manager, task_manager
 import send_email
 
