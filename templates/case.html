@@ -55,13 +55,19 @@
             <td class="col-md-6">
                 <table class="table table-bordered">
                     <tr class="text-center">
-                        纠纷案件审批表(庭前)
+                        <td class="col-md-4">
+                            纠纷案件审批表(庭前)
+                        </td>
                     </tr>
                     <tr class="text-center">
-                        纠纷案结案表
+                        <td class="col-md-4">
+                            纠纷案结案表
+                        </td>
                     </tr>
                     <tr class="text-center">
-                        纠纷案件审批表(庭后)
+                        <td class="col-md-4">
+                            纠纷案件审批表(庭后)
+                        </td>
                     </tr>                    
                 </table>
             </td>
@@ -69,7 +75,9 @@
                 <table class="table table-bordered">
                     {% for url in table_urls %}
                         <tr class="text-center">
-                            <a href="{{ url }}">详情</a>
+                            <td class="col-md-4">
+                                <a href="{{ url }}">详情</a>
+                            </td>
                         </tr> 
                     {% endfor %}
                 </table>               
