@@ -191,7 +191,7 @@ def home():
 @app.route("/case")
 def case():
     case_id = request.args.get('case_id')
-    table_urls = ["/table?case_id=" + case_id + "&t_tyepe=" + "t1", "/table?case_id=" + case_id + "&t_tyepe=" + "t2", "/table?case_id=" + case_id + "&t_tyepe=" + "t3"]
+    table_urls = ["/table?case_id=" + case_id + "&t_type=" + "t1", "/table?case_id=" + case_id + "&t_type=" + "t2", "/table?case_id=" + case_id + "&t_type=" + "t3"]
 
     if "username" in session:
         login = True
