@@ -72,43 +72,51 @@
     </nav>
 	
 	<table class="table table-bordered table-hover">
-		<tr>
-			<td class="col-md-2">
-				<table class="table table-bordered table-hover">
-					<tr class="text-center">
-						<td class="col-md-6">
-							用户名:
-						</td>
-						<td class="col-md-6"> 
-							{{ Myusername }} 
-						</td>
-					</tr>
-					<tr class="text-center">
-						<td class="col-md-6">
-							邮件:
-						</td>
-						<td class="col-md-6">
-							{{ Myemail }}
-						</td>
-					</tr>
-					<tr class="text-center">
-						<td class="col-md-6">
-						退出：
-						</td>
-						<td class="col-md-6">
-							<div class="submit">
-								<a href="/logout"><input type="submit" name="Sign out" value="Sign out"></a>
-								<div id="sh5" class="clear" style="text-align: center;"> </div>	
-							</div>
-						</td>
-					</tr>
-				</table>			
+		<tr class="text-center">
+			<td class="col-md-6">
+				用户名:
 			</td>
-			<td class="col-md-5">
+			<td class="col-md-6"> 
+				{{ Myusername }} 
 			</td>
-			<td class="col-md-5"></td>
 		</tr>
-	</table>
+		<tr class="text-center">
+			<td class="col-md-6">
+				邮件:
+			</td>
+			<td class="col-md-6">
+				{{ Myemail }}
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td class="col-md-6">
+				退出：
+			</td>
+			<td class="col-md-6">
+				<div class="submit">
+					<a href="/logout">
+						<input type="submit" name="Sign out" value="Sign out">
+					</a>
+				</div>
+			</td>
+		</tr>
+	</table>	
+	<table class="table table-bordered table-hover">
+		<tr>
+			<td class="col-md-6">
+				<table class="table table-bordered table-hover">
+					<tr>案件列表</tr>
+					<tr>name1</tr>
+				</table>
+			</td>
+			<td class="col-md-6">
+				<table class="table table-bordered table-hover">
+					<tr>任务列表</tr>
+					<tr>name1</tr>
+				</table>
+			</td>
+		</tr>
+	</table>		
 
 </body>
 
