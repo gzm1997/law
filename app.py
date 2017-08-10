@@ -135,7 +135,7 @@ def table():
                 return render_template("table3.html", tc = case_data._search_table(t_type = "t3", case_id = case_id), own = own)
         abort(401)
     elif request.method == "POST":
-        print(request.form)
+        #print(request.form)
         content_dict = dict(request.form)
         for i in content_dict:
             content_dict[i] = content_dict[i][0]
