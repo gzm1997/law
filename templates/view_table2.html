@@ -22,7 +22,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.case_id }}" type="text" class="form-control" id="case_id">
+                        <p id="case_id">{{case_id}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -30,7 +30,7 @@
                 </td>
                 <td class="col-md-9">
                     <div>
-                        <input value="{{ tc.case_name }}" type="text" class="form-control" id="case_name">
+                        <p id="case_name">{{case_name}}</p>
                     </div>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.OA_ida }}" type="text" class="form-control" id="OA_id">
+                        <p id="OA_id">{{OA_id}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -50,7 +50,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ tc.company_name }}" type="text" class="form-control" id="company_name">
+                        <p id="company_name">{{company_name}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -58,7 +58,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.department }}" type="text" class="form-control" id="department">
+                        <p id="department">{{department}}</p>
                     </div>
                 </td>
             </tr>
@@ -68,7 +68,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.manager }}" type="text" class="form-control" id="manager">
+                        <p id="manager">{{manager}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -76,7 +76,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ tc.phone }}" type="text" class="form-control" id="phone">
+                        <p id="phone">{{phone}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -84,7 +84,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.submit_time }}" type="text" class="form-control" id="submit_time">
+                        <p id="submit_time">{{submit_time}}</p>
                     </div>
                 </td>
             </tr>
@@ -94,29 +94,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <select id="case_type" class="selectpicker show-tick form-control" data-live-search="false">
-                            {% set case_type0 = '0' %}
-                            {% set case_type1 = 'Case1' %}
-                            {% set case_type2 = 'Case2' %}
-                            {% if tc.case_type|string() == case_type0 %}
-                                <option selected="selected" value="0">==请选择==</option>
-                            {% else %}
-                                <option value="0">==请选择==</option>
-                            {% endif %}
-
-                            {% if tc.case_type|string() == case_type1 %}
-                                <option selected="selected" value="Case1">Case1</option>
-                            {% else %}
-                                <option value="Case1">Case1</option>
-                            {% endif %}
-
-                            {% if tc.case_type|string() == case_type2 %}
-                                <option selected="selected" value="Case2">Case2</option>
-                            {% else %}
-                                <option value="Case2">Case2</option>
-                            {% endif %}
-                            
-                        </select>
+                        <p id="case_type">{{case_type}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -124,29 +102,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <select id="case_reason" class="selectpicker show-tick form-control" data-live-search="false">
-                            {% set case_reason0 = '0' %}
-                            {% set case_reason1 = 'Case1' %}
-                            {% set case_reason2 = 'Case2' %} 
-                                                       
-                            {% if tc.case_reason|string() == case_reason0 %}
-                                <option selected="selected" value="0">==请选择==</option>
-                            {% else %}
-                                <option value="0">==请选择==</option>
-                            {% endif %}
-
-                            {% if tc.case_reason|string() == case_reason1 %}
-                                <option selected="selected" value="Case1">Case1</option>
-                            {% else %}
-                                <option value="Case1">Case1</option>
-                            {% endif %}
-
-                            {% if tc.case_reason|string() == case_reason2 %}
-                                <option selected="selected" value="Case2">Case2</option>
-                            {% else %}
-                                <option value="Case2">Case2</option>
-                            {% endif %}
-                        </select>
+                        <p id="case_reason">{{case_reason}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -154,44 +110,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <select id="case_level" class="selectpicker show-tick form-control" data-live-search="false">
-                            {% set case_level0 = '0' %}
-                            {% set case_level1 = '一审' %}
-                            {% set case_level2 = '二审' %}
-                            {% set case_level3 = '仲裁' %}
-                            {% set case_level4 = '再审' %}
-                            {% set case_level5 = '执行' %}
-                            {% if tc.case_level|string() == case_level0 %}
-                                <option selected="selected" value="0">==请选择==</option>
-                            {% else %}
-                                <option value="0">==请选择==</option>
-                            {% endif %}
-                            {% if tc.case_level|string() == case_level1 %}
-                                <option selected="selected" value="一审">一审</option>
-                            {% else %}
-                                <option value="一审">一审</option>
-                            {% endif %}
-                            {% if tc.case_level|string() == case_level2 %}
-                                <option selected="selected" value="二审">二审</option>
-                            {% else %}
-                                <option value="二审">二审</option>
-                            {% endif %}
-                            {% if tc.case_level|string() == case_level3 %}
-                                <option selected="selected" value="仲裁">仲裁</option>
-                            {% else %}
-                                <option value="仲裁">仲裁</option>
-                            {% endif %}
-                            {% if tc.case_level|string() == case_level4 %}
-                                <option selected="selected" value="再审">再审</option>
-                            {% else %}
-                                <option value="再审">再审</option>
-                            {% endif %}
-                            {% if tc.case_level|string() == case_level5 %}
-                                <option value="执行">执行</option>
-                            {% else %}
-                                <option value="执行">执行</option>
-                            {% endif %}
-                        </select>
+                        <p id="case_level">{{case_level}}</p>
                     </div>
                 </td>
             </tr>
@@ -201,7 +120,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.reception_agency }}" type="text" class="form-control" id="reception_agency">
+                        <p id="reception_agency">{{reception_agency}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -209,7 +128,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ tc.judge_phone }}" type="text" class="form-control" id="judge_phone">
+                        <p id="judge_phone">{{judge_phone}}</p>
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -217,7 +136,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ tc.custodian }}" type="text" class="form-control" id="custodian">
+                        <p id="custodian">{{custodian}}</p>
                     </div>
                 </td>
             </tr>
@@ -234,7 +153,7 @@
                                 原告（申请人）
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ tc.plaintiff }}" type="text" class="form-control" id="plaintiff">
+                                <p id="plaintiff">{{plaintiff}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -242,7 +161,7 @@
                                 被告（被申请人）
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ tc.defendant }}" type="text" class="form-control" id="defendant">
+                                <p id="defendant">{{defendant}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -250,7 +169,7 @@
                                 第三人
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ tc.third_person }}" type="text" class="form-control" id="third_person" placeholder="有则填写， 若无请填“无”">
+                                <p id="third_person">{{third_person}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -258,7 +177,7 @@
                                 标的金额
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ tc.amount }}" type="text" class="form-control" id="amount" placeholder="以阿拉伯数字填写金额， 精确至小数点后一位， 例如：123.4">
+                                <p id="amount">{{amount}}</p>
                             </td>
                         </tr>
                         <tr>
@@ -266,7 +185,7 @@
                                 请求
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="request">{{ tc.request }}</textarea>
+                                <textarea type="text" class="form-control" id="request" disabled>{{request}}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -285,36 +204,14 @@
                             <td class="col-md-9">
                                 <table>
                                     <tr>
-                                        <textarea type="text" class="form-control" id="group_justice_advise">{{ tc.group_justice_advise }}</textarea>
+                                        <textarea type="text" class="form-control" id="group_justice_advise" disabled>{{group_justice_advise}}</textarea>
                                     </tr>
                                     <tr>
                                         <td class="col-md-1">
                                             <p class="text-left p1">是否需要分管领导审批:</p>
                                         </td>
                                         <td class="col-md-8">
-                                            <select id="w_need_approval" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
-                                                {% set w_need_approval0 = '0' %}
-                                                {% set w_need_approval1 = '1' %}
-                                                {% set w_need_approval2 = '2' %}
-
-                                                {% if tc.w_need_approval|string() == w_need_approval0 %}
-                                                    <option selected="selected" value="0">==请选择==</option>
-                                                {% else %}
-                                                    <option value="0">==请选择==</option>
-                                                {% endif %}
-
-                                                {% if tc.w_need_approval|string() == w_need_approval1 %}
-                                                    <option selected="selected" value="1">是</option>
-                                                {% else %}
-                                                    <option value="1">是</option>
-                                                {% endif %}
-
-                                                {% if tc.w_need_approval|string() == w_need_approval2 %}
-                                                    <option selected="selected" value="2">否</option>
-                                                {% else %}
-                                                    <option value="2">否</option>
-                                                {% endif %}
-                                            </select>
+                                            <p class="text-left p1" id="w_need_approval">{{w_need_approval}}:</p>
                                         </td>
                                                   
                                     </tr>
@@ -326,7 +223,7 @@
                                 集团分管领导意见
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="group_leader_advise">{{ tc.group_leader_advise }}</textarea>
+                                <textarea type="text" class="form-control" id="group_leader_advise" disabled>{{group_leader_advise}}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -347,7 +244,7 @@
                             <td class="col-md-9">
                                 <table>
                                     <tr>
-                                        <textarea type="text" class="form-control" id="manager_register_detail">{{ tc.manager_register_detail }}</textarea>
+                                        <textarea type="text" class="form-control" id="manager_register_detail" disabled>{{manager_register_detail}}</textarea>
                                     </tr>
                                     <tr>
                                         <td class="col-md-1">
@@ -356,27 +253,7 @@
                                             </p>
                                         </td>
                                         <td class="col-md-8">
-                                            <select id="w_advise_done" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
-                                                {% set w_advise_done0 = '0' %}
-                                                {% set w_advise_done1 = '1' %}
-                                                {% set w_advise_done2 = '2' %}
-
-                                                {% if tc.w_advise_done|string() == w_advise_done0 %}
-                                                    <option selected="selected" value="0">==请选择==</option>
-                                                {% else %}
-                                                    <option value="0">==请选择==</option>
-                                                {% endif %}
-                                                {% if tc.w_advise_done|string() == w_advise_done1 %}
-                                                    <option selected="selected" value="1">是< /option>
-                                                {% else %}
-                                                    <option value="1">是</option>
-                                                {% endif %}
-                                                {% if tc.w_advise_done|string() == w_advise_done2 %}
-                                                    <option selected="selected" value="2">否</option>
-                                                {% else %}
-                                                    <option value="2">否</option>
-                                                {% endif %}
-                                            </select>       
+                                            <p id="w_advise_done">{{w_advise_done}}</p>
                                         </td>
                                     </tr>
                                 </table>
@@ -387,7 +264,7 @@
                                 集团法务部负责人补充意见
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="group_justice_add_advise">{{ tc.group_justice_add_advise }}</textarea>
+                                <textarea type="text" class="form-control" id="group_justice_add_advise" disabled>{{group_justice_add_advise}}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -397,7 +274,7 @@
                             <td class="col-md-9">
                                 <table>
                                     <tr>
-                                        <textarea type="text" class="form-control" id="group_manager_filing">{{ tc.group_manager_filing }}</textarea>
+                                        <textarea type="text" class="form-control" id="group_manager_filing" disabled>{{group_manager_filing}}</textarea>
                                     </tr>
                                     <tr>
                                         <p>
@@ -412,7 +289,7 @@
                                 项目档案室备案
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="project_doc_filing">{{ tc.project_doc_filing }}</textarea>
+                                <textarea type="text" class="form-control" id="project_doc_filing" disabled>{{project_doc_filing}}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -420,7 +297,7 @@
                                 集团档案室备案
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="group_doc_filing">{{ tc.group_doc_filing }}</textarea>
+                                <textarea type="text" class="form-control" id="group_doc_filing" disabled>{{group_doc_filing}}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -431,20 +308,14 @@
                     备注
                 </td>
                 <td class="col-md-11">
-                    <textarea type="text" class="form-control" id="remark">{{ tc.remark }}</textarea>
+                    <textarea type="text" class="form-control" id="remark" disabled>{{remark}}</textarea>
                 </td>
             </tr>
         </table>
-    <div id="operate">
-        <button class="btn btn-danger">取消</button>
-        <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
-    </div>
     </div>
 </body>
 
 <script type="text/javascript">
-
-
 $(document).ready(function(){
   $(".btn-success").click(function(){
     var data = getData();
@@ -454,7 +325,6 @@ $(document).ready(function(){
     });
   });
 });
-
 function getData() {
     return {
         t_type: "t2",
@@ -505,11 +375,8 @@ function getData() {
         project_doc_filing: $("#project_doc_filing").val(),
         // 备注
         remark: $("#remark").val()
-
     }
 }
-
-
 </script>
 
 </html>

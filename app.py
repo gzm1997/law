@@ -116,12 +116,23 @@ def table():
         case_id = request.args.get("case_id")
         t_type = request.args.get('t_type')
         print("show table case_id:", case_id, "t_type:", t_type)
-        if t_type == "t1":
-            return render_template("table1.html", table_content = case_data._search_table(t_type = "t1", case_id = "2017-8-8"))
-        elif t_type == "t2":
-            return render_template("table2.html")
-        elif t_type == "t3":
-            return render_template("table3.html")
+
+        target_case = case_data._search_law_case(case_id = case_id)
+
+        if target_case != []:
+            if "username" in session and target_case[0]["username"] == session["username"]:
+                own = True
+            else:
+                own = False
+
+            if t_type == "t1":
+                return render_template("table1.html", tc = case_data._search_table(t_type = "t1", case_id = case_id), own = own)
+            elif t_type == "t2":
+                return render_template("table2.html", tc = case_data._search_table(t_type = "t2", case_id = case_id), own = own)
+
+            elif t_type == "t3":
+                return render_template("table3.html", tc = case_data._search_table(t_type = "t3", case_id = case_id), own = own)
+        abort(401)
     elif request.method == "POST":
         print(request.form)
         content_dict = dict(request.form)

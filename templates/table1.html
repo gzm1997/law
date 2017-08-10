@@ -22,7 +22,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.case_id }}" type="text" class="form-control" id="case_id">
+                        <input value="{{ tc.case_id }}" type="text" class="form-control" id="case_id">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -30,7 +30,7 @@
                 </td>
                 <td class="col-md-9">
                     <div>
-                        <input value="{{ table_content.case_name }}" type="text" class="form-control" id="case_name">
+                        <input value="{{ tc.case_name }}" type="text" class="form-control" id="case_name">
                     </div>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.OA_id }}" type="text" class="form-control" id="OA_id">
+                        <input value="{{ tc.OA_id }}" type="text" class="form-control" id="OA_id">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -50,7 +50,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ table_content.company_name }}" type="text" class="form-control" id="company_name">
+                        <input value="{{ tc.company_name }}" type="text" class="form-control" id="company_name">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -58,7 +58,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.department }}" type="text" class="form-control" id="department">
+                        <input value="{{ tc.department }}" type="text" class="form-control" id="department">
                     </div>
                 </td>
             </tr>
@@ -68,7 +68,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.manager }}" type="text" class="form-control" id="manager">
+                        <input value="{{ tc.manager }}" type="text" class="form-control" id="manager">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -76,7 +76,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ table_content.phone }}" type="text" class="form-control" id="phone">
+                        <input value="{{ tc.phone }}" type="text" class="form-control" id="phone">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -84,7 +84,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.submit_time }}" type="text" class="form-control" id="submit_time">
+                        <input value="{{ tc.submit_time }}" type="text" class="form-control" id="submit_time">
                     </div>
                 </td>
             </tr>
@@ -98,19 +98,19 @@
                             {% set type1 = '0' %}
                             {% set type2 = 'Case1' %}
                             {% set type3 = 'Case2' %}
-                            {% if table_content.case_type|string() == type1 %}
+                            {% if tc.case_type|string() == type1 %}
                                 <option selected="selected" value="0">==请选择==</option>
                             {% else %}
                                 <option value="0">==请选择==</option>
                             {% endif %}
 
-                            {% if table_content.case_type|string() == type2 %}
+                            {% if tc.case_type|string() == type2 %}
                                 <option selected="selected" value="Case1">Case1</option>
                             {% else %}
                                 <option value="Case1">Case1</option>
                             {% endif %}
 
-                            {% if table_content.case_type|string() == type3 %}
+                            {% if tc.case_type|string() == type3 %}
                                 <option selected="selected" value="Case2">Case2</option>
                             {% else %}
                                 <option value="Case2">Case2</option>
@@ -124,19 +124,19 @@
                 <td class="col-md-5">
                     <div>
                         <select id="case_reason" class="selectpicker show-tick form-control" data-live-search="false">
-                            {% if table_content.case_reason|string() == type1 %}
+                            {% if tc.case_reason|string() == type1 %}
                                 <option selected="selected" value="0">==请选择==</option>
                             {% else %}
                                 <option value="0">==请选择==</option>
                             {% endif %}
 
-                            {% if table_content.case_reason|string() == type2 %}
+                            {% if tc.case_reason|string() == type2 %}
                                 <option selected="selected" value="Case1">Case1</option>
                             {% else %}
                                 <option value="Case1">Case1</option>
                             {% endif %}
 
-                            {% if table_content.case_reason|string() == type3 %}
+                            {% if tc.case_reason|string() == type3 %}
                                 <option selected="selected" value="Case2">Case2</option>
                             {% else %}
                                 <option value="Case2">Case2</option>
@@ -157,37 +157,37 @@
                             {% set zs = '再审' %}
                             {% set zx = '执行' %}
 
-                            {% if table_content.case_level|string() == type1 %}
+                            {% if tc.case_level|string() == type1 %}
                                 <option selected="selected" value="0">==请选择==</option>
                             {% else %}
                                 <option selected="selected" value="0">==请选择==</option>
                             {% endif %}
 
-                            {% if table_content.case_level|string() == ys %}
+                            {% if tc.case_level|string() == ys %}
                                 <option selected="selected" value="一审">一审</option>
                             {% else %}
                                 <option value="一审">一审</option>
                             {% endif %}
                             
-                            {% if table_content.case_level|string() == es %}
+                            {% if tc.case_level|string() == es %}
                                 <option selected="selected" value="二审">二审</option>
                             {% else %}
                                 <option value="二审">二审</option>
                             {% endif %}
                             
-                            {% if table_content.case_level|string() == zc %}
+                            {% if tc.case_level|string() == zc %}
                                 <option selected="selected" value="仲裁">仲裁</option>
                             {% else %}
                                 <option value="仲裁">仲裁</option>
                             {% endif %}
                             
-                            {% if table_content.case_level|string() == zs %}
+                            {% if tc.case_level|string() == zs %}
                                 <option selected="selected" value="再审">再审</option>
                             {% else %}
                                 <option value="再审">再审</option>
                             {% endif %}
                             
-                            {% if table_content.case_level|string() == zx %}
+                            {% if tc.case_level|string() == zx %}
                                 <option selected="selected" value="执行">执行</option>
                             {% else %}
                                 <option value="执行">执行</option>
@@ -202,7 +202,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.reception_agency }}" type="text" class="form-control" id="reception_agency">
+                        <input value="{{ tc.reception_agency }}" type="text" class="form-control" id="reception_agency">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -210,7 +210,7 @@
                 </td>
                 <td class="col-md-5">
                     <div>
-                        <input value="{{ table_content.judge_phone }}" type="text" class="form-control" id="judge_phone">
+                        <input value="{{ tc.judge_phone }}" type="text" class="form-control" id="judge_phone">
                     </div>
                 </td>
                 <td class="col-md-1">
@@ -218,7 +218,7 @@
                 </td>
                 <td class="col-md-2">
                     <div>
-                        <input value="{{ table_content.custodian }}" type="text" class="form-control" id="custodian">
+                        <input value="{{ tc.custodian }}" type="text" class="form-control" id="custodian">
                     </div>
                 </td>
             </tr>
@@ -235,7 +235,7 @@
                                 原告（申请人）
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ table_content.plaintiff }}" type="text" class="form-control" id="plaintiff">
+                                <input value="{{ tc.plaintiff }}" type="text" class="form-control" id="plaintiff">
                             </td>
                         </tr>
                         <tr>
@@ -243,7 +243,7 @@
                                 被告（被申请人）
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ table_content.defendant }}" type="text" class="form-control" id="defendant">
+                                <input value="{{ tc.defendant }}" type="text" class="form-control" id="defendant">
                             </td>
                         </tr>
                         <tr>
@@ -251,7 +251,7 @@
                                 第三人
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ table_content.third_person }}" type="text" class="form-control" id="third_person" placeholder="有则填写， 若无请填“无”">
+                                <input value="{{ tc.third_person }}" type="text" class="form-control" id="third_person" placeholder="有则填写， 若无请填“无”">
                             </td>
                         </tr>
                         <tr>
@@ -259,7 +259,7 @@
                                 标的金额
                             </td>
                             <td class="col-md-9">
-                                <input value="{{ table_content.amount }}" type="text" class="form-control" id="amount" placeholder="以阿拉伯数字填写金额， 精确至小数点后一位， 例如：123.4">
+                                <input value="{{ tc.amount }}" type="text" class="form-control" id="amount" placeholder="以阿拉伯数字填写金额， 精确至小数点后一位， 例如：123.4">
                             </td>
                         </tr>
                         <tr>
@@ -267,7 +267,7 @@
                                 请求
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="request">{{ table_content.request }}</textarea>
+                                <textarea type="text" class="form-control" id="request">{{ tc.request }}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -275,7 +275,7 @@
                                 抗辩要点
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="to_argue" placeholder="如我司为原告， 则此栏填写对方可能提出的抗辩理由">{{ table_content.to_argue }}</textarea>
+                                <textarea type="text" class="form-control" id="to_argue" placeholder="如我司为原告， 则此栏填写对方可能提出的抗辩理由">{{ tc.to_argue }}</textarea>
                             </td>
                         </tr>
                     </table>
@@ -297,37 +297,37 @@
                         </tr>
                         <tr>
                             <td class="col-md-1">
-                                <input value="{{ table_content.serial_number }}" type="text" class="form-control" id="serial_number">
+                                <input value="{{ tc.serial_number }}" type="text" class="form-control" id="serial_number">
                             </td>
                             <td class="col-md-5">
-                                <input value="{{ table_content.attachment_name }}" type="text" class="form-control" id="attachment_name">
+                                <input value="{{ tc.attachment_name }}" type="text" class="form-control" id="attachment_name">
                             </td>
                             <td class="col-md-2">
-                                <input value="{{ table_content.page_num }}" type="number" class="form-control" id="page_num" min="0">
+                                <input value="{{ tc.page_num }}" type="number" class="form-control" id="page_num" min="0">
                             </td>
                             <td class="col-md-4">
                                 <div>
                                     <select id="yz_way" class="selectpicker show-tick form-control" data-live-search="false">
                                         {% set type4 = 'Case3' %}
-                                        {% if table_content.yz_way|string() == type1 %}
+                                        {% if tc.yz_way|string() == type1 %}
                                             <option selected="selected" value="0">==请选择==</option>
                                         {% else %}
                                             <option value="0">==请选择==</option>
                                         {% endif %}
 
-                                        {% if table_content.yz_way|string() == type2 %}
+                                        {% if tc.yz_way|string() == type2 %}
                                             <option selected="selected" value="Case1">Case1</option>
                                         {% else %}
                                             <option value="Case1">Case1</option>
                                         {% endif %}
 
-                                        {% if table_content.yz_way|string() == type3 %}
+                                        {% if tc.yz_way|string() == type3 %}
                                             <option selected="selected" value="Case2">Case2</option>
                                         {% else %}
                                             <option value="Case2">Case2</option>
                                         {% endif %}
 
-                                        {% if table_content.yz_way|string() == type4 %}
+                                        {% if tc.yz_way|string() == type4 %}
                                             <option selected="selected" value="Case3">Case3</option>
                                         {% else %}
                                             <option value="Case3">Case3</option>
@@ -358,38 +358,38 @@
                                     <select id="w_implement" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
                                         {% set w_y = '1' %}
                                         {% set w_n = '2' %}
-                                        {% if table_content.w_implement|string() == type1 %}
+                                        {% if tc.w_implement|string() == type1 %}
                                             <option selected="selected" value="0">==请选择==</option>
                                         {% else %}
                                             <option value="0">==请选择==</option>
                                         {% endif %}
 
-                                        {% if table_content.w_implement|string() == type1 %}
+                                        {% if tc.w_implement|string() == type1 %}
                                             <option selected="selected" value="1">是</option>
                                         {% else %}
                                             <option value="1">是</option>
                                         {% endif %}
 
-                                        {% if table_content.w_implement|string() == type1 %}
+                                        {% if tc.w_implement|string() == type1 %}
                                             <option selected="selected" value="2">否</option>
                                         {% else %}
                                             <option value="2">否</option>
                                         {% endif %}    
                                     </select>
                                     </div>
-                                    <textarea cols="50" rows="3" placeholder="填写未落实的细节及处理办法" id="registration_details">{{ table_content.registration_details }}</textarea>
+                                    <textarea cols="50" rows="3" placeholder="填写未落实的细节及处理办法" id="registration_details">{{ tc.registration_details }}</textarea>
                                 </div>
                                 <div class="time-area form-group">
                                     <label for="register_time" class="control-label col-md-3">立案时间:</label>
-                                    <input value="{{ table_content.register_time }}" type="text" class="col-md-2" id="register_time">
+                                    <input value="{{ tc.register_time }}" type="text" class="col-md-2" id="register_time">
                                     <label for="submit_add_time" class="control-label col-md-3">提交补充证据时间:</label>
-                                    <input value="{{ table_content.submit_add_time }}" type="text" class="col-md-2" id="submit_add_time">
+                                    <input value="{{ tc.submit_add_time }}" type="text" class="col-md-2" id="submit_add_time">
                                 </div>
                                 <div class="time-area form-group">
                                     <label for="court_time" class="control-label col-md-3">开庭时间:</label>
-                                    <input value="{{ table_content.court_time }}" type="text" class="col-md-2" id="court_time">
+                                    <input value="{{ tc.court_time }}" type="text" class="col-md-2" id="court_time">
                                     <label for="get_paper_time" class="control-label col-md-3">领取法律文书时间:</label>
-                                    <input value="{{ table_content.get_paper_time }}" type="text" class="col-md-2" id="get_paper_time">
+                                    <input value="{{ tc.get_paper_time }}" type="text" class="col-md-2" id="get_paper_time">
                                 </div>
                             </td>
                         </tr>
@@ -398,7 +398,7 @@
                                 集团法务部负责人意见
                             </td>
                             <td class="col-md-9">
-                                <textarea rows="5" placeholder="" id="group_justice_add_advise">{{ table_content.group_justice_add_advise }}</textarea>
+                                <textarea rows="5" placeholder="" id="group_justice_add_advise">{{ tc.group_justice_add_advise }}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -406,7 +406,7 @@
                                 集团主管法务备案
                             </td>
                             <td class="col-md-9">
-                                <textarea rows="5" placeholder="" id="group_manager_filing">{{ table_content.group_manager_filing }}</textarea>
+                                <textarea rows="5" placeholder="" id="group_manager_filing">{{ tc.group_manager_filing }}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -415,7 +415,7 @@
                             </td>
                             <td class="col-md-9">
                                 <textarea rows="5" placeholder="" id="group_doc_filing">
-                                    {{ table_content.group_doc_filing }}
+                                    {{ tc.group_doc_filing }}
                                 </textarea>
                             </td>
                         </tr>
@@ -423,10 +423,13 @@
                 </td>
             </tr>
         </table>
-    <div id="operate">
-        <button class="btn btn-danger">取消</button>
-        <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
-    </div>
+        
+        {% if own %}
+            <div id="operate">
+                <button class="btn btn-danger">取消</button>
+                <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
+            </div>
+        {% endif %}
     </div>
 </body>
 

@@ -80,7 +80,7 @@ class Case_manager(object):
     def _edit_law_case(self, username, case_id, case_name, to_do = "create"):
         cursor = self._conn.cursor()
         if to_do == "create":
-            if self._search_law_case(username = username, case_id = case_id, case_name = case_name) == []:
+            if self._search_law_case(case_id = case_id) == []:
                 cursor.execute("insert into law_case value(%s, %s, %s);", [username, case_id, case_name])
 
                 cursor.execute("insert into t1 value(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", create_empty_table_list("t1", case_id, case_name))
