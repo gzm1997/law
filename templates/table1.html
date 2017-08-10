@@ -356,8 +356,8 @@
                                     <div class="col-md-4">
                                     <p class="text-left p1">终审意见是否落实:</p>
                                     <select id="w_implement" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
-                                        {{ set w_y = '1' }}
-                                        {{ set w_n = '2' }}
+                                        {% set w_y = '1' %}
+                                        {% set w_n = '2' %}
                                         {% if table_content.w_implement|string() == type1 %}
                                             <option selected="selected" value="0">==请选择==</option>
                                         {% else %}
