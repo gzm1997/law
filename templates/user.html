@@ -35,6 +35,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 
 	<script src="/static/js/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/static/js/detail.js"></script>
 
 </head>
@@ -69,28 +70,36 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-	<div class="message warning">
-		<div class="inset">
-			<div class="login-head">
-				<h1>User</h1>
-		 		<div class="alert-close"> </div> 			
-			</div>
-
-			<li>
-				<input readonly="readonly" type="text" class="text" name="email" value= {{ Myemail }} ><a href="#" ></a>
-			</li>
-			
-
-			<li>
-				<input readonly="readonly" type="text" name="username" value=  {{ Myusername }} > <a href="#"></a>
-			</li>
-
-			<div class="submit">
-				<a href="/logout"><input style="position: relative;left: 30%; bottom: 10px" type="submit" name="Sign out" value="Sign out"></a>
-				<div id="sh5" class="clear" style="text-align: center;"> </div>	
-			</div>
-		</div>					
-	</div>
+	
+	<table class="table table-bordered table-hover">
+		<tr class="text-center">
+			<td class="col-md-6">
+				用户名:
+			</td>
+			<td class="col-md-6"> 
+				{{ Myusername }} 
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td class="col-md-6">
+				邮件:
+			</td>
+			<td class="col-md-6">
+				{{ Myemail }}
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td class="col-md-6">
+				退出：
+			</td>
+			<td class="col-md-6">
+				<div class="submit">
+					<a href="/logout"><input style="position: relative;left: 30%; bottom: 10px" type="submit" name="Sign out" value="Sign out"></a>
+					<div id="sh5" class="clear" style="text-align: center;"> </div>	
+				</div>
+			</td>
+		</tr>
+	</table>
 </body>
 
 </html>
