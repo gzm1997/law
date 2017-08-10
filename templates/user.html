@@ -72,34 +72,44 @@
     </nav>
 	
 	<table class="table table-bordered table-hover">
-		<tr class="text-center">
-			<td class="col-md-6">
-				用户名:
+		<tr>
+			<td class="col-md-2">
+				<table class="table table-bordered table-hover">
+					<tr class="text-center">
+						<td class="col-md-6">
+							用户名:
+						</td>
+						<td class="col-md-6"> 
+							{{ Myusername }} 
+						</td>
+					</tr>
+					<tr class="text-center">
+						<td class="col-md-6">
+							邮件:
+						</td>
+						<td class="col-md-6">
+							{{ Myemail }}
+						</td>
+					</tr>
+					<tr class="text-center">
+						<td class="col-md-6">
+						退出：
+						</td>
+						<td class="col-md-6">
+							<div class="submit">
+								<a href="/logout"><input type="submit" name="Sign out" value="Sign out"></a>
+								<div id="sh5" class="clear" style="text-align: center;"> </div>	
+							</div>
+						</td>
+					</tr>
+				</table>			
 			</td>
-			<td class="col-md-6"> 
-				{{ Myusername }} 
+			<td class="col-md-5">
 			</td>
-		</tr>
-		<tr class="text-center">
-			<td class="col-md-6">
-				邮件:
-			</td>
-			<td class="col-md-6">
-				{{ Myemail }}
-			</td>
-		</tr>
-		<tr class="text-center">
-			<td class="col-md-6">
-				退出：
-			</td>
-			<td class="col-md-6">
-				<div class="submit">
-					<a href="/logout"><input style="position: relative;left: 30%; bottom: 10px" type="submit" name="Sign out" value="Sign out"></a>
-					<div id="sh5" class="clear" style="text-align: center;"> </div>	
-				</div>
-			</td>
+			<td class="col-md-5"></td>
 		</tr>
 	</table>
+
 </body>
 
 </html>
