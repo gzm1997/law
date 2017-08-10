@@ -1,0 +1,76 @@
+纠纷案件审批表（庭后）：
+
+案号：case_id
+案件名称：case_name
+OA档案号：OA_id 项目代码-法务-年份-月份-流水号(3位)例如：JT-FW-2014-10-001
+公司名称：company_name
+经办部门：department 法务部
+经办人：manager
+联系电话：phone
+提交日期：submit_time
+案件类型：case_type
+案由：case_reason
+案件审级：（多选一）一审，仲裁，再审，执行 case_level
+受理机构：（规则：市-区-庭） reception_agency
+经办法官及电话：judge_phone
+案卷保管人：custodian
+
+原告（申请人）：plaintiff
+被告（被申请人）：defendant
+第三人：third_person
+标的金额：amount
+请求：request
+抗辩要点：to_argue
+
+
+项目法务负责人意见: project_justice_advise
+项目负责人/集团职能中心负责人意见：project_manager_advise
+集团法务部负责人意见：group_justice_advise
+集团分管领导意见：group_leader_advise
+
+经办人登记：
+	登记细节：registration_details
+	和解协议签订时间：settlement_agreement_time
+	和解协议履行时间：reconciliation_agreement_time
+	撤案申请时间：withdrawal_time
+	终审意见是否落实：w_implement
+
+集团法务部负责人补充意见：group_justice_add_advise
+集团法务部主管备案：group_justice_filing
+
+
+31
+
+
+
+case_id
+case_name
+OA_id
+company_name
+department
+manager
+phone
+submit_time
+case_type
+case_reason
+case_level
+reception_agency
+judge_phone
+custodian
+plaintiff
+defendant
+third_person
+amount
+request
+to_argue
+project_justice_advise
+project_manager_advise
+group_justice_advise
+group_leader_advise
+registration_details
+settlement_agreement_time
+reconciliation_agreement_time
+withdrawal_time
+w_implement
+group_justice_add_advise
+group_justice_filing

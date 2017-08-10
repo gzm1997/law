@@ -1,0 +1,50 @@
+.table tbody tr td {
+            vertical-align: middle !important;
+}
+.table {
+    margin: 0px;
+}
+#yz_way{
+    width: auto;
+}
+.p1 {
+    font-size: 16pt;
+    float: left;
+}
+.time-area {
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.time-area input {
+    height: 30px;
+}
+
+#yz_way{
+    width: 100%;
+}
+
+#group_justice_add_advise, #group_manager_filing, #group_doc_filing {
+    width: 80%;
+}
+#operate {
+    width: auto;
+    margin: 20px;
+    text-align: center;
+}
+#operate button{
+    margin: 30px;
+    width: 65px;
+    height: 45px; 
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 2px solid lightblue;
+    border-radius: 25px;
+}
+
+
+

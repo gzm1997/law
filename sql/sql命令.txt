@@ -1,0 +1,137 @@
+create table raw_user(
+email varchar(20),
+username varchar(20),
+password varchar(20),
+vertifycode varchar(20)
+);
+
+
+#相当于username就是userid
+create table user(
+email varchar(20),
+username varchar(20),
+password varchar(20)
+);
+
+
+insert into user value("1617899539@qq.com", "gzm1997", "Gzm20125");k
+
+insert into raw_user value("15521027848@163.com", "gzmpy", "Gzm1997", "asdndniwd342");
+
+create table law_case(
+username varchar(20),
+case_id varchar(20),
+case_name varchar(20)
+);
+
+create table t1(
+case_id varchar(200), 
+case_name varchar(200), 
+OA_id varchar(200), 
+company_name varchar(200), 
+department varchar(200), 
+manager varchar(200), 
+phone varchar(200), 
+submit_time varchar(200), 
+case_type varchar(200), 
+case_reason varchar(200), 
+case_level varchar(200), 
+reception_agency varchar(200), 
+judge_phone varchar(200), 
+custodian varchar(200), 
+plaintiff varchar(200), 
+defendant varchar(200), 
+third_person varchar(200), 
+amount varchar(200), 
+request varchar(200), 
+to_argue varchar(200), 
+serial_number varchar(200), 
+attachment_name varchar(200), 
+page_num varchar(200), 
+yz_way varchar(200), 
+registration_details varchar(200), 
+w_implement varchar(200), 
+register_time varchar(200), 
+submit_add_time varchar(200), 
+court_time varchar(200), 
+get_paper_time varchar(200), 
+group_justice_add_advise varchar(200), 
+group_manager_filing varchar(200), 
+group_doc_filing varchar(200)
+);
+
+create table t2(
+case_id varchar(200),
+case_name varchar(200),
+OA_id varchar(200),
+company_name varchar(200),
+department varchar(200),
+manager varchar(200),
+phone varchar(200),
+submit_time varchar(200),
+case_type varchar(200),
+case_reason varchar(200),
+case_level varchar(200),
+reception_agency varchar(200),
+judge_phone varchar(200),
+custodian varchar(200),
+plaintiff varchar(200),
+defendant varchar(200),
+third_person varchar(200),
+amount varchar(200),
+request varchar(200),
+group_justice_advise varchar(200),
+w_need_approval varchar(200),
+group_leader_advise varchar(200),
+manager_register_detail varchar(200),
+w_advise_done varchar(200),
+group_justice_add_advise varchar(200),
+group_manager_filing varchar(200),
+project_doc_filing varchar(200),
+group_doc_filing varchar(200),
+remark varchar(200)
+);
+
+
+create table t3(
+case_id varchar(200),
+case_name varchar(200),
+OA_id varchar(200),
+company_name varchar(200),
+department varchar(200),
+manager varchar(200),
+phone varchar(200),
+submit_time varchar(200),
+case_type varchar(200),
+case_reason varchar(200),
+case_level varchar(200),
+reception_agency varchar(200),
+judge_phone varchar(200),
+custodian varchar(200),
+plaintiff varchar(200),
+defendant varchar(200),
+third_person varchar(200),
+amount varchar(200),
+request varchar(200),
+to_argue varchar(200),
+project_justice_advise varchar(200),
+project_manager_advise varchar(200),
+group_justice_advise varchar(200),
+group_leader_advise varchar(200),
+registration_details varchar(200),
+settlement_agreement_time varchar(200),
+reconciliation_agreement_time varchar(200),
+withdrawal_time varchar(200),
+w_implement varchar(200),
+group_justice_add_advise varchar(200),
+group_justice_filing varchar(200)
+);
+
+create table task_table(
+task_name varchar(200),
+task_type varchar(200),
+manager varchar(200),
+deadline varchar(200),
+completion_date varchar(200),
+time_required varchar(200)
+);

@@ -1,0 +1,31 @@
+任务表
+
+task_table
+任务名称：task_name
+任务类型L：task_type
+经办人：manager
+截至日期：deadline
+完成日期：completion_date
+所需时间：time_required
+
+
+
+
+#task_table:
+
+task_name
+task_type
+manager
+deadline
+completion_date
+time_required
+
+task_table {
+	"task_name": task_name",
+	"task_type": "task_type",
+	"manager": "manager",
+	"deadline": "deadline",
+	"completion_date": "completion_date",
+	"time_required": "time_required"
+}
+

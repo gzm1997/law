@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/table.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!--<script src="/static/js/table3.js" ></script>-->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>纠纷案件审批表(庭后)</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">纠纷案件审批表(庭后)</h2>
+
+        <table class="table table-bordered table-hover">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>案号</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="case_id">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案件名称</div>
+                </td>
+                <td class="col-md-9">
+                    <div>
+                        <input type="text" class="form-control" id="case_name">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-hover">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>OA档案号</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="OA_id">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>公司名称</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <input type="text" class="form-control" id="company_name">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>经办部门</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="department">
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>经办人</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="manager">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>联系电话</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <input type="text" class="form-control" id="phone">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>提交日期</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="submit_time">
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>案件类型</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <select id="case_type" class="selectpicker show-tick form-control" data-live-search="false">
+                                        <option value="0">==请选择==</option>
+                                        <option value="Case1">Case1</option>
+                                        <option value="Case2">Case2</option>
+
+                        </select>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案由</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <select id="case_reason" class="selectpicker show-tick form-control" data-live-search="false">
+                                        <option value="0">==请选择==</option>
+                                        <option value="Case1">Case1</option>
+                                        <option value="Case2">Case2</option>
+
+                        </select>
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案件审级</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <select id="case_level" class="selectpicker show-tick form-control" data-live-search="false">
+                                        <option value="0">==请选择==</option>
+                                        <option value="一审">一审</option>
+                                        <option value="二审">二审</option>
+                                        <option value="仲裁">仲裁</option>
+                                        <option value="再审">再审</option>
+                                        <option value="执行">执行</option>
+
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <div>受理机构</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="reception_agency">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>经办法官及电话</div>
+                </td>
+                <td class="col-md-5">
+                    <div>
+                        <input type="text" class="form-control" id="judge_phone">
+                    </div>
+                </td>
+                <td class="col-md-1">
+                    <div>案卷保管人</div>
+                </td>
+                <td class="col-md-2">
+                    <div>
+                        <input type="text" class="form-control" id="custodian">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    案件当事人及诉讼/仲裁请求
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3">
+                                原告（申请人）
+                            </td>
+                            <td class="col-md-9">
+                                <input type="text" class="form-control" id="plaintiff">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                被告（被申请人）
+                            </td>
+                            <td class="col-md-9">
+                                <input type="text" class="form-control" id="defendant">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                第三人
+                            </td>
+                            <td class="col-md-9">
+                                <input type="text" class="form-control" id="third_person" placeholder="有则填写， 若无请填“无”">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                标的金额
+                            </td>
+                            <td class="col-md-9">
+                                <input type="text" class="form-control" id="amount" placeholder="以阿拉伯数字填写金额， 精确至小数点后一位， 例如：123.4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                请求
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="request"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                抗辩要点
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="to_argue" placeholder="如我司为原告， 则此栏填写对方可能提出的抗辩理由"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    审批意见
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3">
+                                项目法务负责人意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="project_justice_advise" placeholder="如我司为原告， 则此栏填写对方可能提出的抗辩理由"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                项目负责人/集团职能中心负责人意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="project_manager_advise" placeholder="审批要点：出具项目/集团职能中心意见"></textarea>
+                            </td>                           
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团法务部负责人意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="group_justice_advise" placeholder="审批要点：确定并指导案件处理"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团分管领导意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="group_leader_advise" placeholder="审批要点：确定并指导案件处理"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-bordered text-center table-hover">
+            <tr>
+                <td class="col-md-1">
+                    办理情况登记
+                </td>
+                <td class="col-md-11">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-md-3">
+                                经办人登记
+                            </td>
+                            <td class="col-md-9">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <textarea type="text" class="form-control" id="registration_details"></textarea>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-6">
+                                            <div class="time-area form-group">
+                                                <label for="register_time" class="control-label col-md-3">
+                                                    和解协议签订时间:
+                                                </label>
+                                                <input type="text" class="col-md-2" id="settlement_agreement_time">
+
+                                                <label for="submit_add_time" class="control-label col-md-3">
+                                                    和解协议履行时间:
+                                                </label>
+                                                <input type="text" class="col-md-2" id="reconciliation_agreement_time">
+                                            </div>
+                                            
+                                            <div class="time-area form-group">
+                                                <label for="register_time" class="control-label col-md-3">
+                                                    撤案申请时间:
+                                                </label>
+                                                <input type="text" class="col-md-2" id="withdrawal_time">
+                                                
+                                                <label for="submit_add_time" class="control-label col-md-3">
+                                                    终审意见是否落实:
+                                                </label>
+                                                <input type="text" class="col-md-2" id="w_implement">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团法务部负责人补充意见
+                            </td>
+                            <td class="col-md-9">
+                                <textarea type="text" class="form-control" id="group_justice_add_advise"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                集团主管法务部备案
+                            </td>
+                            <td class="col-md-9">
+                                <table>
+                                    <tr>
+                                        <textarea type="text" class="form-control" id="group_justice_filing"></textarea>
+                                    </tr>
+                                    <tr>
+                                        <p>
+                                            (审批要点：附件是否完整,终审意见是否落实)
+                                        </p>              
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    <div id="operate">
+        <button class="btn btn-danger">取消</button>
+        <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
+    </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  $(".btn-success").click(function(){
+    var data = getData();
+    $.post("/table", data,
+    function(data,status){
+      alert("数据：" + data + "\n状态：" + status);
+    });
+  });
+});
+
+function getData() {
+    return {
+        t_type: "t3",
+        case_id: $("#case_id").val(),
+        case_name: $("#case_name").val(),
+        OA_id: $("#OA_id").val(),
+        company_name: $("#company_name").val(),
+        department: $("#department").val(),
+        manager: $("#manager").val(),
+        phone: $("#phone").val(),
+        submit_time: $("#submit_time").val(),
+        case_type: $("#case_type").val(),
+        case_reason: $("#case_reason").val(),
+        case_level: $("#case_level").val(),
+        reception_agency: $("#reception_agency").val(),
+        judge_phone: $("#judge_phone").val(),
+        custodian: $("#custodian").val(),
+        plaintiff: $("#plaintiff").val(),
+        defendant: $("#defendant").val(),
+        third_person: $("#third_person").val(),
+        amount: $("#amount").val(),
+        request: $("#request").val(),
+        to_argue: $("#to_argue").val(),
+        project_justice_advise: $("#project_justice_advise").val(),
+        project_manager_advise: $("#project_manager_advise").val(),
+        group_justice_advise: $("#group_justice_advise").val(),
+        group_leader_advise: $("#group_leader_advise").val(),
+        registration_details: $("#registration_details").val(),
+        settlement_agreement_time: $("#settlement_agreement_time").val(),
+        reconciliation_agreement_time: $("#reconciliation_agreement_time").val(),
+        withdrawal_time: $("#withdrawal_time").val(),
+        w_implement: $("#w_implement").val(),
+        group_justice_add_advise: $("#group_justice_add_advise").val(),
+        group_justice_filing: $("#group_justice_filing").val()
+
+    }
+}
+
+
+</script>
+
+</html>

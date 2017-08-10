@@ -1,0 +1,79 @@
+纠纷案件审批表(庭前)
+
+案号：case_id
+案件名称：case_name
+OA档案号：OA_id 项目代码-法务-年份-月份-流水号(3位)例如：JT-FW-2014-10-001
+公司名称：company_name
+经办部门：department 法务部
+经办人：manager
+联系电话：phone
+提交日期：submit_time
+案件类型：case_type
+案由：case_reason
+案件审级：case_level（多选一）一审，仲裁，再审，执行
+受理机构：reception_agency（规则：市-区-庭）
+经办法官及电话：judge_phone
+案卷保管人：custodian
+
+原告（申请人）：plaintiff
+被告（被申请人）：defendant
+第三人：third_person
+标的金额：amount
+请求：request
+抗辩要点：to_argue
+附件清单：
+	序号：serial_number
+	附件名称：attachment_name
+	份数：page_num
+	用章方式：yz_way
+
+经办人登记：
+	登记细节：registration_details
+	终审意见是否落实：w_implement
+	立案时间：register_time
+	提交补充证据时间：submit_add_time
+	开庭时间：court_time
+	领取法律文书时间：get_paper_time
+
+集团法务部负责人补充意见：group_justice_add_advise
+集团主管法务备案：group_manager_filing
+集团档案室备案：group_doc_filing
+
+
+33
+
+
+
+case_id
+case_name
+OA_id
+company_name
+department
+manager
+phone
+submit_time
+case_type
+case_reason
+case_level
+reception_agency
+judge_phone
+custodian
+plaintiff
+defendant
+third_person
+amount
+request
+to_argue
+serial_number
+attachment_name
+page_num
+yz_way
+registration_details
+w_implement
+register_time
+submit_add_time
+court_time
+get_paper_time
+group_justice_add_advise
+group_manager_filing
+group_doc_filing

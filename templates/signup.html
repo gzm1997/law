@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Sign up</title>
+	<link href="/static/css/signupAndLogin.css" rel="stylesheet" type="text/css" media="all" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<!-- -->
+	<script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
+
+
+	<script src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript">
+  		var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	</script>
+	<script src="/static/js/signup.js"></script>
+
+</head>
+
+<body>
+<!-- contact-form -->	
+	<div class="message warning">
+		<div class="inset">
+			<div class="login-head">
+				<h1>Sign up</h1>
+				<div class="alert-close"> </div> 			
+			</div>
+
+			<li>
+				<input type="text" class="text" name="email" value="Email";" onblur="if (this.value == '') {this.value = 'Email';}"><a href="#"></a>
+			</li>
+			<div id="sh1" class="clear" style="text-align: center;"></div>
+
+			<li>
+				<input type="text" class="text" name="username" value="Username";" onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" ></a>
+			</li>
+			<div id="sh2" class="clear" style="text-align: center;"> </div>
+
+			<li>
+				<input type="text" name="password" value="Password";" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#"></a>
+			</li>
+			<div id="sh3" class="clear" style="text-align: center;"> </div>
+
+			<li>
+				<input type="text" name="comfirmpassword" value="Comfirmpassword";" onblur="if (this.value == '') {this.value = 'Comfirmpassword';}"> <a href="#"></a>
+			</li>
+			<div  id="sh4" class="clear" style="text-align: center;"> </div>
+
+			<div class="submit">
+				<input id="submitBut" type="submit" value="Sign up" style="position: relative;left: 35px; bottom: 10px">
+				<h4 style="position: relative;left: 40px"><a href="/login">have a account already?</a></h4>
+				<div id="sh5" class="clear" style="text-align: center;"> </div>	
+			</div>
+		</div>					
+	</div>
+</body>
