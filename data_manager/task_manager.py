@@ -7,7 +7,7 @@ class Task_manager(object):
 
     def _search_task(self, task_name = "", task_type = "", manager = "", deadline = "", completion_date = "", time_required = ""):
         cursor = self._conn.cursor(dictionary = True)
-        sql_word = "select * from law_case where "
+        sql_word = "select * from task_table where "
         variables = []
 
         if task_name != "":
