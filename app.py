@@ -117,7 +117,7 @@ def table():
         t_type = request.args.get('t_type')
         print("show table case_id:", case_id, "t_type:", t_type)
         if t_type == "t1":
-            return render_template("table1.html", case_data._search_table(t_type = "t1", case_id = "2017-8-9"))
+            return render_template("table1.html", table_content = case_data._search_table(t_type = "t1", case_id = "2017-8-9"))
         elif t_type == "t2":
             return render_template("table2.html")
         elif t_type == "t3":
