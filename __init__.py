@@ -10,13 +10,13 @@ task_data = task_manager.Task_manager("root", "Gzm20125")
 
 
 temp_week_tasks = {
-    "Monday": ["某案准备材料", "某案件"],
-    "Tuesday": ["某案开审"],
-    "Wednesday": ["某案件准备材料"],
-    "Thursday": ["为周五的会议准备材料"],
-    "Friday": ["开会"],
-    "Saturday": ["为孩子买奶粉"],
-    "Sunday": ["陪陪家人", "开黑"]
+    "Monday": ["hello", "do something"],
+    "Tuesday": ["start"],
+    "Wednesday": ["end"],
+    "Thursday": ["coldplay"],
+    "Friday": ["meeting"],
+    "Saturday": ["shopping"],
+    "Sunday": ["accompany", "drink"]
 }
 
 
