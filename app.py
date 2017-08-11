@@ -159,7 +159,7 @@ def task():
         if "username" in session:
             login = True
             user_url = "/user?username=" + session["username"]
-            return render_template("todolist.html", login = login, username = session["username"])
+            return render_template("todolist.html", login = login, username = session["username"], user_url = user_url)
         else:
             login = False
             return render_template("todolist.html", login = login)
