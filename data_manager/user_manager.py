@@ -109,7 +109,7 @@ class User_manager(object):
     
     #返回False表示添加失败，否则成功
     def _insert_user(self, email, username, password):
-        if self._search_r_user(email = email, username = username) != {}:
+        if self._search_r_user(email = email, username = username) == {}:
             return False
         cursor = self._conn.cursor()
         self._delete_r_user(email)
