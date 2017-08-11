@@ -1,9 +1,9 @@
 #-*- coding=utf-8 -*-
 from flask import Flask, render_template, request, session, jsonify, abort, redirect, url_for
-from data_manager import user_manager, case_manager, task_manager
-import send_email
+from law.data_manager import user_manager, case_manager, task_manager
+from law import send_email
 
-app = Flask(__name__)
+application = Flask(__name__)
 user_data = user_manager.User_manager("root", "Gzm20125")
 case_data = case_manager.Case_manager("root", "Gzm20125")
 task_data = task_manager.Task_manager("root", "Gzm20125")
@@ -20,7 +20,7 @@ temp_week_tasks = {
 }
 
 
-@app.route("/signup", methods=["GET", "POST"])
+@application.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "GET":
         return render_template("signup.html")
@@ -54,7 +54,7 @@ def signup():
             return jsonify(warn="sign up failed")
 
 
-@app.route("/vertify")
+@application.route("/vertify")
 def vertify():
     vertifycode = request.args.get('vertifycode')
     result = user_data._search_r_user(vertifycode=vertifycode)
@@ -72,7 +72,7 @@ def vertify():
             return "vertify err"
 
 
-@app.route("/login", methods=["GET", "POST"])
+@application.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         return render_template("login.html")
@@ -101,13 +101,13 @@ def login():
 
 
 
-@app.route("/logout")
+@application.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("login"))
 
 
-@app.route("/edit_case", methods=["POST"])
+@application.route("/edit_case", methods=["POST"])
 def add_case():
     print(request.form)
     case_id = request.form["case_id"]
@@ -124,7 +124,7 @@ def add_case():
 
 
 #/table?case_id=2017-8-10&t_type=t1
-@app.route("/table", methods=["GET", "POST"])
+@application.route("/table", methods=["GET", "POST"])
 def table():
     if request.method == "GET":
         case_id = request.args.get("case_id")
@@ -179,7 +179,7 @@ def table():
             return "update table3 successfully!"
         return "update table error"
 
-@app.route("/task", methods = ["GET", "POST"])
+@application.route("/task", methods = ["GET", "POST"])
 def task():
     if request.method == "GET":
         if "username" in session:
@@ -202,7 +202,7 @@ def task():
         return jsonify(feedback = "task is created successfully")
 
 #/user?username=gzm
-@app.route("/user")
+@application.route("/user")
 def user():
     print("this is user detail get")
     username = request.args.get('username')
@@ -233,7 +233,7 @@ def user():
     abort(401)
 
 
-@app.route("/home")
+@application.route("/home")
 def home():
     if "username" in session:
         print("already login")
@@ -244,7 +244,7 @@ def home():
         return render_template("home.html", login = False)
 
 #/case?case_id=2017-8-10
-@app.route("/case")
+@application.route("/case")
 def case():
     case_id = request.args.get('case_id')
     table_urls = ["/table?case_id=" + case_id + "&t_type=" + "t1", "/table?case_id=" + case_id + "&t_type=" + "t2", "/table?case_id=" + case_id + "&t_type=" + "t3"]
@@ -260,7 +260,7 @@ def case():
 
 
 #展示所有人的所有案件
-@app.route("/all_case")
+@application.route("/all_case")
 def function():
     all_case = case_data._search_law_case()
     for case in all_case:
@@ -281,8 +281,8 @@ def function():
 
 
 
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 
 if __name__ == "__main__":
-    app.run(debug = True, host="0.0.0.0", port=8888)
+    application.run(debug = True, host="0.0.0.0", port=8888)
