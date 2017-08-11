@@ -29,7 +29,7 @@ def send_vertify_email(signup_user_email):
 		'<html>' +
 		'<body>' + 
 		'<a href=' + 
-		'http://139.199.182.179:8888/vertify?vertifycode=' + vertifycode + 
+		'http://139.199.182.179/vertify?vertifycode=' + vertifycode + 
 		'>' + 
 		'点击此处验证你的账户' + 
 		'</a>'
