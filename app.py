@@ -168,14 +168,20 @@ def task():
             return jsonify(feedback = "this is task has been created!")
         return jsonify(feedback = "task is created successfully")
 
-
+#/user?username=gzm
 @app.route("/user")
 def user():
     print("this is user detail get")
     username = request.args.get('username')
-    if "username" in session and username == session["username"]:
-        print("username", username)
-        email = user_data._search_user(username=username)["email"]
+    if "username" in session:
+        login = True
+    else:
+        login = False
+
+    print("username", username)
+    target_user = user_data._search_user(username=username)
+    if target_user != {}:
+        email = target_user["email"]
         print("email", email)
 
         case_list = case_data._search_law_case(username=username)
@@ -186,6 +192,8 @@ def user():
 
         user_url = "/user?username=" + session["username"]
         return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list)
+    else:
+        return "此用户不存在!"
     abort(401)
 
 

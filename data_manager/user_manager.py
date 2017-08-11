@@ -98,7 +98,7 @@ class User_manager(object):
     
     #返回False表示添加失败，否则成功
     def _insert_user(self, email, username, password):
-        if self._search_r_user(email = email, username = username) == {}:
+        if self._search_r_user(email = email, username = username) != {}:
             return False
         cursor = self._conn.cursor()
         self._delete_r_user(email)
@@ -106,3 +106,7 @@ class User_manager(object):
         self._conn.commit()
         cursor.close()    
         return True
+
+if __name__ == "__main__":
+    u = User_manager("root", "Gzm20125")
+    print(u._insert_user("1617899539@qq.com", "gzm1997", "Gzm20125"))
