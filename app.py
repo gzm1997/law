@@ -156,7 +156,13 @@ def table():
 @app.route("/task", methods = ["GET", "POST"])
 def task():
     if request.method == "GET":
-        pass
+        if "username" in session:
+            login = True
+            return render_template("todolist.html", login = login, username = session["username"])
+        else:
+            login = False
+            return render_template("todolist.html", login = login)
+
     elif request.method == "POST":
         task_name = request.form["task_name"]
         task_type = request.form["task_type"]
