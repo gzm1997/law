@@ -185,7 +185,7 @@ def user():
             case["case_detail_url"] = "/case?case_id=" + case["case_id"]
 
         user_url = "/user?username=" + session["username"]
-        return render_template("user.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list)
+        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list)
     abort(401)
 
 
