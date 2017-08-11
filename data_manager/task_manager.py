@@ -56,6 +56,10 @@ class Task_manager(object):
         self._conn.commit()
         cursor.close()
         if len(result):
+            for each_task in result:
+                for i in each_task:
+                    if type(each_task[i]) == bytearray:
+                        each_task[i] = each_task[i].decode("utf-8")
             return result
         else:
             return [] 

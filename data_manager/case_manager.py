@@ -72,6 +72,10 @@ class Case_manager(object):
         self._conn.commit()
         cursor.close()
         if len(result):
+            for case in result:
+                for i in case:
+                    if type(case[i]) == bytearray:
+                        case[i] = case[i].decode("utf-8")
             return result
         else:
             return []     
@@ -111,7 +115,10 @@ class Case_manager(object):
         self._conn.commit()
         cursor.close()
         if len(result):
-            return result[0]
+            result = result[0]
+            for i in result:
+                if type(result[i]) == bytearray:
+                    result[i] = result[i].decode("utf-8")
         else:
             return {}
 

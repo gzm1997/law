@@ -44,7 +44,11 @@ class User_manager(object):
         self._conn.commit()
         cursor.close()
         if len(result):
-            return result[0]
+            result  =result[0]
+            for i in result:
+                if type(result[i]) == bytearray:
+                    result[i] = result[i].decode("utf-8")
+            return result
         else:
             return {}
 
@@ -73,7 +77,11 @@ class User_manager(object):
         self._conn.commit()
         cursor.close()
         if len(result):
-            return result[0]
+            result  =result[0]
+            for i in result:
+                if type(result[i]) == bytearray:
+                    result[i] = result[i].decode("utf-8")
+            return result
         else:
             return {}
     #0表示添加成功，1表示emai已被用添加失败，2表示username被用添加失败, 3表示邮箱已注册但未认证
