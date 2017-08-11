@@ -1,0 +1,81 @@
+.dash-box {
+    text-align: right;
+}
+.box {
+    overflow: hidden;
+}
+.box-text{
+    font-size: 22pt;
+    text-align: left;
+    padding: inherit;
+}
+.box-icon {
+    text-align: right;
+}
+.end-time {
+    font-size: 15px;
+    margin: auto;
+}
+.todo-add{
+    margin: 0 auto;
+    font-size: 50px;
+}
+.todo-box{
+    margin: 0 auto;
+    font-size: 50px;
+    width: 100%;
+}
+.button-group-window {
+    margin-bottom: 10px;
+}
+.time-select {
+    margin-bottom: -17px !important;
+}
+body{
+    background-color:#EEEEEE;
+}
+.todolist{
+    background-color:#FFF;
+    padding:20px 20px 10px 20px;
+    margin-top:30px;
+}
+.todolist h1{
+    margin:0;
+    padding-bottom:20px;
+    text-align:center;
+}
+.form-control{
+    border-radius:0;
+}
+li.ui-state-default{
+    background:#fff;
+    border:none;
+    border-bottom:1px solid #ddd;
+}
+
+li.ui-state-default:last-child{
+    border-bottom:none;
+}
+
+.todo-footer{
+    background-color:#F4FCE8;
+    margin:0 -20px -10px -20px;
+    padding: 10px 20px;
+}
+#done-items li{
+    padding:10px 0;
+    border-bottom:1px solid #ddd;
+    text-decoration:line-through;
+}
+#done-items li:last-child{
+    border-bottom:none;
+}
+#checkAll{
+    margin-top:10px;
+}
+
+
+
+
+
+
