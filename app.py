@@ -158,6 +158,7 @@ def task():
     if request.method == "GET":
         if "username" in session:
             login = True
+            user_url = "/user?username=" + session["username"]
             return render_template("todolist.html", login = login, username = session["username"])
         else:
             login = False
