@@ -58,6 +58,11 @@
 	{% for case in case_list %}
 		<a href="{{ case.detail_url }}" class="list-group-item">
 			{{ case.case_name }}
+            {% if case.w_own %}
+                <span>(我的案件)</span>
+            {% else %}
+                <span>(他人案件)</span>
+            {% endif %}
 		</a>
 	{% endfor %}
 

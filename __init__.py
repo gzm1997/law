@@ -269,6 +269,11 @@ def function():
         login = True
         username = session["username"]
         user_url = '/user?username=' + username
+        for case in all_case:
+        	if case["username"] == username:
+        		case["w_own"] = True
+        	else:
+        		case["w_own"] = False
         return render_template("all_case.html", case_list = all_case, login = login, user_url = user_url, username = username)
     else:
         login = False
