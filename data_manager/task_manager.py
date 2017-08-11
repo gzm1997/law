@@ -49,6 +49,8 @@ class Task_manager(object):
             sql_word = sql_word + "and time_required = %s"
             variables.append(time_required) 
 
+        if sql_word.find("=") == -1:
+            sql_word = sql_word[:sql_word.find(" where")]
         sql_word = sql_word + ";"
         cursor.execute(sql_word, variables)
 

@@ -9,6 +9,17 @@ case_data = case_manager.Case_manager("root", "Gzm20125")
 task_data = task_manager.Task_manager("root", "Gzm20125")
 
 
+temp_week_tasks = {
+    "Monday": ["某案准备材料", "某案件"],
+    "Tuesday": ["某案开审"],
+    "Wednesday": ["某案件准备材料"],
+    "Thursday": ["为周五的会议准备材料"],
+    "Friday": ["开会"],
+    "Saturday": ["为孩子买奶粉"],
+    "Sunday": ["陪陪家人", "开黑"]
+}
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "GET":
@@ -99,16 +110,18 @@ def logout():
 @app.route("/edit_case", methods=["POST"])
 def add_case():
     print(request.form)
-    create_delete_case = request.form["create_delete_case"]
     case_id = request.form["case_id"]
     case_name = request.form["case_name"]
+    username = session["username"]
 
-    if "username" not in session:
-        return jsonify(offline="fail because of offline now")
+
     if case_data._search_law_case(case_id=case_id) != []:
         return jsonify(case_id="case_id has been used")
     if case_data._search_law_case(case_name=case_name) != []:
         return jsonify(case_name="case_name has been used")
+    case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name)
+    return jsonify(success="create case successfully!", username = username)
+
 
 #/table?case_id=2017-8-10&t_type=t1
 @app.route("/table", methods=["GET", "POST"])
@@ -119,6 +132,8 @@ def table():
         print("show table case_id:", case_id, "t_type:", t_type)
 
         target_case = case_data._search_law_case(case_id = case_id)
+        print("target case:")
+        print(target_case)
 
         if target_case != []:
             if "username" in session and target_case[0]["username"] == session["username"]:
@@ -127,12 +142,23 @@ def table():
                 own = False
 
             if t_type == "t1":
-                return render_template("table1.html", tc = case_data._search_table(t_type = "t1", case_id = case_id), own = own)
+                print("case_id:")
+                print(case_id)
+                tc = case_data._search_table(t_type = "t1", case_id = case_id)
+                print("this is table to show:")
+                print(tc)
+                return render_template("table1.html", tc = tc, own = own)
             elif t_type == "t2":
-                return render_template("table2.html", tc = case_data._search_table(t_type = "t2", case_id = case_id), own = own)
+                tc = case_data._search_table(t_type = "t2", case_id = case_id)
+                print("this is table to show:")
+                print(tc)
+                return render_template("table2.html", tc = tc, own = own)
 
             elif t_type == "t3":
-                return render_template("table3.html", tc = case_data._search_table(t_type = "t3", case_id = case_id), own = own)
+                tc = case_data._search_table(t_type = "t3", case_id = case_id)
+                print("this is table to show:")
+                print(tc)
+                return render_template("table3.html", tc = tc, own = own)
         abort(401)
     elif request.method == "POST":
         #print(request.form)
@@ -199,7 +225,9 @@ def user():
 
         user_url = "/user?username=" + session["username"]
         print("this is user_url:", user_url)
-        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list)
+        print("week_task is:")
+        print(temp_week_tasks)
+        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks)
     else:
         return "此用户不存在!"
     abort(401)
@@ -225,7 +253,30 @@ def case():
         login = True
         username = session["username"]
         user_url = "/user?username=" + username
-    return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username)
+        return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username)
+    else:
+        login = False
+        return render_template("case.html", table_urls = table_urls, login = login)
+
+
+#展示所有人的所有案件
+@app.route("/all_case")
+def function():
+    all_case = case_data._search_law_case()
+    for case in all_case:
+        case["detail_url"] = "/case?case_id=" + case["case_id"]
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = '/user?username=' + username
+        return render_template("all_case.html", case_list = all_case, login = login, user_url = user_url, username = username)
+    else:
+        login = False
+        return render_template("all_case.html", case_list = all_case, login = login)
+
+
+#展示所有人的所有任务
+
 
 
 

@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User info</title>
 	<link rel="stylesheet" href="/static/css/calender.css" media="screen" type="text/css" />
-	<link rel="stylesheet" href="/static/css/calender.css"type="text/css" />
+	<link rel="stylesheet" href="/static/css/calender1.css"type="text/css" />
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/css/home.css" rel="stylesheet">
 	<link href="/static/css/signupAndLogin.css" rel="stylesheet" type="text/css" media="all" />
@@ -38,7 +38,7 @@
 						<a href="/home">主页</a>
 					</li>
 					<li>
-						<a href="/case">案例</a>
+						<a href="/all_case">案例</a>
 					</li>
 					<li>
 						<a href="/task">任务</a>
@@ -117,28 +117,125 @@
 									<input type="text" class="form-control" id="case_id" placeholder="案件id">
 								</td>
 								<td class="col-md-2 text-center">
-									<button>
-										<a href="#">
-											创建案件
-										</a>
+									<button id="create_case">
+										创建案件
 									</button>
 								</td>
+							</tr>
+							<tr>
+								<td class="col-md-2" id="case_name_warn"></td>
+								<td class="col-md-2" id="case_id_warn"></td>
+								<td class="col-md-2" id="success"></td>
 							</tr>
 
 						</table>
 					</tr>
 
 				</table>
-				<div style="width:auto; display:inline-block; text-align:center; margin-left: 100px; margin-bottom: 100px;">
-	<form>
-		<div class='custom-date' id='calender'>
+				<div style="width:auto; display:inline-block; text-align:center; margin-left: 100px; margin-bottom:100px;">
+					<form>
+						<div class='custom-date' id='calender'></div>
+					</form>
 
-		</div>
-	</form>
 				</div>
+							<div style="display:inline-block; position:relative;float: right;">
+								    <div style="width: 400px; height:300px;">
+        <table class="table table-bordered table-hover" style="width: 400px;">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <p>一</p>
+                    <table>
+                        {% for task in week_task.Monday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>二</p>
+                    <table>
+                        {% for task in week_task.Tuesday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>三</p>
+                    <table>
+                        {% for task in week_task.Wednesday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>四</p>
+                    <table>
+                        {% for task in week_task.Thursday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>五</p>
+                    <table>
+                        {% for task in week_task.Friday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>六</p>
+                    <table>
+                        {% for task in week_task.Saturday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>日</p>
+                    <table>
+                        {% for task in week_task.Sunday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1 text-center">
+                    <p style="margin-top: 20%;">{{ need_time }}/{{ amount_time }}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+							</div>
 			</td>
-			<td class="col-md-6">
-				<table class="table table-bordered">
+			<td class="col-md-6" style="display:inline-block">
+				<table class="table table-bordered" style="width: 60%">
 					<tr>
 						<td>任务列表</td>
 					</tr>
@@ -162,12 +259,36 @@
 							</button>
 						</td>
 					</tr>
+					
 				</table>
+				
 			</td>
 		</tr>
 	</table>
 	<script type="text/javascript" src='/static/js/jquery.js'></script>
 	<script type="text/javascript" src="/static/js/calender.js"></script>
+	<script type="text/javascript">
+		$("#create_case").bind("click", function() {
+			data = {
+				case_name: $("#case_name").val(),
+				case_id: $("#case_id").val()
+			}
+			$.post("/edit_case", data, function(data, status) {
+				if ("case_name" in data) {
+					$("#case_name_warn").text(data.case_name)
+				}
+				if ("case_id" in data) {
+					$("#case_id_warn").text(data.case_id)
+				}
+				if ("success" in data) {
+					$("#success").text(data.success)
+					window.location.href = "/user?username=" + data.username
+				}
+
+
+			})
+		});
+	</script>
 </body>
 
 </html>

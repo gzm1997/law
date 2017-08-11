@@ -36,7 +36,8 @@ class User_manager(object):
             sql_word = sql_word + "and vertifycode = %s "
             variables.append(vertifycode)
                        
-
+        if sql_word.find("=") == -1:
+            sql_word = sql_word[:sql_word.find(" where")]
         sql_word = sql_word + ";"
         cursor.execute(sql_word, variables)
 
@@ -68,8 +69,10 @@ class User_manager(object):
             variables.append(username)
         elif username != "" and sql_word.find("=") != -1:
             sql_word = sql_word + "and username = %s "
-            variables.append(username)        
-
+            variables.append(username)    
+                
+        if sql_word.find("=") == -1:
+            sql_word = sql_word[:sql_word.find(" where")]
         sql_word = sql_word + ";"
         cursor.execute(sql_word, variables)
 

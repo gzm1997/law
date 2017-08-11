@@ -64,7 +64,8 @@ class Case_manager(object):
         elif case_name != "" and sql_word.find("=") != -1:
             sql_word = sql_word + "and case_name = %s "
             variables.append(case_name)            
-
+        if sql_word.find("=") == -1:
+            sql_word = sql_word[:sql_word.find(" where")]
         sql_word = sql_word + ";"
         cursor.execute(sql_word, variables)
 
@@ -119,6 +120,7 @@ class Case_manager(object):
             for i in result:
                 if type(result[i]) == bytearray:
                     result[i] = result[i].decode("utf-8")
+            return result
         else:
             return {}
 
