@@ -300,7 +300,7 @@
                                 项目负责人/集团职能中心负责人意见
                             </td>
                             <td class="col-md-9">
-                                <textarea type="text" class="form-control" id="project_manager_advise" placeholder="审批要点：出具项目/集团职能中心意见">{{ project_manager_advise }}</textarea>
+                                <textarea type="text" class="form-control" id="project_manager_advise" placeholder="审批要点：出具项目/集团职能中心意见">{{ tc.project_manager_advise }}</textarea>
                             </td>                           
                         </tr>
                         <tr>
@@ -345,7 +345,7 @@
                                                 <label for="register_time" class="control-label col-md-3">
                                                     和解协议签订时间:
                                                 </label>
-                                                <input value="{{ settlement_agreement_time }}" type="text" class="col-md-2" id="settlement_agreement_time">
+                                                <input value="{{ tc.settlement_agreement_time }}" type="text" class="col-md-2" id="settlement_agreement_time">
 
                                                 <label for="submit_add_time" class="control-label col-md-3">
                                                     和解协议履行时间:

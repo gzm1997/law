@@ -364,13 +364,13 @@
                                             <option value="0">==请选择==</option>
                                         {% endif %}
 
-                                        {% if tc.w_implement|string() == type1 %}
+                                        {% if tc.w_implement|string() == w_y %}
                                             <option selected="selected" value="1">是</option>
                                         {% else %}
                                             <option value="1">是</option>
                                         {% endif %}
 
-                                        {% if tc.w_implement|string() == type1 %}
+                                        {% if tc.w_implement|string() == w_n %}
                                             <option selected="selected" value="2">否</option>
                                         {% else %}
                                             <option value="2">否</option>
@@ -414,8 +414,7 @@
                                 集团档案室备案
                             </td>
                             <td class="col-md-9">
-                                <textarea rows="5" placeholder="" id="group_doc_filing">
-                                    {{ tc.group_doc_filing }}
+                                <textarea rows="5" placeholder="" id="group_doc_filing">{{ tc.group_doc_filing }}
                                 </textarea>
                             </td>
                         </tr>
