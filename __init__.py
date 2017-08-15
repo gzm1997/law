@@ -263,6 +263,8 @@ def case():
         manager_detail_url = "#"
 
     comment_list = comment_data._search_comment(case_id = case_id)
+    for c in comment_list:
+    	c["user_url"] = "/user?username=" + c["username"]
     print("comment_list:")
     print(comment_list)
 

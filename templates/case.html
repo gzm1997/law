@@ -118,7 +118,11 @@
             {% for comment in comment_list %}
                 <div class="commit" style="margin-top: 10px; margin-bottom: 10px;">
                     <p>
-                        <span class="username">{{ comment.username }}</span>
+                        <span class="username">
+                            <a href="{{ comment.user_url }}">
+                                {{ comment.username }}
+                            </a>
+                        </span>
                         <span class = "time">{{ comment.c_time }}</span>
                     </p>
                     <p class="commit_content">
