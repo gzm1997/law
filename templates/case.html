@@ -10,6 +10,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css" rel="stylesheet">
     <link href="/static/css/commit.css" rel="stylesheet">
+    <link href="/static/css/signupAndLogin.css" rel="stylesheet" type="text/css" media="all" />
 
     <script src="/static/js/jquery.min.js"></script>
 
@@ -95,11 +96,25 @@
             </td>
         </tr>
     </table>
-
-    {% if comment_list %}
-        <div class="commit_area">
-        {% for comment in comment_list %}
-                <div class="commit">
+    <div class="commit_area">
+    <!--
+        <div id="wanna_add">
+            <input type="text" class="form-control" id="wanna_add_text" placeholder="添加评论">
+        </div>
+    -->
+        <form action="/comment", method="post" onsubmit="return submit_c()">
+            <div class="form-group">
+                <label for="name">评论</label>
+                <textarea id="c_content" name="content" class="form-control" rows="3"></textarea>
+                <input type="text" name="case_id" value="{{ case_id }}" style="display: none;">
+                <input type="text" name="username" value="{{ username }}" style="display: none;">
+                <div id="sh1" class="clear" style="text-align: center;"> </div>
+                <button type="submit" class="btn btn-default" style="float: right;">发表</button>
+            </div>
+        </form>
+        {% if comment_list %} 
+            {% for comment in comment_list %}
+                <div class="commit" style="margin-top: 10px; margin-bottom: 10px;">
                     <p>
                         <span class="username">{{ comment.username }}</span>
                         <span class = "time">{{ comment.c_time }}</span>
@@ -108,20 +123,24 @@
                         {{ comment.content }}
                         </p>
                 </div>
-        {% endfor %}
-        </div>
-    {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <script type="text/javascript">
+        function submit_c() {
+            if ($("#c_content").val() == "") {
+                $("#sh1").text("评论不能为空!")
+                return false
+            }
+            return true
+        }
+        $("#c_content").focus(function() {
+            $("#sh1").text("")
+        })
+    </script>
 
 
-    <form  class="commit_area" action="/comment", method="post">
-        <div class="form-group">
-            <label for="name">评论</label>
-            <textarea name="content" class="form-control" rows="3"></textarea>
-            <input type="text" name="case_id" value="{{ case_id }}" style="display: none;">
-            <input type="text" name="username" value="{{ username }}" style="display: none;">
-            <button type="submit" class="btn btn-default" style="float: right;">发表</button>
-        </div>
-    </form>
 </body>
 
 </html>
