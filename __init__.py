@@ -1,12 +1,14 @@
 #-*- coding=utf-8 -*-
 from flask import Flask, render_template, request, session, jsonify, abort, redirect, url_for
-from law.data_manager import user_manager, case_manager, task_manager
+from law.manager_data import user_manager, case_manager, task_manager, comment_manager
+from law import manager_time
 from law import send_email
 
 application = Flask(__name__)
 user_data = user_manager.User_manager("root", "Gzm20125")
 case_data = case_manager.Case_manager("root", "Gzm20125")
 task_data = task_manager.Task_manager("root", "Gzm20125")
+comment_data = comment_manager.Comment_manager("root", "Gzm20125")
 
 
 temp_week_tasks = {
@@ -213,6 +215,13 @@ def user():
 
     print("username", username)
     target_user = user_data._search_user(username=username)
+    if ("username" not in session) or ("username" in session and session["username"] != username):
+        own = False
+    elif "username" in session and session["username"] == username:
+        own = True
+
+    print("own in user page is:", own)
+
     if target_user != {}:
         email = target_user["email"]
         print("email", email)
@@ -224,10 +233,7 @@ def user():
             case["case_detail_url"] = "/case?case_id=" + case["case_id"]
 
         user_url = "/user?username=" + session["username"]
-        print("this is user_url:", user_url)
-        print("week_task is:")
-        print(temp_week_tasks)
-        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks)
+        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)
     else:
         return "此用户不存在!"
     abort(401)
@@ -248,15 +254,26 @@ def home():
 def case():
     case_id = request.args.get('case_id')
     table_urls = ["/table?case_id=" + case_id + "&t_type=" + "t1", "/table?case_id=" + case_id + "&t_type=" + "t2", "/table?case_id=" + case_id + "&t_type=" + "t3"]
+    case_manager = case_data._search_law_case(case_id = case_id)
+    if case_manager != []:
+        manager_name = case_manager[0]["username"]
+        manager_detail_url = "/user?username=" + manager_name
+    else:
+        manager_name = ""
+        manager_detail_url = "#"
+
+    comment_list = comment_data._search_comment(case_id = case_id)
+    print("comment_list:")
+    print(comment_list)
 
     if "username" in session:
         login = True
         username = session["username"]
         user_url = "/user?username=" + username
-        return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username)
+        return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list)
     else:
         login = False
-        return render_template("case.html", table_urls = table_urls, login = login)
+        return render_template("case.html", table_urls = table_urls, login = login, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list)
 
 
 #展示所有人的所有案件
@@ -270,18 +287,26 @@ def function():
         username = session["username"]
         user_url = '/user?username=' + username
         for case in all_case:
-        	if case["username"] == username:
-        		case["w_own"] = True
-        	else:
-        		case["w_own"] = False
+            if case["username"] == username:
+                case["w_own"] = True
+            else:
+                case["w_own"] = False
         return render_template("all_case.html", case_list = all_case, login = login, user_url = user_url, username = username)
     else:
         login = False
         return render_template("all_case.html", case_list = all_case, login = login)
 
 
-#展示所有人的所有任务
-
+#接受评论
+@application.route("/comment", methods = ["POST"])
+def comment():
+    print(request.form)
+    username = request.form["username"]
+    case_id = request.form["case_id"]
+    content = request.form["content"]
+    c_time = manager_time.get_localtime_str()
+    comment_data._insert_comment(username = username, case_id = case_id, c_time = c_time, content = content)
+    return redirect(url_for("case", case_id = request.form["case_id"]))
 
 
 

@@ -1,0 +1,71 @@
+
+
+.commit_area {
+    border: 1px solid lightblue;
+    border-radius: 20px;
+    width: 660px;
+    margin: 30px auto;
+    padding: 30px;
+}
+
+.commit {
+    width: 600px;
+    height: auto;
+    background-color: rgb(243, 245, 247);
+    padding: 10px;
+}
+.reference {
+    margin: 10px;
+    background-color: lightgray;
+}
+.ref_content, .commit_content {
+    margin-left: 25px;
+}
+
+.commit_content {
+    font-size: 15pt;
+}
+.ref_content {
+    font-size: 12pt;
+    padding-bottom: 10px;
+}
+.username {
+    color: rgb(0, 94, 172);
+}
+.time {
+    color:  gray;
+}
+
+.stress {
+    font-size: 16pt;
+}
+
+#wanna_add {
+    margin: 15px;
+    margin-top: 0px;
+}
+
+
+#add-commit {
+    border-radius: 20px;
+    padding: 30px;
+    display: none;
+    background-color: lightskyblue;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -50%);
+    box-shadow: 2px 2px 5px #666666;
+}
+
+#reply-commit {
+    border-radius: 20px;
+    padding: 30px;
+    display: none;
+    background-color: lightskyblue;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -50%);
+    box-shadow: 2px 2px 5px #666666;
+}

@@ -9,6 +9,7 @@
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css" rel="stylesheet">
+    <link href="/static/css/commit.css" rel="stylesheet">
 
     <script src="/static/js/jquery.min.js"></script>
 
@@ -56,6 +57,11 @@
                 <table class="table table-bordered">
                     <tr class="text-center">
                         <td class="col-md-4">
+                            案件管理人
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="col-md-4">
                             纠纷案件审批表(庭前)
                         </td>
                     </tr>
@@ -73,6 +79,11 @@
             </td>
             <td class="col-md-6">
                 <table class="table table-bordered">
+                    <tr class="text-center">
+                        <td class="col-md-4">
+                            <a href="{{ manager_detail_url }}">{{ manager_name }}</a>
+                        </td>
+                    </tr>
                     {% for url in table_urls %}
                         <tr class="text-center">
                             <td class="col-md-4">
@@ -85,6 +96,32 @@
         </tr>
     </table>
 
+    {% if comment_list %}
+        <div class="commit_area">
+        {% for comment in comment_list %}
+                <div class="commit">
+                    <p>
+                        <span class="username">{{ comment.username }}</span>
+                        <span class = "time">{{ comment.c_time }}</span>
+                    </p>
+                    <p class="commit_content">
+                        {{ comment.content }}
+                        </p>
+                </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <form  class="commit_area" action="/comment", method="post">
+        <div class="form-group">
+            <label for="name">评论</label>
+            <textarea name="content" class="form-control" rows="3"></textarea>
+            <input type="text" name="case_id" value="{{ case_id }}" style="display: none;">
+            <input type="text" name="username" value="{{ username }}" style="display: none;">
+            <button type="submit" class="btn btn-default" style="float: right;">发表</button>
+        </div>
+    </form>
 </body>
 
 </html>

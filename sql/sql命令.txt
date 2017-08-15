@@ -135,3 +135,14 @@ deadline varchar(200),
 completion_date varchar(200),
 time_required varchar(200)
 );
+
+
+#comment评论
+create table comment(
+username varchar(200),
+case_id varchar(200),
+c_time varchar(200),
+content varchar(200)
+);
+
+

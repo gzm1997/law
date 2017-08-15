@@ -77,67 +77,122 @@
 				{{ Myemail }}
 			</td>
 		</tr>
-		<tr class="text-center">
-			<td class="col-md-3">
-				退出：
-			</td>
-			<td class="col-md-3">
-				<button>
-					<a href="/logout">退出</a>
-				</button>
-			</td>
-		</tr>
+		{% if own %}
+			<tr class="text-center">
+				<td class="col-md-6">
+					退出：
+				</td>
+				<td class="col-md-6">
+					<button>
+						<a href="/logout">退出</a>
+					</button>
+				</td>
+			</tr>
+		{% endif %}
 	</table>
 
-	<table class="table table-bordered table-hover" style="width: 60%; height: 400px; display:inline-block">
+	<table class="table table-bordered", style="width: 50%;">
 		<tr>
-			<td class="col-md-6">
-				<table class="table table-bordered ">
-					<tr>
-						<td>案件列表</td>
-					</tr>
+			<td>案件列表</td>
+		</tr>
+		{% for case in case_list %}
+			<tr>
+				<td>
+					<a href="{{ case.case_detail_url }}">
+					{{ case.case_name }}
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	{% if own %}
+		<table class="table table-bordered", style="width: 50%;">
+			<tr>
+				<td class="col-md-4">
+					<input type="text" class="form-control" id="case_name" placeholder="案件名称">
+				</td>
+				<td class="col-md-4">
+					<input type="text" class="form-control" id="case_id" placeholder="案件id">
+				</td>
+				<td class="col-md-4">
+					<button id="create_case">
+						创建案件
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-2" id="case_name_warn"></td>
+				<td class="col-md-2" id="case_id_warn"></td>
+				<td class="col-md-2" id="success"></td>
+			</tr>	
+		</table>
+	{% endif %}
+	<table class="table table-bordered", style="width: 50%;">
+		<tr>
+			<td>任务列表</td>
+		</tr>
+		{% for task in task_list %}
+  			<tr>
+				<td>
+					<a href="">
+						{{ task.task_name }}
+					</a>
+				</td>
+			</tr>
+		{% endfor %}	
+		{% if own %}
+		<tr>
+			<td class="text-center">
+				<button>
+					<a href="/task">
+						创建任务
+					</a>
+				</button>
+			</td>
+		</tr>	
+		{% endif %}
+	</table>
 
-					{% for case in case_list %}
-					<tr>
-						<td>
-							<a href="{{ case.case_detail_url }}">
-									{{ case.case_name }}
-								</a>
-						</td>
-					</tr>
-					{% endfor %}
+	<script type="text/javascript" src='/static/js/jquery.js'></script>
+	<script type="text/javascript" src="/static/js/calender.js"></script>
+	<script type="text/javascript">
+		$("#create_case").bind("click", function() {
+			data = {
+				case_name: $("#case_name").val(),
+				case_id: $("#case_id").val()
+			}
+			$.post("/edit_case", data, function(data, status) {
+				if ("case_name" in data) {
+					$("#case_name_warn").text(data.case_name)
+				}
+				if ("case_id" in data) {
+					$("#case_id_warn").text(data.case_id)
+				}
+				if ("success" in data) {
+					$("#success").text(data.success)
+					window.location.href = "/user?username=" + data.username
+				}
 
-					<tr>
-						<table class="table table-bordered">
-							<tr>
-								<td class="col-md-2">
-									<input type="text" class="form-control" id="case_name" placeholder="案件名称">
-								</td>
-								<td class="col-md-2">
-									<input type="text" class="form-control" id="case_id" placeholder="案件id">
-								</td>
-								<td class="col-md-2 text-center">
-									<button id="create_case">
-										创建案件
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="col-md-2" id="case_name_warn"></td>
-								<td class="col-md-2" id="case_id_warn"></td>
-								<td class="col-md-2" id="success"></td>
-							</tr>
 
-						</table>
-					</tr>
+			})
+		});
+	</script>
+</body>
 
-				</table>
-				<div style="width:auto; display:inline-block; text-align:center; margin-left: 100px; margin-bottom:100px;">
+</html>
+
+
+
+
+<!--
+<div style="width:auto; display:inline-block; text-align:center; margin-left: 100px; margin-bottom:100px;">
 					<form>
 						<div class='custom-date' id='calender'></div>
 					</form>
 
 				</div>
+			
+				
 							<div style="display:inline-block; position:relative;float: right;">
 								    <div style="width: 400px; height:300px;">
         <table class="table table-bordered table-hover" style="width: 400px;">
@@ -233,62 +288,4 @@
         </table>
     </div>
 							</div>
-			</td>
-			<td class="col-md-6" style="display:inline-block">
-				<table class="table table-bordered" style="width: 60%">
-					<tr>
-						<td>任务列表</td>
-					</tr>
-
-					{% for task in task_list %}
-					<tr>
-						<td>
-							<a href="">
-									{{ task.task_name }}
-								</a>
-						</td>
-					</tr>
-					{% endfor %}
-
-					<tr>
-						<td class="text-center">
-							<button>
-								<a href="/task">
-									创建任务
-								</a>
-							</button>
-						</td>
-					</tr>
-					
-				</table>
-				
-			</td>
-		</tr>
-	</table>
-	<script type="text/javascript" src='/static/js/jquery.js'></script>
-	<script type="text/javascript" src="/static/js/calender.js"></script>
-	<script type="text/javascript">
-		$("#create_case").bind("click", function() {
-			data = {
-				case_name: $("#case_name").val(),
-				case_id: $("#case_id").val()
-			}
-			$.post("/edit_case", data, function(data, status) {
-				if ("case_name" in data) {
-					$("#case_name_warn").text(data.case_name)
-				}
-				if ("case_id" in data) {
-					$("#case_id_warn").text(data.case_id)
-				}
-				if ("success" in data) {
-					$("#success").text(data.success)
-					window.location.href = "/user?username=" + data.username
-				}
-
-
-			})
-		});
-	</script>
-</body>
-
-</html>
+-->

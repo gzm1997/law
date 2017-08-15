@@ -75,16 +75,18 @@
 				{{ Myemail }}
 			</td>
 		</tr>
-		<tr class="text-center">
-			<td class="col-md-6">
-				退出：
-			</td>
-			<td class="col-md-6">
-				<button>
-					<a href="/logout">退出</a>
-				</button>
-			</td>
-		</tr>
+		{% if own %}
+			<tr class="text-center">
+				<td class="col-md-6">
+					退出：
+				</td>
+				<td class="col-md-6">
+					<button>
+						<a href="/logout">退出</a>
+					</button>
+				</td>
+			</tr>
+		{% endif %}
 	</table>	
 
 	<table class="table table-bordered table-hover">
