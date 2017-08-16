@@ -21,7 +21,8 @@ insert into raw_user value("15521027848@163.com", "gzmpy", "Gzm1997", "asdndniwd
 create table law_case(
 username varchar(20),
 case_id varchar(20),
-case_name varchar(20)
+case_name varchar(20),
+num_nr int(10)
 );
 
 create table t1(

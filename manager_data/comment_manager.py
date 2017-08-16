@@ -43,7 +43,9 @@ class Comment_manager(object):
                         each_c[i] = each_c[i].decode("utf-8")
             return result
         else:
-            return []      
+            return []   
+    
+
 
     def _insert_comment(self, username, case_id, c_time, content):
         cursor = self._conn.cursor()

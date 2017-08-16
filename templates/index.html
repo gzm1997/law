@@ -101,6 +101,9 @@
 					<a href="{{ case.case_detail_url }}">
 					{{ case.case_name }}
 					</a>
+					{% if case.num_nr %}
+						<span style="color: red;">(有{{ case.num_nr }}条新消息)</span>
+					{% endif %}
 				</td>
 			</tr>
 		{% endfor %}

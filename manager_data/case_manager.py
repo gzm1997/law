@@ -86,7 +86,7 @@ class Case_manager(object):
         cursor = self._conn.cursor()
         if to_do == "create":
             if self._search_law_case(case_id = case_id) == []:
-                cursor.execute("insert into law_case value(%s, %s, %s);", [username, case_id, case_name])
+                cursor.execute("insert into law_case value(%s, %s, %s, False);", [username, case_id, case_name])
 
                 cursor.execute("insert into t1 value(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", create_empty_table_list("t1", case_id, case_name))
                 cursor.execute("insert into t2 value(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", create_empty_table_list("t2", case_id, case_name))
@@ -153,7 +153,24 @@ class Case_manager(object):
             cursor.execute("update t3 set OA_id=%s, company_name=%s, department=%s, manager=%s, phone=%s, submit_time=%s, case_type=%s, case_reason=%s, case_level=%s, reception_agency=%s, judge_phone=%s, custodian=%s, plaintiff=%s, defendant=%s, third_person=%s, amount=%s, request=%s, to_argue=%s, project_justice_advise=%s, project_manager_advise=%s, group_justice_advise=%s, group_leader_advise=%s, registration_details=%s, settlement_agreement_time=%s, reconciliation_agreement_time=%s, withdrawal_time=%s, w_implement=%s, group_justice_add_advise=%s, group_justice_filing=%s where case_id=%s;", update_content)
         self._conn.commit()
         cursor.close()
- 
+
+    def _read_comment(self, case_id):
+        print("case_id to be read:")
+        print(case_id)
+        cursor = self._conn.cursor()
+        cursor.execute("update law_case set num_nr=0 where case_id=%s", [case_id])
+        self._conn.commit()
+        cursor.close()
+
+    def _unread_comment(self, case_id):
+        print("case_id to be read:")
+        print(case_id)
+        cursor = self._conn.cursor()
+        target_case = self._search_law_case(case_id = case_id)[0]
+        num_ur_message = target_case["num_nr"] + 1
+        cursor.execute("update law_case set num_nr=%s where case_id=%s", [num_ur_message, case_id])
+        self._conn.commit()
+        cursor.close() 
 
 if __name__ == "__main__":
     m = Case_manager("root", "Gzm20125")

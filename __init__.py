@@ -264,9 +264,12 @@ def case():
 
     comment_list = comment_data._search_comment(case_id = case_id)
     for c in comment_list:
-    	c["user_url"] = "/user?username=" + c["username"]
+        c["user_url"] = "/user?username=" + c["username"]
     print("comment_list:")
     print(comment_list)
+
+    if session["username"] == case_data._search_law_case(case_id = case_id)[0]["username"]:
+        case_data._read_comment(case_id = case_id)
 
     if "username" in session:
         login = True
@@ -308,6 +311,8 @@ def comment():
     content = request.form["content"]
     c_time = manager_time.get_localtime_str()
     comment_data._insert_comment(username = username, case_id = case_id, c_time = c_time, content = content)
+    if session["username"] != case_data._search_law_case(case_id = case_id)[0]["username"]:
+        case_data._unread_comment(case_id = case_id)
     return redirect(url_for("case", case_id = request.form["case_id"]))
 
 
