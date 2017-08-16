@@ -210,6 +210,7 @@ def user():
     username = request.args.get('username')
     if "username" in session:
         login = True
+        user_url = "/user?username=" + session["username"]
     else:
         login = False
 
@@ -232,8 +233,11 @@ def user():
         for case in case_list:
             case["case_detail_url"] = "/case?case_id=" + case["case_id"]
 
-        user_url = "/user?username=" + session["username"]
-        return render_template("index.html", login = True, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)
+        
+        if login:
+            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)
+        else:
+            return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)            
     else:
         return "此用户不存在!"
     abort(401)
@@ -268,7 +272,7 @@ def case():
     print("comment_list:")
     print(comment_list)
 
-    if session["username"] == case_data._search_law_case(case_id = case_id)[0]["username"]:
+    if "username" in session and session["username"] == case_data._search_law_case(case_id = case_id)[0]["username"]:
         case_data._read_comment(case_id = case_id)
 
     if "username" in session:
