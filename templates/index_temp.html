@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User info</title>
 	<link rel="stylesheet" href="/static/css/calender.css" media="screen" type="text/css" />
-	<link rel="stylesheet" href="/static/css/calender1.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/calender1.css"type="text/css" />
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/css/home.css" rel="stylesheet">
 	<link href="/static/css/signupAndLogin.css" rel="stylesheet" type="text/css" media="all" />
@@ -163,10 +163,6 @@
 			</div>
 			<div class="col-md-6">
 
-		<form>
-			<div class='custom-date' id='calender'></div>
-		</form>
-		
 
 
 
@@ -209,7 +205,11 @@
         </div>
     </div>		
 		
-		
+		<!--
+		<form>
+			<div class='custom-date' id='calender'></div>
+		</form>
+		-->
 
 
 			</div>			
@@ -217,6 +217,7 @@
 	</div>
 
 
+	<script type="text/javascript" src='/static/js/jquery.js'></script>
 	<script type="text/javascript" src="/static/js/calender.js"></script>
 	<script type="text/javascript">
 		$("#create_case").bind("click", function() {
@@ -243,3 +244,112 @@
 </body>
 
 </html>
+
+
+
+
+<!--
+<div style="width:auto; display:inline-block; text-align:center; margin-left: 100px; margin-bottom:100px;">
+					<form>
+						<div class='custom-date' id='calender'></div>
+					</form>
+
+				</div>
+			
+				
+							<div style="display:inline-block; position:relative;float: right;">
+								    <div style="width: 400px; height:300px;">
+        <table class="table table-bordered table-hover" style="width: 400px;">
+            <tr class="text-center">
+                <td class="col-md-1">
+                    <p>一</p>
+                    <table>
+                        {% for task in week_task.Monday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>二</p>
+                    <table>
+                        {% for task in week_task.Tuesday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>三</p>
+                    <table>
+                        {% for task in week_task.Wednesday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>四</p>
+                    <table>
+                        {% for task in week_task.Thursday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>五</p>
+                    <table>
+                        {% for task in week_task.Friday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>六</p>
+                    <table>
+                        {% for task in week_task.Saturday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1">
+                    <p>日</p>
+                    <table>
+                        {% for task in week_task.Sunday %}
+                        <tr class="text-center">
+                            <td>
+                                <p>{{ task }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+                <td class="col-md-1 text-center">
+                    <p style="margin-top: 20%;">{{ need_time }}/{{ amount_time }}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+							</div>
+-->

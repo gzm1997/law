@@ -1,0 +1,10 @@
+#week-calender {
+    width: auto;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#Monday, #Tuesday, #Wednesday, #Thursday, #Friday, #Saturday, #Sunday {
+    display: none;
+}
