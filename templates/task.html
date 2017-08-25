@@ -163,9 +163,11 @@
                         <label class="col-md-3 control-label need-time">所需时间</label>
                         <input id="time_required" class="task-need-time" value="{{ task_obj.time_required }}">
                     </div>
+                    {% if own %}
                     <div class="button-group-window" style="text-align:center;">
                         <button id="save_task" type="button" class="button button-raised button-primary button-pill save-button">保存</button>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

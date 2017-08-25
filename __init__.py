@@ -361,12 +361,14 @@ def comment():
 def alltasks():
     all_task = task_data._search_task()
     print(all_task)
+    for task in all_task:
+        task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
+
     if "username" in session:
         login = True
         username = session["username"]
         user_url = '/user?username=' + username
         for task in all_task:
-            task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
             if task["manager"] == username:
                 task["w_own"] = True
             else:
@@ -374,6 +376,8 @@ def alltasks():
         return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username)
     else:
         login = False
+        for task in all_task:
+            task["w_own"] = False
         return render_template("all_task.html", task_list = all_task, login = login)
 
 #/task_detail?task_id=2017-8-25
@@ -390,14 +394,20 @@ def task_detail():
         manager_name = ""
         manager_detail_url = "#"
 
+
     if "username" in session:
         login = True
         username = session["username"]
         user_url = "/user?username=" + username
-        return render_template("task.html", login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, task_obj = task_data._search_task(task_id = task_id)[0])
+
+        if manager_name == session["username"]:
+            own = True
+        else:
+            own = False
+        return render_template("task.html", login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, task_obj = task_data._search_task(task_id = task_id)[0], own = own)
     else:
         login = False
-        return render_template("task.html", login = login, task_obj = task_data._search_task(task_id = task_id)[0])
+        return render_template("task.html", login = login, task_obj = task_data._search_task(task_id = task_id)[0], own = False)
     
 
 @application.route("/task", methods = ["GET", "POST"])
