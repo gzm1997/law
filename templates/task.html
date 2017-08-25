@@ -7,12 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Task</title>
 
+<!--
+    <script type="text/javascript" src="/static/js/task/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
+    <link href="/static/css/task/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="/static/css/task/home.css?q=1280549780" rel="stylesheet" />
+    <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
+    <link href="/static/css/task/bootstrap-datetimepicker.min.css">
+
+    <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
+    <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
+    <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
+-->
+
+
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
     <link href="/static/css/commit.css?q=1280549780" rel="stylesheet">
     <link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
+    <link href="/static/css/task/bootstrap-datetimepicker.min.css">
 
     <script src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
+    <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
+    <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
 
 </head>
 
@@ -52,6 +75,106 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
+    {% if task_obj %}
+    <div tabindex="-1" role="dialog" id="todo-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align:center;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">任务表</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="margin: 5px auto;">
+                        <label class="col-md-3 control-label">任务名称:</label>
+                        <input name="input-task-name" id="task_name" value="{{ task_obj.task_name }}">
+                    </div>
+
+                    <div style="margin: 5px auto;">
+                        <label class="col-md-3 control-label">任务编号:</label>
+                        <input name="input-task-number" id="task_id" value="{{ task_obj.task_id }}">
+                    </div>
+
+                    <div style="margin: 5px auto;">
+                        <label class="col-md-3 control-label">任务状态:</label>
+                        <select id="task_state" class="task-state-select">
+                            {% set done = 'done' %}
+                            {% set undone = 'undone' %}
+                            {% if task_obj.task_state|string() == done %}
+                                <option selected="selected" value="done">已办</option>
+                                <option value="undone">待办</option>
+                            {% elif task_obj.task_state|string() == undone %}
+                                <option value="done">已办</option>
+                                <option selected="selected" value="undone">待办</option>               
+                            {% endif %}
+                        </select> 
+                        <label style="margin-left: 10%; margin-right: 10%" class="control-label task-type">任务类型:</label>
+                        <select id="task_type" class="task-type-select">
+                            {% set type1 = 'type1' %}
+                            {% set type2 = 'type2' %}
+                            {% set type3 = 'type3' %}
+                            {% set type4 = 'type4' %}
+                            {% if task_obj.task_type|string() == type1 %}
+                                <option selected="selected" value="type1">类型1</option>
+                                <option value="type2">类型2</option>
+                                <option value="type3">类型3</option>
+                                <option value="type4">类型4</option>
+                            {% elif task_obj.task_type|string() == type2 %}
+                                <option value="type1">类型1</option>
+                                <option selected="selected" value="type2">类型2</option>
+                                <option value="type3">类型3</option>
+                                <option value="type4">类型4</option>
+                            {% elif task_obj.task_type|string() == type3 %}
+                                <option value="type1">类型1</option>
+                                <option value="type2">类型2</option>
+                                <option selected="selected" value="type3">类型3</option>
+                                <option value="type4">类型4</option>  
+                            {% elif task_obj.task_type|string() == type4 %}
+                                <option value="type1">类型1</option>
+                                <option value="type2">类型2</option>
+                                <option value="type3">类型3</option>
+                                <option selected="selected" value="type4">类型4</option>     
+                            {% endif %}                                              
+                    </select> 
+                    </div>
+                    <label class="col-md-3 control-label task-operator">经办人:</label>
+                    <input id="manager" name="input-operator" readonly="readonly" value="{{ username }}">
+                    <br/>
+
+                    <div class="form-group time-select" style="margin: 5px auto;">
+                        <label class="col-md-3 control-label">截止日期:</label>
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input id="deadline" class="form-control" size="16" type="text" value="{{ task_obj.deadline }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        <input type="hidden" class="task-end-time" id="dtp_input2" value="" /><br/>
+                    </div>
+
+                    <div class="form-group time-select" style="margin: 5px auto;">
+                        <label class="col-md-3 control-label">完成日期:</label>
+                        <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input id="completion_date" class="form-control" size="16" type="text" value="{{ task_obj.completion_date }}" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        <input type="hidden" class="task-finish-time" id="dtp_input2" value="" /><br/>
+                    </div>
+                    <div class="button-group-window" style="margin: 5px auto;">
+                        <label class="col-md-3 control-label need-time">所需时间</label>
+                        <input id="time_required" class="task-need-time" value="{{ task_obj.time_required }}">
+                    </div>
+                    <div class="button-group-window" style="text-align:center;">
+                        <button id="save_task" type="button" class="button button-raised button-primary button-pill save-button">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+<!--
     <table class="table table-bordered table-hover">
         <tr class="text-center">
             <td class="col-md-6">
@@ -146,7 +269,7 @@
             </td>
         </tr>
     </table>
-
+-->
 
 
 

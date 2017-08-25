@@ -424,7 +424,10 @@ def task():
         if task_data._insert_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required) == True:
             return jsonify(message = "task is created successfully", judge_url = "/task_detail?task_id=" + task_id)
         else:
-            return jsonify(message = "task creation failed")
+            if task_data._update_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required):
+                return jsonify(message = "task update successfully")
+            return jsonify(message = "task update failed")
+        return jsonify(message = "task is created failed")
 
 
 

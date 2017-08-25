@@ -83,12 +83,21 @@ class Task_manager(object):
     def _insert_task(self, task_name, task_id, task_state, task_type, manager, deadline, completion_date, time_required):
         cursor = self._conn.cursor()
         if self._search_task(task_name = task_name, task_id = task_id
-        , task_type = task_type, manager = manager) == []:
+        , manager = manager) == []:
             cursor.execute("insert into task_table value(%s, %s, %s, %s, %s, %s, %s, %s);", [task_name, task_id, task_state, task_type, manager, deadline, completion_date, time_required])
             self._conn.commit()
             cursor.close()
             return True
         return False
+
+    def _update_task(self, task_name, task_id, task_state, task_type, manager, deadline, completion_date, time_required):
+        cursor = self._conn.cursor()
+        if self._search_task(task_name = task_name, task_id = task_id, manager = manager) != []:
+            cursor.execute("update task_table set task_state=%s, task_type=%s, deadline=%s, completion_date=%s, time_required=%s where task_name=%s and task_id=%s and manager=%s;", [task_state, task_type, deadline, completion_date, time_required, task_name, task_id, manager])
+            self._conn.commit()
+            cursor.close()   
+            return True
+        return False    
 
     def _delete_task(self, task_name, task_id, task_state, task_type, manager):
         if self._search_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager) != []:
