@@ -238,7 +238,7 @@
 	<script type="text/javascript" src="/static/js/calender.js?q=1280549780"></script>
 	<script type="text/javascript">
 
-    	function clear() {
+    	function clear_bar() {
         	$("#message_c").css("display", "none");
         	$("#time_c").css("display", "none");
         	$("#case_c").css("display", "none");
@@ -251,25 +251,25 @@
         	$("#task").removeClass("active");        
     	}
     	$("#message").click(function() {
-        	clear();
+        	clear_bar();
         	remove_style()
         	$("#message_c").css("display", "block");
         	$("#message").addClass("active")
     	});
     	$("#time").click(function() {
-        	clear();
+        	clear_bar();
         	remove_style()
         	$("#time_c").css("display", "block");
         	$("#time").addClass("active")       
     	});
     	$("#case").click(function() {
-        	clear();
+        	clear_bar();
         	remove_style()
         	$("#case_c").css("display", "block");
         	$("#case").addClass("active")         
     	});
     	$("#task").click(function() {
-        	clear();
+        	clear_bar();
         	remove_style()
         	$("#task_c").css("display", "block");
         	$("#task").addClass("active")         
