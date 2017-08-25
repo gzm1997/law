@@ -82,8 +82,7 @@ class Task_manager(object):
     #任务的task_type和task_name以及manager不可以重复
     def _insert_task(self, task_name, task_id, task_state, task_type, manager, deadline, completion_date, time_required):
         cursor = self._conn.cursor()
-        if self._search_task(task_name = task_name, task_id = task_id
-        , manager = manager) == []:
+        if self._search_task(task_name = task_name, task_id = task_id) == []:
             cursor.execute("insert into task_table value(%s, %s, %s, %s, %s, %s, %s, %s);", [task_name, task_id, task_state, task_type, manager, deadline, completion_date, time_required])
             self._conn.commit()
             cursor.close()
