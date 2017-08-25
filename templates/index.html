@@ -63,9 +63,27 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="span2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li id="message" class="active">
+                        <a href="#">message</a>
+                    </li>   
+                    <li id="time">
+                        <a href="#">time</a>
+                    </li>
+                    <li id="case">
+                        <a href="#">case</a>
+                    </li> 
+                    <li id="task">
+                        <a href="#">task</a>
+                    </li> 
+                </ul>
+            </div>            
+        </div>
+        <div id="message_c" class="col-md-10">
 	<table class="table table-bordered table-hover">
 		<tr class="text-center">
 			<td class="col-md-3">
@@ -96,7 +114,56 @@
 			</tr>
 		{% endif %}
 	</table>
+        </div>
+        <div id="time_c" class="col-md-10" style="display: none;">
+		<form class="col-md-6">
+			<div class='custom-date' id='calender'></div>
+		</form>
+		
 
+
+
+
+    <div class="well col-md-6" id="week-calender">
+        <div id="choose-bar">
+            <div class="btn-toolbar" role="toolbar" aria-label="...">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-default" id="Monday-button">Mon.</button>
+                    <button type="button" class="btn btn-primary" id="Tuesday-button">Tues.</button>
+                    <button type="button" class="btn btn-success" id="Wednesday-button">Wed.</button>
+                    <button type="button" class="btn btn-info" id="Thursday-button">Thurs.</button>
+                    <button type="button" class="btn btn-warning" id="Friday-button">Fri.</button>
+                    <button type="button" class="btn btn-danger" id="Saturday-button">Sat.</button>
+                    <button type="button" class="btn btn-danger" id="Sunday-button">Sun.</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="list-group show-work" id="Monday">
+            <a href="#" class="list-group-item">1Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Tuesday">
+            <a href="#" class="list-group-item">2Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Wednesday">
+            <a href="#" class="list-group-item">3Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Thursday">
+            <a href="#" class="list-group-item">4Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Friday">
+            <a href="#" class="list-group-item">5Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Saturday">
+            <a href="#" class="list-group-item">6Tasks</a>
+        </div>
+        <div class="list-group show-work" id="Sunday">
+            <a href="#" class="list-group-item">7Tasks</a>
+        </div>
+    </div>		
+		
+        </div>
+        <div id="case_c" class="col-md-10" style="display: none;">
 	<table class="table table-bordered">
 		<tr>
 			<td>案件列表</td>
@@ -136,6 +203,8 @@
 			</tr>	
 		</table>
 	{% endif %}
+        </div>
+        <div id="task_c" class="col-md-10" style="display: none;">
 	<table class="table table-bordered">
 		<tr>
 			<td>任务列表</td>
@@ -160,66 +229,53 @@
 			</td>
 		</tr>	
 		{% endif %}
-	</table>				
-			</div>
-			<div class="col-md-6">
-
-		<form>
-			<div class='custom-date' id='calender'></div>
-		</form>
-		
-
-
-
-
-    <div class="well" id="week-calender">
-        <div id="choose-bar">
-            <div class="btn-toolbar" role="toolbar" aria-label="...">
-                <div class="btn-group" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-default" id="Monday-button">Mon.</button>
-                    <button type="button" class="btn btn-primary" id="Tuesday-button">Tues.</button>
-                    <button type="button" class="btn btn-success" id="Wednesday-button">Wed.</button>
-                    <button type="button" class="btn btn-info" id="Thursday-button">Thurs.</button>
-                    <button type="button" class="btn btn-warning" id="Friday-button">Fri.</button>
-                    <button type="button" class="btn btn-danger" id="Saturday-button">Sat.</button>
-                    <button type="button" class="btn btn-danger" id="Sunday-button">Sun.</button>
-                </div>
-            </div>
+	</table>	
         </div>
-        <hr>
-        <div class="list-group show-work" id="Monday">
-            <a href="#" class="list-group-item">1Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Tuesday">
-            <a href="#" class="list-group-item">2Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Wednesday">
-            <a href="#" class="list-group-item">3Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Thursday">
-            <a href="#" class="list-group-item">4Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Friday">
-            <a href="#" class="list-group-item">5Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Saturday">
-            <a href="#" class="list-group-item">6Tasks</a>
-        </div>
-        <div class="list-group show-work" id="Sunday">
-            <a href="#" class="list-group-item">7Tasks</a>
-        </div>
-    </div>		
-		
-		
-
-
-			</div>			
-		</div>
-	</div>
+    </div>
+</div>
 
 
 	<script type="text/javascript" src="/static/js/calender.js?q=1280549780"></script>
 	<script type="text/javascript">
+
+    	function clear() {
+        	$("#message_c").css("display", "none");
+        	$("#time_c").css("display", "none");
+        	$("#case_c").css("display", "none");
+        	$("#task_c").css("display", "none");
+    	}
+    	function remove_style() {
+        	$("#message").removeClass("active");
+        	$("#time").removeClass("active");
+        	$("#case").removeClass("active");
+        	$("#task").removeClass("active");        
+    	}
+    	$("#message").click(function() {
+        	clear();
+        	remove_style()
+        	$("#message_c").css("display", "block");
+        	$("#message").addClass("active")
+    	});
+    	$("#time").click(function() {
+        	clear();
+        	remove_style()
+        	$("#time_c").css("display", "block");
+        	$("#time").addClass("active")       
+    	});
+    	$("#case").click(function() {
+        	clear();
+        	remove_style()
+        	$("#case_c").css("display", "block");
+        	$("#case").addClass("active")         
+    	});
+    	$("#task").click(function() {
+        	clear();
+        	remove_style()
+        	$("#task_c").css("display", "block");
+        	$("#task").addClass("active")         
+    	}); 
+
+
 		$("#create_case").bind("click", function() {
 			data = {
 				case_name: $("#case_name").val(),
