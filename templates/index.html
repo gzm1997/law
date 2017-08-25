@@ -6,11 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User info</title>
-	<link rel="stylesheet" href="/static/css/calender.css" media="screen" type="text/css" />
-	<link rel="stylesheet" href="/static/css/calender1.css" type="text/css" />
+	<!--<link rel="stylesheet" href="/static/css/calender7.css?q=1280549780" media="screen" type="text/css" />-->
+	<link rel="stylesheet" href="/static/css/calender7.css?q=1280549780" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="/static/css/calender1.css?q=1280549780" type="text/css" />
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/static/css/home.css" rel="stylesheet">
-	<link href="/static/css/signupAndLogin.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/home.css?q=1280549780" rel="stylesheet">
+	<link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="/static/css/week_calender.css">
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,8 +20,8 @@
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="/static/js/detail.js"></script>
-	<script src="/static/js/week_calender.js"></script>
+	<script src="/static/js/detail.js?q=1280549780"></script>
+	<script src="/static/js/week_calender.js?q=1280549780"></script>
 
 </head>
 
@@ -43,7 +44,7 @@
 						<a href="/all_case">案例</a>
 					</li>
 					<li>
-						<a href="/task">任务</a>
+						<a href="/all_task">任务</a>
 					</li>
 
 					{% if login %}
@@ -142,7 +143,7 @@
 		{% for task in task_list %}
   			<tr>
 				<td>
-					<a href="">
+					<a href="{{ task.task_detail_url }}">
 						{{ task.task_name }}
 					</a>
 				</td>
@@ -152,7 +153,7 @@
 		<tr>
 			<td class="text-center">
 				<button>
-					<a href="/task">
+					<a href="{{ task_url }}">
 						创建任务
 					</a>
 				</button>
@@ -217,7 +218,7 @@
 	</div>
 
 
-	<script type="text/javascript" src="/static/js/calender.js"></script>
+	<script type="text/javascript" src="/static/js/calender.js?q=1280549780"></script>
 	<script type="text/javascript">
 		$("#create_case").bind("click", function() {
 			data = {

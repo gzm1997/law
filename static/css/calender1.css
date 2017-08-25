@@ -9,6 +9,9 @@
     background-color: red;
 }
 
+.msg-num {
+    transform: translate(0, -5px);
+}
 #calender  {
     margin: 40px;
 }

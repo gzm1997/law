@@ -18,6 +18,8 @@ insert into user value("1617899539@qq.com", "gzm1997", "Gzm20125");k
 
 insert into raw_user value("15521027848@163.com", "gzmpy", "Gzm1997", "asdndniwd342");
 
+
+
 create table law_case(
 username varchar(20),
 case_id varchar(20),
@@ -128,14 +130,7 @@ group_justice_add_advise varchar(200),
 group_justice_filing varchar(200)
 );
 
-create table task_table(
-task_name varchar(200),
-task_type varchar(200),
-manager varchar(200),
-deadline varchar(200),
-completion_date varchar(200),
-time_required varchar(200)
-);
+
 
 
 #comment评论
@@ -147,3 +142,17 @@ content varchar(200)
 );
 
 
+
+
+create table task_table(
+task_name varchar(200),
+task_id varchar(200),
+task_state varchar(200),
+task_type varchar(200),
+manager varchar(200),
+deadline varchar(200),
+completion_date varchar(200),
+time_required varchar(200)
+);
+
+#task_name, task_id, task_type, manager, deadline, completion_date, time_required

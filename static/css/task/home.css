@@ -93,5 +93,16 @@ li.ui-state-default:last-child{
     text-align: center;
 }
 .undo-state, .undo-ddl, .undo-finishtime, .undp-type {
-    display: none;
+/*    display: none;*/
+}
+
+
+
+.detail {
+    padding-left: 30px;
+    display: ;
+}
+.undo-save-button {
+    text-align: center;
+    margin: auto;
 }

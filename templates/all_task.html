@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>All case</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="/static/css/home.css?q=1280549780" rel="stylesheet">
+    <title>All task</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
 
 
-	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -24,18 +24,18 @@
                 <a href="/home">主页</a>
             </li>
 
-            <li class="active">
+            <li>
                 <a href="/all_case">案例</a>
             </li>
 
-            <li>
+            <li class="active">
                 <a href="/all_task">任务</a>
             </li>                   
 
 
             {% if login %}
                 <li>
-                    <a href= "{{ user_url }}" >		我的账号[{{ username }}]
+                    <a href= "{{ user_url }}" >     我的账号[{{ username }}]
                     </a>
                 </li>
             {% else %}
@@ -51,20 +51,21 @@
     </nav>
  
 
-	<a href="#" class="list-group-item">
-		所有用户所有案件
-	</a>
-	
-	{% for case in case_list %}
-		<a href="{{ case.detail_url }}" class="list-group-item">
-			{{ case.case_name }}
-            {% if case.w_own %}
-                <span>(我的案件)</span>
+    <a href="#" class="list-group-item">
+        所有用户所有案件
+    </a>
+    
+    {% for task in task_list %}
+        <a href="{{ task.detail_url }}" class="list-group-item">
+            {{ task.task_name }}
+            {% if task.w_own %}
+                <span>(我的任务)</span>
             {% else %}
-                <span>(他人案件)</span>
+                <span>(他人任务)</span>
             {% endif %}
-		</a>
-	{% endfor %}
+        </a>
+    {% endfor %}
+
 
 
 </body>

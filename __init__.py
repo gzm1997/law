@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, session, jsonify, abort, redi
 from law.manager_data import user_manager, case_manager, task_manager, comment_manager
 from law import manager_time
 from law import send_email
+import os
 
 application = Flask(__name__)
 user_data = user_manager.User_manager("root", "Gzm20125")
@@ -20,6 +21,19 @@ temp_week_tasks = {
     "Saturday": ["shopping"],
     "Sunday": ["accompany", "drink"]
 }
+
+
+@application.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(application.root_path, endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
 
 
 @application.route("/signup", methods=["GET", "POST"])
@@ -181,27 +195,39 @@ def table():
             return "update table3 successfully!"
         return "update table error"
 
-@application.route("/task", methods = ["GET", "POST"])
-def task():
-    if request.method == "GET":
-        if "username" in session:
-            login = True
-            user_url = "/user?username=" + session["username"]
-            return render_template("todolist.html", login = login, username = session["username"], user_url = user_url)
-        else:
-            login = False
-            return render_template("todolist.html", login = login)
+"""
+    all_case = case_data._search_law_case()
+    for case in all_case:
+        case["detail_url"] = "/case?case_id=" + case["case_id"]
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = '/user?username=' + username
+        for case in all_case:
+            if case["username"] == username:
+                case["w_own"] = True
+            else:
+                case["w_own"] = False
+        return render_template("all_case.html", case_list = all_case, login = login, user_url = user_url, username = username)
+    else:
+        login = False
+        return render_template("all_case.html", case_list = all_case, login = login)
+"""
 
-    elif request.method == "POST":
-        task_name = request.form["task_name"]
-        task_type = request.form["task_type"]
-        manager = request.form["manager"]
-        deadline = request.form["deadline"]
-        completion_date = request.form["completion_date"]
-        time_required = request.form["time_required"]
-        if task_data._insert_task(task_name, task_type, manager, deadline, completion_date, time_required) == False:
-            return jsonify(feedback = "this is task has been created!")
-        return jsonify(feedback = "task is created successfully")
+
+
+"""
+('task_name', 'test'), 
+('task_id', '123'), 
+('task_type', '类型2'), 
+('manager', 'gzm'), 
+('deadline', '05 August 2017'), 
+('f_date', '13 August 2017'), 
+('need_time', '2')
+"""
+
+
+
 
 #/user?username=gzm
 @application.route("/user")
@@ -211,6 +237,7 @@ def user():
     if "username" in session:
         login = True
         user_url = "/user?username=" + session["username"]
+        task_url = "/task?username=" + session["username"]
     else:
         login = False
 
@@ -232,10 +259,12 @@ def user():
 
         for case in case_list:
             case["case_detail_url"] = "/case?case_id=" + case["case_id"]
+        for task in task_list:
+            task["task_detail_url"] = "/task_detail?task_id=" + task["task_id"]        
 
         
         if login:
-            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)
+            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own, task_url = task_url)
         else:
             return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)            
     else:
@@ -318,6 +347,92 @@ def comment():
     if session["username"] != case_data._search_law_case(case_id = case_id)[0]["username"]:
         case_data._unread_comment(case_id = case_id)
     return redirect(url_for("case", case_id = request.form["case_id"]))
+
+
+
+
+
+
+
+
+
+
+@application.route("/all_task")
+def alltasks():
+    all_task = task_data._search_task()
+    print(all_task)
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = '/user?username=' + username
+        for task in all_task:
+            task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
+            if task["manager"] == username:
+                task["w_own"] = True
+            else:
+                task["w_own"] = False
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username)
+    else:
+        login = False
+        return render_template("all_task.html", task_list = all_task, login = login)
+
+#/task_detail?task_id=2017-8-25
+@application.route("/task_detail")
+def task_detail():
+    task_id = request.args.get('task_id')
+
+    #case_manager = case_data._search_law_case(case_id = case_id)
+    task_manager = task_data._search_task(task_id = task_id)
+    if task_manager != []:
+        manager_name = task_manager[0]["manager"]
+        manager_detail_url = "/user?username=" + manager_name
+    else:
+        manager_name = ""
+        manager_detail_url = "#"
+
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = "/user?username=" + username
+        return render_template("task.html", login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, task_obj = task_data._search_task(task_id = task_id)[0])
+    else:
+        login = False
+        return render_template("task.html", login = login, task_obj = task_data._search_task(task_id = task_id)[0])
+    
+
+@application.route("/task", methods = ["GET", "POST"])
+def task():
+    if request.method == "GET":
+        if "username" in session:
+            login = True
+            user_url = "/user?username=" + session["username"]
+            return render_template("todolist.html", login = login, username = session["username"], user_url = user_url)
+        else:
+            login = False
+            return render_template("todolist.html", login = login)
+
+    elif request.method == "POST":
+        print(request.form)
+        task_name = request.form["task_name"]
+        task_id = request.form["task_id"]
+        task_state = request.form["task_state"]
+        task_type = request.form["task_type"]
+        manager = request.form["manager"]
+        deadline = request.form["deadline"]
+        completion_date = request.form["completion_date"]
+        time_required = request.form["time_required"]
+        if task_data._insert_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required) == True:
+            return jsonify(message = "task is created successfully", judge_url = "/task_detail?task_id=" + task_id)
+        else:
+            return jsonify(message = "task creation failed")
+
+
+
+
+
+
+
+
 
 
 

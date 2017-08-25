@@ -4,17 +4,19 @@
 <head>
     <meta charset="utf-8">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>All tasks</title>
+    <title>task</title>
 
     <!-- Bootstrap -->
     <script type="text/javascript" src="/static/js/task/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
     <link href="/static/css/task/bootstrap.min.css" rel="stylesheet" />
-    <link href="/static/css/task/home.css" rel="stylesheet" />
+
+    <link href="/static/css/task/home.css?q=1280549780" rel="stylesheet" />
     <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
-    <link href="/static/css/task/buttons.css" rel="stylesheet" />
+    <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
     <link href="/static/css/task/bootstrap-datetimepicker.min.css">
-    <script type="text/javascript" src="/static/js/task/home.js"></script>
+
+    <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
     <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
 </head>
@@ -37,13 +39,13 @@
                         <a href="/all_case">案例</a>
                     </li>
                     <li class="active">
-                        <a href="/task">任务</a>
+                        <a href="/all_task">任务</a>
                     </li>                   
 
 
                     {% if login %}
                         <li>
-                            <a href= {{ user_url }} >我的账号[{{ username }}]</a>
+                            <a href= "{{ user_url }}" >我的账号[{{ username }}]</a>
                         </li>
                     {% else %}
                         <li>
@@ -52,7 +54,7 @@
                     {% endif %}
 
                 </ul>
-            </div
+            </div>
             <!--/.nav-collapse -->
         </div>
     </nav>
@@ -62,7 +64,7 @@
         <div class="todo-box row">
             <div class="col-md-4">
             </div>
-            <button type="button" id="add-button" class="btn btn-success todo-add col-md-4">添加</button>
+            <button type="button" id="add-button" class="btn btn-success todo-add col-md-4">添加任务</button>
             <div class="col-md-4">
             </div>
         </div>
@@ -77,69 +79,65 @@
                     <h4 class="modal-title">任务表</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="task-name">
+                    <div style="margin: 5px auto;">
                         <label class="col-md-2 control-label">任务名称:</label>
-                        <input name="input-task-name">
+                        <input name="input-task-name" id="task_name">
                     </div>
-                    <div>
-                        <label class="col-md-2 control-label task-number">任务编号:</label>
-                        <input name="input-task-number">
+
+                    <div style="margin: 5px auto;">
+                        <label class="col-md-2 control-label">任务编号:</label>
+                        <input name="input-task-number" id="task_id">
                     </div>
-                    <div>
-                        <label class="col-md-2 control-label task-state">任务状态:</label>
-                        <select  task-state-select>
-                    <option>已办</option>
-                    <option>待办</option>
-                </select> <label class="control-label task-type">任务类型:</label>
-                        <select>
-                    <option>类型1</option>
-                    <option>类型2</option>
-                    <option>类型3</option>
-                        <option>类型4</option>
-                </select> </div>
-                    <label class="col-md-2 control-label task-operator">经办人</label>
-                    <input name="input-operator">
+
+                    <div style="margin: 5px auto;">
+                        <label class="col-md-2 control-label">任务状态:</label>
+                        <select id="task_state" class="task-state-select">
+                            <option value="done">已办</option>
+                            <option value="undone">待办</option>
+                        </select> 
+                        <label class="control-label task-type">任务类型:</label>
+                        <select id="task_type" class="task-type-select">
+                            <option value="type1">类型1</option>
+                            <option value="type2">类型2</option>
+                            <option value="type3">类型3</option>
+                            <option value="type4">类型4</option>
+                        </select> 
+                    </div>
+                    <label class="col-md-2 control-label task-operator">经办人:</label>
+                    <input id="manager" name="input-operator" readonly="readonly" value="{{ username }}">
                     <br/>
 
-                    <div class="form-group time-select">
-                        <label class="col-md-2 control-label end-time">截止日期</label>
+                    <div class="form-group time-select" style="margin: 5px auto;">
+                        <label class="col-md-2 control-label">截止日期:</label>
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <input id="deadline" class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         <input type="hidden" class="task-end-time" id="dtp_input2" value="" /><br/>
                     </div>
-                    <div class="form-group time-select">
-                        <label class="col-md-2 control-label finish-time">完成日期</label>
+
+                    <div class="form-group time-select" style="margin: 5px auto;">
+                        <label class="col-md-2 control-label">完成日期:</label>
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <input id="completion_date" class="form-control" size="16" type="text" value="" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         <input type="hidden" class="task-finish-time" id="dtp_input2" value="" /><br/>
                     </div>
-                    <div class="button-group-window">
+                    <div class="button-group-window" style="margin: 5px auto;">
                         <label class="col-md-2 control-label need-time">所需时间</label>
-                        <input class="task-need-time">
+                        <input id="time_required" class="task-need-time">
                     </div>
                     <div class="button-group-window" style="text-align:center;">
-<!--                            <button type="button" class="button button-pill button-caution">编辑</button>-->
-                            <button type="button" class="button button-raised button-primary button-pill save-button">保存</button>
-<!--
-                            <button type="button" class="button button-pill button-action">已办</button>
-                            <button type="button" class="button button-pill button-royal">延期</button>
-                            <button type="button" class="button button-pill button-inverse">关闭</button>
--->
+                        <button id="save_task" type="button" class="button button-raised button-primary button-pill save-button">保存</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-    <!-- /.modal -->
+<!--
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -154,50 +152,20 @@
                                     编号
                                 </div>
                                 <div class="col-md-10">
-                                    <div class="todo-name col-md-8">
+                                    <div class="todo-name col-md-6">
                                         任务名称
                                     </div>
-                                    <div class="todo-time col-md-2">
+                                    <div class="todo-time col-md-3">
                                         时长
                                     </div>
-                                    <div class="todo-finish col-md-2">
+                                    <div class="todo-finish col-md-3">
                                         完成
                                     </div>
-                                    
+
                                 </div>
                             </h4>
                         </li>
                         </br>
-                        <li class="undo-task">
-                            <div class="col-md-2 undo-number">
-                                <label class="undo-number">1</label>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="col-md-8 undo-name">
-                                    <label >倒垃圾</label>
-                                </div>
-                                <div class="col-md-2 undo-time">
-                                    <label class="undo-time">5</label>
-                                </div>
-                                <div class="col-md-2 undo-finish">
-                                    <label>
-                                <input type="checkbox" value="" /></label>
-                                </div>
-                                <div class="undo-state">
-                                    
-                                </div>
-                                <div class="undo-ddl">
-                                
-                                </div>
-                                <div class="undo-finishtime">
-                                
-                                </div>
-                                <div class="undo-type">
-                                
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                     <div class="todo-footer">
                         <strong><span class="count-todos"></span></strong> Items Left
@@ -208,14 +176,12 @@
                 <div class="todolist">
                     <h1>Already Done</h1>
                     <ul id="done-items" class="list-unstyled">
-                        <li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button>
-                            <button class="remove-item remove-back btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-plus"></span></button>
-                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+-->
 </body>
 
 </html>
