@@ -111,6 +111,9 @@ class Task_manager(object):
 
 if __name__ == "__main__":
     task_data = Task_manager("root", "Gzm20125")
+    """
     print(task_data._insert_task(task_name = "first task", task_id = "123", task_state = "unknown", task_type = "uknown", manager = "gzm", deadline = "2017-8-11", completion_date = "2017-8-12", time_required = "1"))
     print(task_data._search_task(task_name = "first task"))
     print(task_data._search_task())
+    """
+    print(task_data._search_task(manager = "gzm1997", deadline = "7 August 2017"))
