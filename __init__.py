@@ -426,10 +426,11 @@ def task():
         completion_date = request.form["completion_date"]
         time_required = request.form["time_required"]
         if task_data._insert_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required) == True:
+            print("judge_url:", "/task_detail?task_id=" + task_id)
             return jsonify(message = "task is created successfully", judge_url = "/task_detail?task_id=" + task_id)
         else:
             if task_data._update_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required):
-                return jsonify(message = "task update successfully")
+                return jsonify(message = "task update successfully", judge_url = "/task_detail?task_id=" + task_id)
             return jsonify(message = "task update failed")
         return jsonify(message = "task is created failed")
 

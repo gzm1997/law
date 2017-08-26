@@ -134,6 +134,7 @@
                         <input type="hidden" class="task-end-time" id="dtp_input2" value="" />
                         <br/>
                     </div>
+                    <div id="deadline_remind" style="display: none;text-align: center;color: red;"></div>
                     <div class="form-group time-select" style="margin: 5px auto;">
                         <label class="col-md-3 control-label">完成日期:</label>
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -144,6 +145,7 @@
                         <input type="hidden" class="task-finish-time" id="dtp_input2" value="" />
                         <br/>
                     </div>
+                    <div id="completion_date_remind" style="display: none;text-align: center;color: red;"></div>
                     <div class="button-group-window" style="margin: 5px auto;">
                         <label class="col-md-3 control-label need-time">所需时间</label>
                         <input id="time_required" class="task-need-time" value="{{ task_obj.time_required }}">
