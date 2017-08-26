@@ -372,12 +372,12 @@ def alltasks():
                 task["w_own"] = True
             else:
                 task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username)
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = "所有用户所有案件")
     else:
         login = False
         for task in all_task:
             task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login)
+        return render_template("all_task.html", task_list = all_task, login = login, list_name = "所有用户所有案件")
 
 #/task_detail?task_id=2017-8-25
 @application.route("/task_detail")
@@ -454,7 +454,31 @@ def get_week_task():
     return jsonify(plan.get_week_task_json(manager = manager))
 
 
+#/each_day_task?username=gzm1997&date=7-August-201
+@application.route("/each_day_task")
+def each_day_task():
+    username = request.args.get('manager')
+    date = request.args.get('date').replace("-", " ")
+    all_task = task_data._search_task(manager = username, deadline = date)
+    print(all_task)
+    for task in all_task:
+        task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
 
+    if "username" in session:
+        login = True
+        username = session["username"]
+        user_url = '/user?username=' + username
+        for task in all_task:
+            if task["manager"] == username:
+                task["w_own"] = True
+            else:
+                task["w_own"] = False
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = date + "所有案件")
+    else:
+        login = False
+        for task in all_task:
+            task["w_own"] = False
+        return render_template("all_task.html", task_list = all_task, login = login, list_name = date + "所有案件")
 
 
 application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'

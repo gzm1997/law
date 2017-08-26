@@ -126,70 +126,48 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    {% if week_task_json %}
+                    <hr> {% if week_task_json %}
                     <div style="display: {{ weekday_show[0] }}" class="list-group show-work" id="Monday">
-                        {% if week_task_json.Monday %}
-                            {% for each_task in week_task_json.Monday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
+                        {% if week_task_json.Monday %} {% for each_task in week_task_json.Monday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[1] }}" class="list-group show-work" id="Tuesday">
-                        {% if week_task_json.Tuesday %}
-                            {% for each_task in week_task_json.Tuesday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
+                        {% if week_task_json.Tuesday %} {% for each_task in week_task_json.Tuesday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[2] }}" class="list-group show-work" id="Wednesday">
-                        {% if week_task_json.Wednesday %}
-                            {% for each_task in week_task_json.Wednesday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
-                        {% endif %}                           
+                        {% if week_task_json.Wednesday %} {% for each_task in week_task_json.Wednesday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
+                        {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[3] }}" class="list-group show-work" id="Thursday">
-                        {% if week_task_json.Thursday %}
-                            {% for each_task in week_task_json.Thursday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
-                        {% endif %}                             
+                        {% if week_task_json.Thursday %} {% for each_task in week_task_json.Thursday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
+                        {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[4] }}" class="list-group show-work" id="Friday">
-                        {% if week_task_json.Friday %}
-                            {% for each_task in week_task_json.Friday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
-                        {% endif %}                         
+                        {% if week_task_json.Friday %} {% for each_task in week_task_json.Friday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
+                        {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[5] }}" class="list-group show-work" id="Saturday">
-                        {% if week_task_json.Saturday %}
-                            {% for each_task in week_task_json.Saturday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
-                        {% endif %}                       
+                        {% if week_task_json.Saturday %} {% for each_task in week_task_json.Saturday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
+                        {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[6] }}" class="list-group show-work" id="Sunday">
-                        {% if week_task_json.Sunday %}                        
-                            {% for each_task in week_task_json.Sunday %}
-                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
-                            {% endfor %}
-                        {% else %}
-                            <div style="text-align: center;">这天没有任务</div>
-                        {% endif %}                         
+                        {% if week_task_json.Sunday %} {% for each_task in week_task_json.Sunday %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <div style="text-align: center;">这天没有任务</div>
+                        {% endif %}
                     </div>
                     {% endif %}
                 </div>
@@ -203,8 +181,8 @@
                     <tr>
                         <td>
                             <a href="{{ case.case_detail_url }}">
-					{{ case.case_name }}
-					</a> {% if case.num_nr and own %}
+                    {{ case.case_name }}
+                    </a> {% if case.num_nr and own %}
                             <span style="color: red;">(有{{ case.num_nr }}条新消息)</span> {% endif %}
                         </td>
                     </tr>
@@ -242,8 +220,8 @@
                     <tr>
                         <td>
                             <a href="{{ task.task_detail_url }}">
-						{{ task.task_name }}
-					</a>
+                        {{ task.task_name }}
+                    </a>
                         </td>
                     </tr>
                     {% endfor %} {% if own %}
@@ -251,8 +229,8 @@
                         <td class="text-center">
                             <button>
                                 <a href="{{ task_url }}">
-						创建任务
-					</a>
+                        创建任务
+                    </a>
                             </button>
                         </td>
                     </tr>

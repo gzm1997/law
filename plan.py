@@ -10,7 +10,8 @@ def get_month_task_json(manager):
     month_year = m_str[:m_str.find("\n")]
     result = {}
     for i in range(1, num_day + 1):
-        result[str(i)] = task_data._search_task(manager = manager, deadline = str(i) + " " + month_year)
+        task_day = task_data._search_task(manager = manager, deadline = str(i) + " " + month_year)
+        result[str(i)] = {"num": len(task_day), "url": "/each_day_task?username=" + manager + "&date=" + str(i) + "-" + month_year.replace(" ", "-")}
     return result
 
 def get_week_task_json(manager):
@@ -36,11 +37,11 @@ def get_week_task_json(manager):
 
 
 def show_today():
-	week_day = ["none", "none", "none", "none", "none", "none", "none"]
-	today_date = get_localdate_json()
-	index = calendar.weekday(today_date["year"], today_date["month"], today_date["day"])
-	week_day[index] = "block"
-	return week_day
+    week_day = ["none", "none", "none", "none", "none", "none", "none"]
+    today_date = get_localdate_json()
+    index = calendar.weekday(today_date["year"], today_date["month"], today_date["day"])
+    week_day[index] = "block"
+    return week_day
 
 if __name__ == "__main__":
     print(get_week_task_json())
