@@ -6,12 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
-
     <script src="/static/js/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -19,8 +16,8 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
                 <a class="navbar-brand" href="#">协作</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -33,19 +30,16 @@
                     </li>
                     <li>
                         <a href="/all_task">任务</a>
-                    </li>                   
-
-
+                    </li>
                     {% if login %}
-                        <li>
-                            <a href= "{{ user_url }}" >我的账号[{{ username }}]</a>
-                        </li>
+                    <li>
+                        <a href="{{ user_url }}">我的账号[{{ username }}]</a>
+                    </li>
                     {% else %}
-                        <li>
-                            <a href="/login">登陆</a>
-                        </li>
+                    <li>
+                        <a href="/login">登陆</a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -65,7 +59,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="well box">
                         <div class="col-md-3  box-icon">
@@ -78,7 +71,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </header>
 </body>
 

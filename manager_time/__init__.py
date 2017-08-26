@@ -37,6 +37,11 @@ def get_localtime_str():
 def format_localtime_json(time_str):
     return {"year": time_str[0:4], "month": time_str[5:7], "day": time_str[8:10], "hour": time_str[11:13], "minute": time_str[14:16]}
 
+
+
+
+
+
 if __name__ == "__main__":
     print("local date is:")
     print(get_localdate_json())
@@ -49,3 +54,8 @@ if __name__ == "__main__":
     print(format_localtime_json(get_localtime_str()))
 
 
+
+
+"""
+25 August 2017
+"""

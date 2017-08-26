@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
     $("#Monday-button").click(function() {
         clear();
         $("#Monday").css("display", "block");
@@ -27,7 +27,7 @@ $(function(){
         clear();
         $("#Sunday").css("display", "block");
     });
-    
+
 });
 
 function clear() {

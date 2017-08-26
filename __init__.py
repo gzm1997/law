@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, session, jsonify, abort, redi
 from law.manager_data import user_manager, case_manager, task_manager, comment_manager
 from law import manager_time
 from law import send_email
+from law import plan
 import os
 
 application = Flask(__name__)
@@ -12,15 +13,8 @@ task_data = task_manager.Task_manager("root", "Gzm20125")
 comment_data = comment_manager.Comment_manager("root", "Gzm20125")
 
 
-temp_week_tasks = {
-    "Monday": ["hello", "do something"],
-    "Tuesday": ["start"],
-    "Wednesday": ["end"],
-    "Thursday": ["coldplay"],
-    "Friday": ["meeting"],
-    "Saturday": ["shopping"],
-    "Sunday": ["accompany", "drink"]
-}
+
+
 
 
 @application.context_processor
@@ -264,9 +258,9 @@ def user():
 
         
         if login:
-            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own, task_url = task_url)
+            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own, task_url = task_url)
         else:
-            return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, week_task = temp_week_tasks, own = own)            
+            return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own)            
     else:
         return "此用户不存在!"
     abort(401)
@@ -440,9 +434,12 @@ def task():
         return jsonify(message = "task is created failed")
 
 
-
-
-
+#/get_month_task?username=gzm1997
+@application.route("/get_month_task")
+def get_month_task():
+    manager = request.args.get('username')
+    return jsonify(plan.get_month_task_json(manager = manager))
+    
 
 
 

@@ -14,7 +14,6 @@
 <body>
     <div class="container">
         <h2 class="text-center">纠纷案件审批表(庭前)</h2>
-
         <table class="table table-bordered table-hover">
             <tr class="text-center">
                 <td class="col-md-1">
@@ -95,25 +94,18 @@
                 <td class="col-md-2">
                     <div>
                         <select id="case_type" class="selectpicker show-tick form-control" data-live-search="false">
-                            {% set type1 = '0' %}
-                            {% set type2 = 'Case1' %}
-                            {% set type3 = 'Case2' %}
-                            {% if tc.case_type|string() == type1 %}
-                                <option selected="selected" value="0">==请选择==</option>
+                            {% set type1 = '0' %} {% set type2 = 'Case1' %} {% set type3 = 'Case2' %} {% if tc.case_type|string() == type1 %}
+                            <option selected="selected" value="0">==请选择==</option>
                             {% else %}
-                                <option value="0">==请选择==</option>
-                            {% endif %}
-
-                            {% if tc.case_type|string() == type2 %}
-                                <option selected="selected" value="Case1">Case1</option>
+                            <option value="0">==请选择==</option>
+                            {% endif %} {% if tc.case_type|string() == type2 %}
+                            <option selected="selected" value="Case1">Case1</option>
                             {% else %}
-                                <option value="Case1">Case1</option>
-                            {% endif %}
-
-                            {% if tc.case_type|string() == type3 %}
-                                <option selected="selected" value="Case2">Case2</option>
+                            <option value="Case1">Case1</option>
+                            {% endif %} {% if tc.case_type|string() == type3 %}
+                            <option selected="selected" value="Case2">Case2</option>
                             {% else %}
-                                <option value="Case2">Case2</option>
+                            <option value="Case2">Case2</option>
                             {% endif %}
                         </select>
                     </div>
@@ -125,21 +117,17 @@
                     <div>
                         <select id="case_reason" class="selectpicker show-tick form-control" data-live-search="false">
                             {% if tc.case_reason|string() == type1 %}
-                                <option selected="selected" value="0">==请选择==</option>
+                            <option selected="selected" value="0">==请选择==</option>
                             {% else %}
-                                <option value="0">==请选择==</option>
-                            {% endif %}
-
-                            {% if tc.case_reason|string() == type2 %}
-                                <option selected="selected" value="Case1">Case1</option>
+                            <option value="0">==请选择==</option>
+                            {% endif %} {% if tc.case_reason|string() == type2 %}
+                            <option selected="selected" value="Case1">Case1</option>
                             {% else %}
-                                <option value="Case1">Case1</option>
-                            {% endif %}
-
-                            {% if tc.case_reason|string() == type3 %}
-                                <option selected="selected" value="Case2">Case2</option>
+                            <option value="Case1">Case1</option>
+                            {% endif %} {% if tc.case_reason|string() == type3 %}
+                            <option selected="selected" value="Case2">Case2</option>
                             {% else %}
-                                <option value="Case2">Case2</option>
+                            <option value="Case2">Case2</option>
                             {% endif %}
                         </select>
                     </div>
@@ -150,47 +138,30 @@
                 <td class="col-md-2">
                     <div>
                         <select id="case_level" class="selectpicker show-tick form-control" data-live-search="false">
-                            
-                            {% set ys = '1' %}
-                            {% set es = '2' %}
-                            {% set zc = '3' %}
-                            {% set zs = '4' %}
-                            {% set zx = '5' %}
-
-                            {% if tc.case_level|string() == type1 %}
-                                <option selected="selected" value="0">==请选择==</option>
+                            {% set ys = '1' %} {% set es = '2' %} {% set zc = '3' %} {% set zs = '4' %} {% set zx = '5' %} {% if tc.case_level|string() == type1 %}
+                            <option selected="selected" value="0">==请选择==</option>
                             {% else %}
-                                <option selected="selected" value="0">==请选择==</option>
-                            {% endif %}
-
-                            {% if tc.case_level|string() == ys %}
-                                <option selected="selected" value="1">一审</option>
+                            <option selected="selected" value="0">==请选择==</option>
+                            {% endif %} {% if tc.case_level|string() == ys %}
+                            <option selected="selected" value="1">一审</option>
                             {% else %}
-                                <option value="1">一审</option>
-                            {% endif %}
-                            
-                            {% if tc.case_level|string() == es %}
-                                <option selected="selected" value="2">二审</option>
+                            <option value="1">一审</option>
+                            {% endif %} {% if tc.case_level|string() == es %}
+                            <option selected="selected" value="2">二审</option>
                             {% else %}
-                                <option value="2">二审</option>
-                            {% endif %}
-                            
-                            {% if tc.case_level|string() == zc %}
-                                <option selected="selected" value="3">仲裁</option>
+                            <option value="2">二审</option>
+                            {% endif %} {% if tc.case_level|string() == zc %}
+                            <option selected="selected" value="3">仲裁</option>
                             {% else %}
-                                <option value="3">仲裁</option>
-                            {% endif %}
-                            
-                            {% if tc.case_level|string() == zs %}
-                                <option selected="selected" value="4">再审</option>
+                            <option value="3">仲裁</option>
+                            {% endif %} {% if tc.case_level|string() == zs %}
+                            <option selected="selected" value="4">再审</option>
                             {% else %}
-                                <option value="4">再审</option>
-                            {% endif %}
-                            
-                            {% if tc.case_level|string() == zx %}
-                                <option selected="selected" value="5">执行</option>
+                            <option value="4">再审</option>
+                            {% endif %} {% if tc.case_level|string() == zx %}
+                            <option selected="selected" value="5">执行</option>
                             {% else %}
-                                <option value="5">执行</option>
+                            <option value="5">执行</option>
                             {% endif %}
                         </select>
                     </div>
@@ -308,29 +279,22 @@
                             <td class="col-md-4">
                                 <div>
                                     <select id="yz_way" class="selectpicker show-tick form-control" data-live-search="false">
-                                        {% set type4 = 'Case3' %}
-                                        {% if tc.yz_way|string() == type1 %}
-                                            <option selected="selected" value="0">==请选择==</option>
+                                        {% set type4 = 'Case3' %} {% if tc.yz_way|string() == type1 %}
+                                        <option selected="selected" value="0">==请选择==</option>
                                         {% else %}
-                                            <option value="0">==请选择==</option>
-                                        {% endif %}
-
-                                        {% if tc.yz_way|string() == type2 %}
-                                            <option selected="selected" value="Case1">Case1</option>
+                                        <option value="0">==请选择==</option>
+                                        {% endif %} {% if tc.yz_way|string() == type2 %}
+                                        <option selected="selected" value="Case1">Case1</option>
                                         {% else %}
-                                            <option value="Case1">Case1</option>
-                                        {% endif %}
-
-                                        {% if tc.yz_way|string() == type3 %}
-                                            <option selected="selected" value="Case2">Case2</option>
+                                        <option value="Case1">Case1</option>
+                                        {% endif %} {% if tc.yz_way|string() == type3 %}
+                                        <option selected="selected" value="Case2">Case2</option>
                                         {% else %}
-                                            <option value="Case2">Case2</option>
-                                        {% endif %}
-
-                                        {% if tc.yz_way|string() == type4 %}
-                                            <option selected="selected" value="Case3">Case3</option>
+                                        <option value="Case2">Case2</option>
+                                        {% endif %} {% if tc.yz_way|string() == type4 %}
+                                        <option selected="selected" value="Case3">Case3</option>
                                         {% else %}
-                                            <option value="Case3">Case3</option>
+                                        <option value="Case3">Case3</option>
                                         {% endif %}
                                     </select>
                                 </div>
@@ -354,28 +318,22 @@
                             <td class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-4">
-                                    <p class="text-left p1">终审意见是否落实:</p>
-                                    <select id="w_implement" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
-                                        {% set w_y = '1' %}
-                                        {% set w_n = '2' %}
-                                        {% if tc.w_implement|string() == type1 %}
+                                        <p class="text-left p1">终审意见是否落实:</p>
+                                        <select id="w_implement" class="selectpicker show-tick form-control" data-live-search="false" width="20px">
+                                            {% set w_y = '1' %} {% set w_n = '2' %} {% if tc.w_implement|string() == type1 %}
                                             <option selected="selected" value="0">==请选择==</option>
-                                        {% else %}
+                                            {% else %}
                                             <option value="0">==请选择==</option>
-                                        {% endif %}
-
-                                        {% if tc.w_implement|string() == w_y %}
+                                            {% endif %} {% if tc.w_implement|string() == w_y %}
                                             <option selected="selected" value="1">是</option>
-                                        {% else %}
+                                            {% else %}
                                             <option value="1">是</option>
-                                        {% endif %}
-
-                                        {% if tc.w_implement|string() == w_n %}
+                                            {% endif %} {% if tc.w_implement|string() == w_n %}
                                             <option selected="selected" value="2">否</option>
-                                        {% else %}
+                                            {% else %}
                                             <option value="2">否</option>
-                                        {% endif %}    
-                                    </select>
+                                            {% endif %}
+                                        </select>
                                     </div>
                                     <textarea cols="50" rows="3" placeholder="填写未落实的细节及处理办法" id="registration_details">{{ tc.registration_details }}</textarea>
                                 </div>
@@ -422,27 +380,23 @@
                 </td>
             </tr>
         </table>
-        
         {% if own %}
-            <div id="operate">
-                <button class="btn btn-danger">取消</button>
-                <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
-            </div>
+        <div id="operate">
+            <button class="btn btn-danger">取消</button>
+            <button class="btn btn-success" onclick="javascript:void(0);">提交</button>
+        </div>
         {% endif %}
     </div>
 </body>
-
 <script type="text/javascript">
-
-
-$(document).ready(function(){
-  $(".btn-success").click(function(){
-    var data = getData();
-    $.post("/table", data,
-    function(data,status){
-      alert("数据：" + data + "\n状态：" + status);
+$(document).ready(function() {
+    $(".btn-success").click(function() {
+        var data = getData();
+        $.post("/table", data,
+            function(data, status) {
+                alert("数据：" + data + "\n状态：" + status);
+            });
     });
-  });
 });
 
 function getData() {

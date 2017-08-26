@@ -6,19 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User info</title>
-
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
-	<link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />
-
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-
-	<script src="/static/js/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="/static/js/detail.js?q=1280549780"></script>
-
+    <link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/js/detail.js?q=1280549780"></script>
 </head>
 
 <body>
@@ -26,8 +22,8 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
                 <a class="navbar-brand" href="#">协作</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -40,125 +36,115 @@
                     </li>
                     <li>
                         <a href="/all_task">任务</a>
-                    </li>  
-
+                    </li>
                     {% if login %}
-                        <li class="active">
-                            <a href="{{ user_url }}">我的账号[{{ username }}]</a>
-                        </li>
+                    <li class="active">
+                        <a href="{{ user_url }}">我的账号[{{ username }}]</a>
+                    </li>
                     {% else %}
-                        <li class="active">
-                            <a href="/login">登陆</a>
-                        </li>
+                    <li class="active">
+                        <a href="/login">登陆</a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
             <!--/.nav-collapse -->
         </div>
     </nav>
-	
-	<table class="table table-bordered table-hover">
-		<tr class="text-center">
-			<td class="col-md-6">
-				用户名:
-			</td>
-			<td class="col-md-6"> 
-				{{ Myusername }} 
-			</td>
-		</tr>
-		<tr class="text-center">
-			<td class="col-md-6">
-				邮件:
-			</td>
-			<td class="col-md-6">
-				{{ Myemail }}
-			</td>
-		</tr>
-		{% if own %}
-			<tr class="text-center">
-				<td class="col-md-6">
-					退出：
-				</td>
-				<td class="col-md-6">
-					<button>
-						<a href="/logout">退出</a>
-					</button>
-				</td>
-			</tr>
-		{% endif %}
-	</table>	
-
-	<table class="table table-bordered table-hover">
-		<tr>
-			<td class="col-md-6">
-				<table class="table table-bordered">
-					<tr>
-						<td>案件列表</td>
-					</tr>
-
-					{% for case in case_list %}
-  						<tr>
-							<td>
-								<a href="{{ case.case_detail_url }}">
+    <table class="table table-bordered table-hover">
+        <tr class="text-center">
+            <td class="col-md-6">
+                用户名:
+            </td>
+            <td class="col-md-6">
+                {{ Myusername }}
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td class="col-md-6">
+                邮件:
+            </td>
+            <td class="col-md-6">
+                {{ Myemail }}
+            </td>
+        </tr>
+        {% if own %}
+        <tr class="text-center">
+            <td class="col-md-6">
+                退出：
+            </td>
+            <td class="col-md-6">
+                <button>
+                    <a href="/logout">退出</a>
+                </button>
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <td class="col-md-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>案件列表</td>
+                    </tr>
+                    {% for case in case_list %}
+                    <tr>
+                        <td>
+                            <a href="{{ case.case_detail_url }}">
 									{{ case.case_name }}
 								</a>
-							</td>
-						</tr>
-					{% endfor %}
-					
-					<tr>
-						<table class="table table-bordered">
-							<tr>
-								<td class="col-md-2">
-									<input type="text" class="form-control" id="case_name" placeholder="案件名称">
-								</td>
-								<td class="col-md-2">
-									<input type="text" class="form-control" id="case_id" placeholder="案件id">
-								</td>		
-								<td class="col-md-2 text-center">
-									<button>
-										<a href="#">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="col-md-2">
+                                    <input type="text" class="form-control" id="case_name" placeholder="案件名称">
+                                </td>
+                                <td class="col-md-2">
+                                    <input type="text" class="form-control" id="case_id" placeholder="案件id">
+                                </td>
+                                <td class="col-md-2 text-center">
+                                    <button>
+                                        <a href="#">
 											创建案件
 										</a>
-									</button>
-								</td>
-							</tr>
-						</table>				
-					</tr>
-
-				</table>
-			</td>
-			<td class="col-md-6">
-				<table class="table table-bordered">
-					<tr>
-						<td>任务列表</td>
-					</tr>
-
-					{% for task in task_list %}
-  						<tr>
-							<td>
-								<a href="">
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </tr>
+                </table>
+            </td>
+            <td class="col-md-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>任务列表</td>
+                    </tr>
+                    {% for task in task_list %}
+                    <tr>
+                        <td>
+                            <a href="">
 									{{ task.task_name }}
 								</a>
-							</td>
-						</tr>
-					{% endfor %}
-
-					<tr>
-						<td class="text-center">
-							<button>
-								<a href="#">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td class="text-center">
+                            <button>
+                                <a href="#">
 									创建任务
 								</a>
-							</button>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>		
-
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

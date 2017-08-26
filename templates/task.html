@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Task</title>
-
-<!--
+    <!--
     <script type="text/javascript" src="/static/js/task/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
     <link href="/static/css/task/bootstrap.min.css" rel="stylesheet" />
@@ -21,8 +20,6 @@
     <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
     <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
 -->
-
-
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
     <link href="/static/css/commit.css?q=1280549780" rel="stylesheet">
@@ -30,13 +27,11 @@
     <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
     <link href="/static/css/task/bootstrap-datetimepicker.min.css">
-
     <script src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
     <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
-
 </head>
 
 <body>
@@ -44,8 +39,8 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
                 <a class="navbar-brand" href="#">协作</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -58,18 +53,16 @@
                     </li>
                     <li class="active">
                         <a href="/all_task">任务</a>
-                    </li>  
-
+                    </li>
                     {% if login %}
-                        <li>
-                            <a href= "{{ user_url }}" >我的账号[{{ username }}]</a>
-                        </li>
+                    <li>
+                        <a href="{{ user_url }}">我的账号[{{ username }}]</a>
+                    </li>
                     {% else %}
-                        <li>
-                            <a href="/login">登陆</a>
-                        </li>
+                    <li>
+                        <a href="/login">登陆</a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -88,58 +81,49 @@
                         <label class="col-md-3 control-label">任务名称:</label>
                         <input readonly="readonly" name="input-task-name" id="task_name" value="{{ task_obj.task_name }}">
                     </div>
-
                     <div style="margin: 5px auto;">
                         <label class="col-md-3 control-label">任务编号:</label>
                         <input readonly="readonly" name="input-task-number" id="task_id" value="{{ task_obj.task_id }}">
                     </div>
-
                     <div style="margin: 5px auto;">
                         <label class="col-md-3 control-label">任务状态:</label>
                         <select id="task_state" class="task-state-select">
-                            {% set done = 'done' %}
-                            {% set undone = 'undone' %}
-                            {% if task_obj.task_state|string() == done %}
-                                <option selected="selected" value="done">已办</option>
-                                <option value="undone">待办</option>
+                            {% set done = 'done' %} {% set undone = 'undone' %} {% if task_obj.task_state|string() == done %}
+                            <option selected="selected" value="done">已办</option>
+                            <option value="undone">待办</option>
                             {% elif task_obj.task_state|string() == undone %}
-                                <option value="done">已办</option>
-                                <option selected="selected" value="undone">待办</option>               
+                            <option value="done">已办</option>
+                            <option selected="selected" value="undone">待办</option>
                             {% endif %}
-                        </select> 
+                        </select>
                         <label style="margin-left: 10%; margin-right: 10%" class="control-label task-type">任务类型:</label>
                         <select id="task_type" class="task-type-select">
-                            {% set type1 = 'type1' %}
-                            {% set type2 = 'type2' %}
-                            {% set type3 = 'type3' %}
-                            {% set type4 = 'type4' %}
-                            {% if task_obj.task_type|string() == type1 %}
-                                <option selected="selected" value="type1">类型1</option>
-                                <option value="type2">类型2</option>
-                                <option value="type3">类型3</option>
-                                <option value="type4">类型4</option>
+                            {% set type1 = 'type1' %} {% set type2 = 'type2' %} {% set type3 = 'type3' %} {% set type4 = 'type4' %} {% if task_obj.task_type|string() == type1 %}
+                            <option selected="selected" value="type1">类型1</option>
+                            <option value="type2">类型2</option>
+                            <option value="type3">类型3</option>
+                            <option value="type4">类型4</option>
                             {% elif task_obj.task_type|string() == type2 %}
-                                <option value="type1">类型1</option>
-                                <option selected="selected" value="type2">类型2</option>
-                                <option value="type3">类型3</option>
-                                <option value="type4">类型4</option>
+                            <option value="type1">类型1</option>
+                            <option selected="selected" value="type2">类型2</option>
+                            <option value="type3">类型3</option>
+                            <option value="type4">类型4</option>
                             {% elif task_obj.task_type|string() == type3 %}
-                                <option value="type1">类型1</option>
-                                <option value="type2">类型2</option>
-                                <option selected="selected" value="type3">类型3</option>
-                                <option value="type4">类型4</option>  
+                            <option value="type1">类型1</option>
+                            <option value="type2">类型2</option>
+                            <option selected="selected" value="type3">类型3</option>
+                            <option value="type4">类型4</option>
                             {% elif task_obj.task_type|string() == type4 %}
-                                <option value="type1">类型1</option>
-                                <option value="type2">类型2</option>
-                                <option value="type3">类型3</option>
-                                <option selected="selected" value="type4">类型4</option>     
-                            {% endif %}                                              
-                    </select> 
+                            <option value="type1">类型1</option>
+                            <option value="type2">类型2</option>
+                            <option value="type3">类型3</option>
+                            <option selected="selected" value="type4">类型4</option>
+                            {% endif %}
+                        </select>
                     </div>
                     <label class="col-md-3 control-label task-operator">经办人:</label>
                     <input id="manager" name="input-operator" readonly="readonly" value="{{ task_obj.manager }}">
                     <br/>
-
                     <div class="form-group time-select" style="margin: 5px auto;">
                         <label class="col-md-3 control-label">截止日期:</label>
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -147,9 +131,9 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
-                        <input type="hidden" class="task-end-time" id="dtp_input2" value="" /><br/>
+                        <input type="hidden" class="task-end-time" id="dtp_input2" value="" />
+                        <br/>
                     </div>
-
                     <div class="form-group time-select" style="margin: 5px auto;">
                         <label class="col-md-3 control-label">完成日期:</label>
                         <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -157,7 +141,8 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
-                        <input type="hidden" class="task-finish-time" id="dtp_input2" value="" /><br/>
+                        <input type="hidden" class="task-finish-time" id="dtp_input2" value="" />
+                        <br/>
                     </div>
                     <div class="button-group-window" style="margin: 5px auto;">
                         <label class="col-md-3 control-label need-time">所需时间</label>
@@ -173,10 +158,7 @@
         </div>
     </div>
     {% endif %}
-
-
-
-<!--
+    <!--
     <table class="table table-bordered table-hover">
         <tr class="text-center">
             <td class="col-md-6">
@@ -272,10 +254,6 @@
         </tr>
     </table>
 -->
-
-
-
-
 </body>
 
 </html>
