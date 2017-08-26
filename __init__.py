@@ -228,6 +228,11 @@ def table():
 def user():
     print("this is user detail get")
     username = request.args.get('username')
+
+    week_task_json = plan.get_week_task_json(manager = username)
+    weekday_show = plan.show_today()
+
+
     if "username" in session:
         login = True
         user_url = "/user?username=" + session["username"]
@@ -258,9 +263,9 @@ def user():
 
         
         if login:
-            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own, task_url = task_url)
+            return render_template("index.html", login = login, user_url = user_url, username = session["username"], Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own, task_url = task_url, week_task_json = week_task_json, weekday_show = weekday_show)
         else:
-            return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own)            
+            return render_template("index.html", login = login, Myemail=email, Myusername=username, case_list=case_list, task_list = task_list, own = own, week_task_json = week_task_json, weekday_show = weekday_show)            
     else:
         return "此用户不存在!"
     abort(401)
@@ -442,7 +447,11 @@ def get_month_task():
     return jsonify(plan.get_month_task_json(manager = manager))
     
 
-
+#/get_week_task?username=gzm1997
+@application.route("/get_week_task")
+def get_week_task():
+    manager = request.args.get('username')
+    return jsonify(plan.get_week_task_json(manager = manager))
 
 
 

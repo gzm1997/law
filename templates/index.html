@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/css/calender1.css?q=1280549780" type="text/css" />
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
-    <link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />
+    <!--<link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />-->
     <link rel="stylesheet" href="/static/css/week_calender.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -62,16 +62,16 @@
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">
                         <li id="message" class="active">
-                            <a href="#">message</a>
+                            <a href="#">个人信息</a>
                         </li>
                         <li id="time">
-                            <a href="#">time</a>
+                            <a href="#">任务时间分布</a>
                         </li>
                         <li id="case">
-                            <a href="#">case</a>
+                            <a href="#">个人案件</a>
                         </li>
                         <li id="task">
-                            <a href="#">task</a>
+                            <a href="#">个人任务</a>
                         </li>
                     </ul>
                 </div>
@@ -127,27 +127,71 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="list-group show-work" id="Monday">
-                        <a href="#" class="list-group-item">1Tasks</a>
+                    {% if week_task_json %}
+                    <div style="display: {{ weekday_show[0] }}" class="list-group show-work" id="Monday">
+                        {% if week_task_json.Monday %}
+                            {% for each_task in week_task_json.Monday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}
                     </div>
-                    <div class="list-group show-work" id="Tuesday">
-                        <a href="#" class="list-group-item">2Tasks</a>
+                    <div style="display: {{ weekday_show[1] }}" class="list-group show-work" id="Tuesday">
+                        {% if week_task_json.Tuesday %}
+                            {% for each_task in week_task_json.Tuesday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}
                     </div>
-                    <div class="list-group show-work" id="Wednesday">
-                        <a href="#" class="list-group-item">3Tasks</a>
+                    <div style="display: {{ weekday_show[2] }}" class="list-group show-work" id="Wednesday">
+                        {% if week_task_json.Wednesday %}
+                            {% for each_task in week_task_json.Wednesday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}                           
                     </div>
-                    <div class="list-group show-work" id="Thursday">
-                        <a href="#" class="list-group-item">4Tasks</a>
+                    <div style="display: {{ weekday_show[3] }}" class="list-group show-work" id="Thursday">
+                        {% if week_task_json.Thursday %}
+                            {% for each_task in week_task_json.Thursday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}                             
                     </div>
-                    <div class="list-group show-work" id="Friday">
-                        <a href="#" class="list-group-item">5Tasks</a>
+                    <div style="display: {{ weekday_show[4] }}" class="list-group show-work" id="Friday">
+                        {% if week_task_json.Friday %}
+                            {% for each_task in week_task_json.Friday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}                         
                     </div>
-                    <div class="list-group show-work" id="Saturday">
-                        <a href="#" class="list-group-item">6Tasks</a>
+                    <div style="display: {{ weekday_show[5] }}" class="list-group show-work" id="Saturday">
+                        {% if week_task_json.Saturday %}
+                            {% for each_task in week_task_json.Saturday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}                       
                     </div>
-                    <div class="list-group show-work" id="Sunday">
-                        <a href="#" class="list-group-item">7Tasks</a>
+                    <div style="display: {{ weekday_show[6] }}" class="list-group show-work" id="Sunday">
+                        {% if week_task_json.Sunday %}                        
+                            {% for each_task in week_task_json.Sunday %}
+                            <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <div style="text-align: center;">今天没有任务</div>
+                        {% endif %}                         
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div id="case_c" class="col-md-10" style="display: none;">
