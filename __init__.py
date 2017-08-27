@@ -422,11 +422,11 @@ def get_week_task():
 #/each_day_task?username=gzm1997&date=7-August-201
 @application.route("/each_day_task")
 def each_day_task():
-    username = request.args.get('username')
+    target_username = request.args.get('username')
     date = request.args.get('date').replace("-", " ")
-    print("username:", username)
+    print("username:", target_username)
     print("date:", date)
-    all_task = task_data._search_task(manager = username, deadline = date)
+    all_task = task_data._search_task(manager = target_username, deadline = date)
     print(all_task)
     for task in all_task:
         task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
@@ -440,12 +440,12 @@ def each_day_task():
                 task["w_own"] = True
             else:
                 task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = "用户" + username + "于" + date + "的所有案件")
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = "用户" + target_username + "于" + date + "的所有案件")
     else:
         login = False
         for task in all_task:
             task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login, list_name = date + "所有案件")
+        return render_template("all_task.html", task_list = all_task, login = login, list_name = "用户" + target_username + "于" + date + "的所有案件")
 """
 @application.route("/edit_case", methods=["POST"])
 def add_case():
