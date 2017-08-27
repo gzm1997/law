@@ -476,7 +476,7 @@ def each_day_task():
                 task["w_own"] = True
             else:
                 task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = date + "所有案件")
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = "用户" + username + "于" + date + "的所有案件")
     else:
         login = False
         for task in all_task:
