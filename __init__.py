@@ -4,13 +4,14 @@ from law.manager_data import user_manager, case_manager, task_manager, comment_m
 from law import manager_time
 from law import send_email
 from law import plan
+from law import setting
 import os
 
 application = Flask(__name__)
-user_data = user_manager.User_manager("root", "Gzm20125")
-case_data = case_manager.Case_manager("root", "Gzm20125")
-task_data = task_manager.Task_manager("root", "Gzm20125")
-comment_data = comment_manager.Comment_manager("root", "Gzm20125")
+user_data = user_manager.User_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSWORD)
+case_data = case_manager.Case_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSWORD)
+task_data = task_manager.Task_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSWORD)
+comment_data = comment_manager.Comment_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSWORD)
 
 
 
@@ -475,7 +476,7 @@ def each_day_task():
                 task["w_own"] = True
             else:
                 task["w_own"] = False
-        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = date + "所有案件")
+        return render_template("all_task.html", task_list = all_task, login = login, user_url = user_url, username = username, list_name = "用户" + username + "于" + date + "的所有案件")
     else:
         login = False
         for task in all_task:

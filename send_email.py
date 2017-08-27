@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
 import smtplib
 import random, string
+from law import setting
 
 def _format_addr(s):
     name, email_addr = parseaddr(s)
@@ -25,11 +26,11 @@ def send_email(smtp_server, from_email, from_email_psd, to_email, subject, conte
 def send_vertify_email(signup_user_email):
 	length = 16
 	vertifycode = ''.join([random.choice(string.ascii_letters) for i in range(length)])
-	send_email("smtp.163.com", "m15521027848@163.com", "Gzm1997", signup_user_email, "gzm注册验证", 
+	send_email(setting.SMTP_SERVER, setting.SMTP_EMAIL, setting.SMTP_PASSWORD, signup_user_email, "gzm注册验证", 
 		'<html>' +
 		'<body>' + 
 		'<a href=' + 
-		'http://139.199.182.179/vertify?vertifycode=' + vertifycode + 
+		'http://' + setting.IP_ADDRESS + '/vertify?vertifycode=' + vertifycode + 
 		'>' + 
 		'点击此处验证你的账户' + 
 		'</a>'
