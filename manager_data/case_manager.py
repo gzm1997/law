@@ -102,6 +102,7 @@ class Case_manager(object):
                 cursor.execute("delete from t3 where case_id=%s and case_name=%s;", [case_id, case_name]) 
                 self._conn.commit()
                 cursor.close()
+                return True
         return False
     #搜索表格1
     def _search_table(self, t_type, case_id):

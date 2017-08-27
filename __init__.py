@@ -14,10 +14,6 @@ task_data = task_manager.Task_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSW
 comment_data = comment_manager.Comment_manager(setting.MYSQL_ACCOUNT, setting.MYSQL_PASSWORD)
 
 
-
-
-
-
 @application.context_processor
 def override_url_for():
     return dict(url_for=dated_url_for)
@@ -189,38 +185,6 @@ def table():
             case_data._update_t3(content_dict["case_id"], content_dict)
             return "update table3 successfully!"
         return "update table error"
-
-"""
-    all_case = case_data._search_law_case()
-    for case in all_case:
-        case["detail_url"] = "/case?case_id=" + case["case_id"]
-    if "username" in session:
-        login = True
-        username = session["username"]
-        user_url = '/user?username=' + username
-        for case in all_case:
-            if case["username"] == username:
-                case["w_own"] = True
-            else:
-                case["w_own"] = False
-        return render_template("all_case.html", case_list = all_case, login = login, user_url = user_url, username = username)
-    else:
-        login = False
-        return render_template("all_case.html", case_list = all_case, login = login)
-"""
-
-
-
-"""
-('task_name', 'test'), 
-('task_id', '123'), 
-('task_type', '类型2'), 
-('manager', 'gzm'), 
-('deadline', '05 August 2017'), 
-('f_date', '13 August 2017'), 
-('need_time', '2')
-"""
-
 
 
 
@@ -482,6 +446,49 @@ def each_day_task():
         for task in all_task:
             task["w_own"] = False
         return render_template("all_task.html", task_list = all_task, login = login, list_name = date + "所有案件")
+"""
+@application.route("/edit_case", methods=["POST"])
+def add_case():
+    print(request.form)
+    case_id = request.form["case_id"]
+    case_name = request.form["case_name"]
+    username = session["username"]
+
+
+    if case_data._search_law_case(case_id=case_id) != []:
+        return jsonify(case_id="case_id has been used")
+    if case_data._search_law_case(case_name=case_name) != []:
+        return jsonify(case_name="case_name has been used")
+    case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name)
+    return jsonify(success="create case successfully!", username = username)
+"""
+
+#删除案件
+@application.route("/detele_case", methods = ["POST"])
+def detele_case():
+    print(request.form)
+    case_id = request.form["case_id"]
+    case_name = request.form["case_name"]
+    username = session["username"]
+
+    if case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name, to_do = "delete"):
+        return jsonify(success="delete case successfully!", username = username)
+    else:
+        return jsonify(fail="delete case failed!", username = username)
+    
+        
+
+#删除任务
+@application.route("/delete_task", methods = ["POST"])
+def delete_task():
+    print(request.form)
+    task_name = request.form["task_name"]
+    task_id = request.form["task_id"]
+    manager = request.form["username"]
+    if task_data._delete_task(task_name = task_name, task_id = task_id, manager = manager):
+        return jsonify(success = "delete task successfully!")
+    else:
+        return jsonify(fail = "delete task failed!")
 
 
 application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'

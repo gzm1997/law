@@ -98,10 +98,10 @@ class Task_manager(object):
             return True
         return False    
 
-    def _delete_task(self, task_name, task_id, task_state, task_type, manager):
-        if self._search_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager) != []:
+    def _delete_task(self, task_name, task_id, manager):
+        if self._search_task(task_name = task_name, task_id = task_id, manager = manager) != []:
             cursor = self._conn.cursor()
-            cursor.execute("delete from task_table where task_name=%s and task_id=%s and task_state=%s and task_type=%s and manager=%s;", [task_name, task_id, task_state, task_type, manager])
+            cursor.execute("delete from task_table where task_name=%s and task_id=%s and manager=%s;", [task_name, task_id, manager])
             self._conn.commit()
             cursor.close()
             return True
