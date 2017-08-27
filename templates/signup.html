@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="/static/js/jquery.min.js"></script>
     <script type="text/javascript">
-    var $SCRIPT_ROOT = { { request.script_root | tojson | safe } };
+    var $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
     </script>
     <script src="/static/js/signup.js?q=1280549780"></script>
 </head>
