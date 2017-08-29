@@ -36,17 +36,17 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         comfirmpassword = request.form["comfirmpassword"]
-        print(username, password, comfirmpassword)
+        #print(username, password, comfirmpassword)
         if password != comfirmpassword:
             return jsonify(comfirmpassword="password and comfirmpassword are different")
 
         check_user_email = user_data._search_user(email=email)
         check_user_username = user_data._search_user(username=username)
         if check_user_email != {}:
-            print("email double")
+            #print("email double")
             return jsonify(email="email have been signup")
         if check_user_username != {}:
-            print("username double")
+            #print("username double")
             return jsonify(username="username have been signup")
         try:
             vertifycode = send_email.send_vertify_email(email)
@@ -54,7 +54,7 @@ def signup():
             vertifycode = "email err"
             return jsonify(email="your email is wrong")
 
-        print("vertifycode", vertifycode)
+        #print("vertifycode", vertifycode)
         if user_data._insert_r_user(email, username, password, vertifycode) == 0:
             return jsonify(warn="signup successfully and need to go to your email")
         else:
@@ -67,10 +67,10 @@ def vertify():
     result = user_data._search_r_user(vertifycode=vertifycode)
     if result == {}:
         return "no such a vertifycode"
-    print("result", result)
-    print("email", result["email"])
-    print("username", result["username"])
-    print("password", result["password"])
+    #print("result", result)
+    #print("email", result["email"])
+    #print("username", result["username"])
+    #print("password", result["password"])
     if result != {}:
         if user_data._insert_user(email=result["email"], username=result["username"], password=result["password"]):
             session['username'] = result["username"]
@@ -87,21 +87,21 @@ def login():
         # if "username" in session:
             # session.pop["username"]
 
-        print("this is post")
+        #print("this is post")
         email = request.form["email"]
         password = request.form["password"]
-        print("email:", email)
-        print("password:", password)
+        #print("email:", email)
+        #print("password:", password)
         result = user_data._search_user(email=email)
-        print(result)
+        #print(result)
         if result == {}:
-            print("no such account")
+            #print("no such account")
             return jsonify(email="no such a account!")
         elif result != {} and result["password"] != password:
-            print("password wrong")
+            #print("password wrong")
             return jsonify(password="password is wrong")
         elif result != {} and result["password"] == password:
-            print("login successfully")
+            #print("login successfully")
             session['username'] = result["username"]
             return jsonify(success=result["username"])
 
@@ -116,7 +116,7 @@ def logout():
 
 @application.route("/edit_case", methods=["POST"])
 def add_case():
-    print(request.form)
+    #print(request.form)
     case_id = request.form["case_id"]
     case_name = request.form["case_name"]
     username = session["username"]
@@ -136,11 +136,11 @@ def table():
     if request.method == "GET":
         case_id = request.args.get("case_id")
         t_type = request.args.get('t_type')
-        print("show table case_id:", case_id, "t_type:", t_type)
+        #print("show table case_id:", case_id, "t_type:", t_type)
 
         target_case = case_data._search_law_case(case_id = case_id)
-        print("target case:")
-        print(target_case)
+        #print("target case:")
+        #print(target_case)
 
         if target_case != []:
             if "username" in session and target_case[0]["username"] == session["username"]:
@@ -149,32 +149,32 @@ def table():
                 own = False
 
             if t_type == "t1":
-                print("case_id:")
-                print(case_id)
+                #print("case_id:")
+                #print(case_id)
                 tc = case_data._search_table(t_type = "t1", case_id = case_id)
-                print("this is table to show:")
-                print(tc)
+                #print("this is table to show:")
+                #print(tc)
                 return render_template("table1.html", tc = tc, own = own)
             elif t_type == "t2":
                 tc = case_data._search_table(t_type = "t2", case_id = case_id)
-                print("this is table to show:")
-                print(tc)
+                #print("this is table to show:")
+                #print(tc)
                 return render_template("table2.html", tc = tc, own = own)
 
             elif t_type == "t3":
                 tc = case_data._search_table(t_type = "t3", case_id = case_id)
-                print("this is table to show:")
-                print(tc)
+                #print("this is table to show:")
+                #print(tc)
                 return render_template("table3.html", tc = tc, own = own)
         abort(401)
     elif request.method == "POST":
-        #print(request.form)
+        ##print(request.form)
         content_dict = dict(request.form)
         for i in content_dict:
             content_dict[i] = content_dict[i][0]
         t_type = content_dict["t_type"]
         content_dict.pop("t_type")
-        print(content_dict)
+        #print(content_dict)
         if t_type == "t1":
             case_data._update_t1(content_dict["case_id"], content_dict)
             return "update table1 successfully!"
@@ -191,11 +191,11 @@ def table():
 #/user?username=gzm
 @application.route("/user")
 def user():
-    print("this is user detail get")
+    #print("this is user detail get")
     username = request.args.get('username')
 
     week_task_json = plan.get_week_task_json(manager = username)
-    print("week_task_json", week_task_json)
+    #print("week_task_json", week_task_json)
     weekday_show = plan.show_today()
 
 
@@ -206,18 +206,18 @@ def user():
     else:
         login = False
 
-    print("username", username)
+    #print("username", username)
     target_user = user_data._search_user(username=username)
     if ("username" not in session) or ("username" in session and session["username"] != username):
         own = False
     elif "username" in session and session["username"] == username:
         own = True
 
-    print("own in user page is:", own)
+    #print("own in user page is:", own)
 
     if target_user != {}:
         email = target_user["email"]
-        print("email", email)
+        #print("email", email)
 
         case_list = case_data._search_law_case(username=username)
         task_list = task_data._search_task(manager = username)
@@ -240,11 +240,11 @@ def user():
 @application.route("/home")
 def home():
     if "username" in session:
-        print("already login")
+        #print("already login")
         user_url = "/user?username=" + session["username"]
         return render_template("home.html", login = True, user_url = user_url , username = session["username"])
     else:
-        print("not login yet")
+        #print("not login yet")
         return render_template("home.html", login = False)
 
 #/case?case_id=2017-8-10
@@ -263,8 +263,8 @@ def case():
     comment_list = comment_data._search_comment(case_id = case_id)
     for c in comment_list:
         c["user_url"] = "/user?username=" + c["username"]
-    print("comment_list:")
-    print(comment_list)
+    #print("comment_list:")
+    #print(comment_list)
 
     if "username" in session and session["username"] == case_data._search_law_case(case_id = case_id)[0]["username"]:
         case_data._read_comment(case_id = case_id)
@@ -303,7 +303,7 @@ def function():
 #接受评论
 @application.route("/comment", methods = ["POST"])
 def comment():
-    print(request.form)
+    ##print(request.form)
     username = request.form["username"]
     case_id = request.form["case_id"]
     content = request.form["content"]
@@ -325,7 +325,7 @@ def comment():
 @application.route("/all_task")
 def alltasks():
     all_task = task_data._search_task()
-    print(all_task)
+    #print(all_task)
     for task in all_task:
         task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
 
@@ -387,7 +387,7 @@ def task():
             return render_template("todolist.html", login = login)
 
     elif request.method == "POST":
-        print(request.form)
+        #print(request.form)
         task_name = request.form["task_name"]
         task_id = request.form["task_id"]
         task_state = request.form["task_state"]
@@ -397,7 +397,7 @@ def task():
         completion_date = request.form["completion_date"]
         time_required = request.form["time_required"]
         if task_data._insert_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required) == True:
-            print("judge_url:", "/task_detail?task_id=" + task_id)
+            #print("judge_url:", "/task_detail?task_id=" + task_id)
             return jsonify(message = "task is created successfully", judge_url = "/task_detail?task_id=" + task_id)
         else:
             if task_data._update_task(task_name = task_name, task_id = task_id, task_state = task_state, task_type = task_type, manager = manager, deadline = deadline, completion_date = completion_date, time_required = time_required):
@@ -425,10 +425,10 @@ def get_week_task():
 def each_day_task():
     target_username = request.args.get('username')
     date = request.args.get('date').replace("-", " ")
-    print("username:", target_username)
-    print("date:", date)
+    #print("username:", target_username)
+    #print("date:", date)
     all_task = task_data._search_task(manager = target_username, deadline = date)
-    print(all_task)
+    #print(all_task)
     for task in all_task:
         task["detail_url"] = "/task_detail?task_id=" + task["task_id"]
 
@@ -452,7 +452,7 @@ def each_day_task():
 #删除案件
 @application.route("/detele_case", methods = ["POST"])
 def detele_case():
-    print(request.form)
+    #print(request.form)
     case_id = request.form["case_id"]
     target_case = case_data._search_law_case(case_id = case_id)
     if (target_case != []) and ("username" in session) and (session["username"] == target_case[0]["username"]):
@@ -467,7 +467,7 @@ def detele_case():
 #删除任务
 @application.route("/delete_task", methods = ["POST"])
 def delete_task():
-    print(request.form)
+    #print(request.form)
     task_name = request.form["task_name"]
     task_id = request.form["task_id"]
     target_task = task_data._search_task(task_name = task_name, task_id = task_id)

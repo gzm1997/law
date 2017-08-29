@@ -13,6 +13,7 @@ username varchar(20),
 password varchar(20)
 );
 
+alter table user convert to character set utf8;
 
 insert into user value("1617899539@qq.com", "gzm1997", "Gzm20125");k
 
@@ -26,6 +27,8 @@ case_id varchar(20),
 case_name varchar(20),
 num_nr int(10)
 );
+
+alter table law_case convert to character set utf8;
 
 create table t1(
 case_id varchar(200), 
@@ -155,4 +158,9 @@ completion_date varchar(200),
 time_required varchar(200)
 );
 
+alter table task_table convert to character set utf8;
+
 #task_name, task_id, task_type, manager, deadline, completion_date, time_required
+
+
+alter table t3 convert to character set utf8;
