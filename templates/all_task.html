@@ -44,25 +44,31 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <a href="#" class="list-group-item">
+    <div style="margin: auto;text-align: center;">
+        <a href="#" class="list-group-item">
         {{ list_name }}
-    </a> 
-    {% set done = 'done' %}
-    {% for task in task_list %}
-    <a href="{{ task.detail_url }}" class="list-group-item">
-            {{ task.task_name }}
-            {% if task.w_own %}
-                <span class="label label-info">我的任务</span>
-            {% else %}
-                <span class="label label-default">他人任务</span>
-            {% endif %}
-            {% if task.task_state|string() == done %}
-                <span style="float: right;" class="label label-success">已办</span>
-            {% else %}
-                <span style="float: right;" class="label label-danger">待办</span>
-            {% endif %}
-    </a> 
-    {% endfor %}
+    </a> {% for task in task_list %}
+        <a href="{{ task.detail_url }}" class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ task.task_name }}
+                    </div>
+                    <div class="col-md-4">
+                        {% if task.w_own %}
+                        <span class="label label-info">我的任务</span> {% else %}
+                        <span class="label label-default">他人任务</span> {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        {% set done = 'done' %} {% if task.task_state|string() == done %}
+                        <span class="label label-success">已办</span> {% else %}
+                        <span class="label label-danger">待办</span> {% endif %}
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 </body>
 
 </html>

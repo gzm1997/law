@@ -44,17 +44,25 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <a href="#" class="list-group-item">
-        所有用户所有案件
-    </a> {% for case in case_list %}
-    <a href="{{ case.detail_url }}" class="list-group-item">
-            {{ case.case_name }}
-            {% if case.w_own %}
-                <span class="label label-info">我的案件</span>
-            {% else %}
-                <span class="label label-default">他人案件</span>
-            {% endif %}
+    <div style="margin: auto;text-align: center;">
+        <a href="#" class="list-group-item">
+            所有用户所有案件
+        </a> {% for case in case_list %}
+        <a href="{{ case.detail_url }}" class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ case.case_name }}
+                    </div>
+                    <div class="col-md-6">
+                        {% if case.w_own %}
+                        <span class="label label-info">我的案件</span> {% else %}
+                        <span class="label label-default">他人案件</span> {% endif %}
+                    </div>
+                </div>
+            </div>
         </a> {% endfor %}
+    </div>
 </body>
 
 </html>
