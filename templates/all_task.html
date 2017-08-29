@@ -52,9 +52,9 @@
     <a href="{{ task.detail_url }}" class="list-group-item">
             {{ task.task_name }}
             {% if task.w_own %}
-                <span>(我的任务)</span>
+                <span class="label label-info">我的任务</span>
             {% else %}
-                <span>(他人任务)</span>
+                <span class="label label-default">他人任务</span>
             {% endif %}
             {% if task.task_state|string() == done %}
                 <span style="float: right;" class="label label-success">已办</span>
