@@ -46,7 +46,9 @@
     </nav>
     <a href="#" class="list-group-item">
         {{ list_name }}
-    </a> {% for task in task_list %}
+    </a> 
+    {% set done = 'done' %}
+    {% for task in task_list %}
     <a href="{{ task.detail_url }}" class="list-group-item">
             {{ task.task_name }}
             {% if task.w_own %}
@@ -54,7 +56,13 @@
             {% else %}
                 <span>(他人任务)</span>
             {% endif %}
-        </a> {% endfor %}
+            {% if task.task_state|string() == done %}
+                <span style="float: right;" class="label label-success">已办</span>
+            {% else %}
+                <span style="float: right;" class="label label-danger">待办</span>
+            {% endif %}
+    </a> 
+    {% endfor %}
 </body>
 
 </html>

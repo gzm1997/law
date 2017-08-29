@@ -195,6 +195,7 @@ def user():
     username = request.args.get('username')
 
     week_task_json = plan.get_week_task_json(manager = username)
+    print("week_task_json", week_task_json)
     weekday_show = plan.show_today()
 
 
@@ -472,10 +473,10 @@ def delete_task():
     target_task = task_data._search_task(task_name = task_name, task_id = task_id)
     if (target_task != []) and ("username" in session) and (session["username"] == target_task[0]["manager"]):
         if task_data._delete_task(task_name = task_name, task_id = task_id):
-            return jsonify(success = "delete task successfully!")
+            return jsonify(success = "delete task successfully!", username = target_task[0]["manager"])
         else:
             return jsonify(fail = "delete task failed!")
-    abort(401)
+    return jsonify(fail = "delete task failed!")
 
 application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 

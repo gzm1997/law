@@ -1,5 +1,6 @@
 let ran = new Array();
-let urls = new Array()
+let urls = new Array();
+let day_state = new Array();
 $(function() {
     //获取url中的参数
     function getUrlParam(name) {
@@ -12,6 +13,7 @@ $(function() {
         for (x in data) {
             ran[parseInt(x) - 1] = data[x].num;
             urls[parseInt(x) - 1] = data[x].url
+            day_state[parseInt(x) - 1] = data[x].day_state
         }
         (function() {
             var $, Calendar, DAYS, DateRangePicker, MONTHS, TEMPLATE;
@@ -237,7 +239,13 @@ $(function() {
                     }
                     for (i = _j = 1; _j <= lastDayOfMonth; i = _j += 1) {
                         if (ran[i - 1] != 0) {
-                            this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='unread'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                            
+                            if(day_state[i - 1] == "undone") {
+                                this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='unread'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
+                            }
+                            else if(day_state[i - 1] == "done") {
+                                this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='done'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
+                            }
+                            
                         }
                         else {
                             this.$days.append($("<a href='#'><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><p class='which-day'>" + i + "</p></li></a>"));                           

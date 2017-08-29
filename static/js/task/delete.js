@@ -9,7 +9,7 @@ $(document).ready(function() {
         
         let data = GetData();
         console.log(data);
-        /*
+        
         $.post("/delete_task", data, function(data,status){
             if ("success" in data) {
                 window.location.href = "/user?username=" + data.username;
@@ -18,7 +18,6 @@ $(document).ready(function() {
                 alert("删除无效任务。");
             }
         });
-        */
     });
     function GetData() {
         data = {

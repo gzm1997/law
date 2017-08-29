@@ -49,7 +49,14 @@ $(document).ready(function () {
 
     });
 
-
+    $("#task_state").change(function(){
+        if($("#task_state").val() == "done") {
+            $($.find(".datetimepicker")[1]).find("td.today").click();
+        }
+        if($("#task_state").val() == "undone") {
+            $("#completion_date").val("");
+        }
+    });
 
 });
 

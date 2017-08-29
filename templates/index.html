@@ -129,43 +129,85 @@
                     <hr> {% if week_task_json %}
                     <div style="display: {{ weekday_show[0] }}" class="list-group show-work" id="Monday">
                         {% if week_task_json.Monday %} {% for each_task in week_task_json.Monday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[1] }}" class="list-group show-work" id="Tuesday">
                         {% if week_task_json.Tuesday %} {% for each_task in week_task_json.Tuesday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[2] }}" class="list-group show-work" id="Wednesday">
                         {% if week_task_json.Wednesday %} {% for each_task in week_task_json.Wednesday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[3] }}" class="list-group show-work" id="Thursday">
                         {% if week_task_json.Thursday %} {% for each_task in week_task_json.Thursday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[4] }}" class="list-group show-work" id="Friday">
                         {% if week_task_json.Friday %} {% for each_task in week_task_json.Friday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[5] }}" class="list-group show-work" id="Saturday">
                         {% if week_task_json.Saturday %} {% for each_task in week_task_json.Saturday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
                     <div style="display: {{ weekday_show[6] }}" class="list-group show-work" id="Sunday">
                         {% if week_task_json.Sunday %} {% for each_task in week_task_json.Sunday %}
-                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}</a> {% endfor %} {% else %}
+                        <a href="{{  each_task.task_detail_url }}" class="list-group-item">{{ each_task.task_name }}
+                        {% if each_task.task_state|string() == 'done' %}
+                            <span style="float: right;" class="label label-success">已办</span>
+                        {% else %}
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        {% endif %}
+                        </a> {% endfor %} {% else %}
                         <div style="text-align: center;">这天没有任务</div>
                         {% endif %}
                     </div>
@@ -216,15 +258,25 @@
                     <tr>
                         <td>任务列表</td>
                     </tr>
-                    {% for task in task_list %}
+                    {% set done = 'done' %} {% for task in task_list %} {% if task.task_state|string() == done %}
                     <tr>
                         <td>
                             <a href="{{ task.task_detail_url }}">
-                        {{ task.task_name }}
-                    </a>
+                                    {{ task.task_name }}
+                                </a>
+                            <span style="float: right;" class="label label-success">已办</span>
                         </td>
                     </tr>
-                    {% endfor %} {% if own %}
+                    {% else %}
+                    <tr>
+                        <td>
+                            <a href="{{ task.task_detail_url }}">
+                                    {{ task.task_name }}
+                                </a>
+                            <span style="float: right;" class="label label-danger">待办</span>
+                        </td>
+                    </tr>
+                    {% endif %} {% endfor %} {% if own %}
                     <tr>
                         <td class="text-center">
                             <button>

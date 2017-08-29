@@ -9,6 +9,17 @@
     background-color: red;
 }
 
+.done {
+    opacity: 1;
+    float: right;
+    width: 13px;
+    height: 13px;
+    color: white;
+    font-size: 5pt;
+    border-radius: 50%;
+    background-color: green;
+}
+
 .msg-num {
     transform: translate(0, -5px);
 }
