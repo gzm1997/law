@@ -31,20 +31,10 @@ $(document).ready(function () {
     
     $("#save_task").click(function() {
         var data = get_task_data()
-        if ($("#deadline").val() == "" && $("#completion_date") != "") {
+        if ($("#deadline").val() == "") {
             $("#deadline_remind").css("display", "block");
             $("#deadline_remind").text("截至日期不能缺失！")
-        }
-        else if ($("#completion_date").val() == "" && $("#deadline").val() != "") {
-            $("#completion_date_remind").css("display", "block");
-            $("#completion_date_remind").text("完成日期不能缺失！")           
-        }
-        else if ($("#completion_date").val() == "" && $("#deadline").val() == "") {
-            $("#deadline_remind").css("display", "block");
-            $("#deadline_remind").text("截至日期不能缺失！")            
-            $("#completion_date_remind").css("display", "block");
-            $("#completion_date_remind").text("完成日期不能缺失！")           
-        }        
+        }      
         else {
             $.post("/task", data, function(data,status) {
                 alert("数据：" + data.message + "\n状态：" + status);
@@ -58,6 +48,9 @@ $(document).ready(function () {
         }
 
     });
+
+
+
 });
 
 

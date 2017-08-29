@@ -6,35 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Task</title>
-    <!--
+
+    <!-- Bootstrap -->
     <script type="text/javascript" src="/static/js/task/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
     <link href="/static/css/task/bootstrap.min.css" rel="stylesheet" />
-
     <link href="/static/css/task/home.css?q=1280549780" rel="stylesheet" />
     <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
     <link href="/static/css/task/bootstrap-datetimepicker.min.css">
-
+    <link rel="stylesheet" type="text/css" href="/static/css/task/task.css?q=1280549780">
     <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
     <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
-    <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
--->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
-    <link href="/static/css/commit.css?q=1280549780" rel="stylesheet">
-    <!--<link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />-->
-    <link href="/static/css/task/bootstrap-datetimepicker.css" rel="stylesheet" />
-    <link href="/static/css/task/buttons.css?q=1280549780" rel="stylesheet" />
-    <link href="/static/css/task/bootstrap-datetimepicker.min.css">
-    <script src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/task/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/js/task/task.js?q=1280549780"></script>
-    <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.js"></script>
-    <script type="text/jscript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/static/js/task/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/static/js/task/delete.js?q=1280549780"></script>
 </head>
 
 <body>
+    <div id="ensure-delete">
+        <strong class="stress">确认提示</strong>
+        <hr>
+        <p>是否确认删除？</p>
+        <hr>
+        <div >
+            <button class="btn btn-danger col-md-3 col-md-offset-2" id="cancel">取消</button>
+            <button class="btn btn-success col-md-3 col-md-offset-2" id="ensure">确认</button>
+        </div>
+    </div>
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -56,7 +54,7 @@
                     </li>
                     {% if login %}
                     <li>
-                        <a href="{{ user_url }}">我的账号[{{ username }}]</a>
+                        <a href="{{ user_url }}" id="user">我的账号[{{ username }}]</a>
                     </li>
                     {% else %}
                     <li>
@@ -154,9 +152,11 @@
                     </div>
                     {% if own %}
                     <div class="button-group-window" style="text-align:center;">
-                        <button id="save_task" type="button" class="button button-raised button-primary button-pill save-button">保存</button>
+                        <button id="save_task" type="button" class="btn btn-success">保存</button>
+                        <button id="delete" type="button"  class="btn btn-danger">删除</button>
                     </div>
                     {% endif %}
+                    
                 </div>
             </div>
         </div>

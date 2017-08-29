@@ -371,7 +371,7 @@ def task_detail():
         return render_template("task.html", login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, task_obj = task_data._search_task(task_id = task_id)[0], own = own)
     else:
         login = False
-        return render_template("task.html", login = login, task_obj = task_data._search_task(task_id = task_id)[0], own = False)
+        return render_template("task.html", login = login, manager_detail_url = manager_detail_url, task_obj = task_data._search_task(task_id = task_id)[0], own = False)
     
 
 @application.route("/task", methods = ["GET", "POST"])
@@ -446,37 +446,22 @@ def each_day_task():
         for task in all_task:
             task["w_own"] = False
         return render_template("all_task.html", task_list = all_task, login = login, list_name = "用户" + target_username + "于" + date + "的所有案件")
-"""
-@application.route("/edit_case", methods=["POST"])
-def add_case():
-    print(request.form)
-    case_id = request.form["case_id"]
-    case_name = request.form["case_name"]
-    username = session["username"]
 
-
-    if case_data._search_law_case(case_id=case_id) != []:
-        return jsonify(case_id="case_id has been used")
-    if case_data._search_law_case(case_name=case_name) != []:
-        return jsonify(case_name="case_name has been used")
-    case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name)
-    return jsonify(success="create case successfully!", username = username)
-"""
 
 #删除案件
 @application.route("/detele_case", methods = ["POST"])
 def detele_case():
     print(request.form)
     case_id = request.form["case_id"]
-    case_name = request.form["case_name"]
-    username = session["username"]
-
-    if case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name, to_do = "delete"):
-        return jsonify(success="delete case successfully!", username = username)
+    target_case = case_data._search_law_case(case_id = case_id)
+    if (target_case != []) and ("username" in session) and (session["username"] == target_case[0]["username"]):
+        target_case = target_case[0]
+        if case_data._edit_law_case(case_id = case_id, to_do = "delete"):
+            return jsonify(success = "delete case successfully!", username = target_case["username"])
+        else:
+            return jsonify(fail = "delete case failed!", username = target_case["username"])
     else:
-        return jsonify(fail="delete case failed!", username = username)
-    
-        
+        abort(401)
 
 #删除任务
 @application.route("/delete_task", methods = ["POST"])
@@ -484,12 +469,13 @@ def delete_task():
     print(request.form)
     task_name = request.form["task_name"]
     task_id = request.form["task_id"]
-    manager = request.form["username"]
-    if task_data._delete_task(task_name = task_name, task_id = task_id, manager = manager):
-        return jsonify(success = "delete task successfully!")
-    else:
-        return jsonify(fail = "delete task failed!")
-
+    target_task = task_data._search_task(task_name = task_name, task_id = task_id)
+    if (target_task != []) and ("username" in session) and (session["username"] == target_task[0]["manager"]):
+        if task_data._delete_task(task_name = task_name, task_id = task_id):
+            return jsonify(success = "delete task successfully!")
+        else:
+            return jsonify(fail = "delete task failed!")
+    abort(401)
 
 application.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 

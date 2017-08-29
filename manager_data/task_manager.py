@@ -107,7 +107,14 @@ class Task_manager(object):
             return True
         return False
 
-
+    def _set_task_done(self, task_name, task_id, manager):
+        cursor = self._conn.cursor()
+        if self._search_task(task_name = task_name, task_id = task_id, manager = manager) != []:
+            cursor.execute("update task_table set task_state='done' where task_name=%s and task_id=%s and manager=%s;", [task_name, task_id, manager])
+            self._conn.commit()
+            cursor.close()
+            return True
+        return False     
 
 if __name__ == "__main__":
     task_data = Task_manager("root", "Gzm20125")
