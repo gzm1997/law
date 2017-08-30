@@ -127,7 +127,7 @@ def add_case():
     if case_data._search_law_case(case_name=case_name) != []:
         return jsonify(case_name="case_name has been used")
     case_data._edit_law_case(username = username, case_id = case_id, case_name = case_name)
-    return jsonify(success="create case successfully!", username = username)
+    return jsonify(success="create case successfully!", case_id = case_id)
 
 
 #/table?case_id=2017-8-10&t_type=t1

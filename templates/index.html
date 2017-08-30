@@ -346,10 +346,8 @@
             }
             if ("success" in data) {
                 $("#success").text(data.success)
-                window.location.href = "/user?username=" + data.username
+                window.location.href = "/case?case_id=" + data.case_id
             }
-
-
         })
     });
     </script>

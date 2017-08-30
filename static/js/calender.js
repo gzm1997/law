@@ -240,8 +240,11 @@ $(function() {
                     for (i = _j = 1; _j <= lastDayOfMonth; i = _j += 1) {
                         if (ran[i - 1] != 0) {
                             if(day_state[i - 1] == "undone") {
-                                this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='unread'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
+                                this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='undone'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
                             }
+                            else if(day_state[i - 1] == "halfdone") {
+                                this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='halfdone'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
+                            }                            
                             else if(day_state[i - 1] == "done") {
                                 this.$days.append($("<a href=" + urls[i - 1] + "><li class='drp-day " + (this.dayClass(i, firstDayOfMonth, lastDayOfMonth)) + "'><span class='done'><p class='msg-num'>" + ran[i - 1] + "</p></span><p class='which-day'>" + i + "</p></li></a>"));                                
                             }

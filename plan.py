@@ -12,11 +12,19 @@ def get_month_task_json(manager):
     result = {}
     for i in range(1, num_day + 1):
         task_day = task_data._search_task(manager = manager, deadline = str(i) + " " + month_year)
-        day_state = "done"
+        num_done = 0
+        num_undone = 0
         for task in task_day:
             if task["task_state"] == "undone":
-                day_state = "undone"
-                break
+                num_undone = num_undone + 1
+            elif task["task_state"] == "done":
+                num_done = num_done + 1
+        if num_undone == 0:
+            day_state = "done"
+        elif num_done == 0 and num_undone != 0:
+            day_state = "undone"
+        elif num_done != 0 and num_undone != 0:
+            day_state = "halfdone"
         result[str(i)] = {"num": len(task_day), "url": "/each_day_task?username=" + manager + "&date=" + str(i) + "-" + month_year.replace(" ", "-"), "day_state": day_state}
     return result
 
