@@ -11,7 +11,11 @@ def get_month_task_json(manager):
     month_year = m_str[:m_str.find("\n")]
     result = {}
     for i in range(1, num_day + 1):
-        task_day = task_data._search_task(manager = manager, deadline = str(i) + " " + month_year)
+        if len(str(i)) == 1:
+            day = "0" + str(i)
+        else:
+            day = str(i)
+        task_day = task_data._search_task(manager = manager, deadline = day + " " + month_year)
         num_done = 0
         num_undone = 0
         for task in task_day:
