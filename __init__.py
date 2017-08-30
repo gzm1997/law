@@ -431,6 +431,9 @@ def each_day_task():
     date = request.args.get('date').replace("-", " ")
     #print("username:", target_username)
     #print("date:", date)
+    index = date.find(" ")
+    if len(date[:index]) == 1:
+        date = "0" + date
     all_task = task_data._search_task(manager = target_username, deadline = date)
     #print(all_task)
     for task in all_task:
