@@ -6,23 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Case</title>
-
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/home.css?q=1280549780" rel="stylesheet">
     <link href="/static/css/commit.css?q=1280549780" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/task/task.css?q=1280549780">
     <!--<link href="/static/css/signupAndLogin.css?q=1280549780" rel="stylesheet" type="text/css" media="all" />-->
-
     <script src="/static/js/jquery.min.js"></script>
-
 </head>
 
 <body>
+    <div id="ensure-delete">
+        <strong class="stress">确认提示</strong>
+        <hr>
+        <p>是否确认删除？</p>
+        <hr>
+        <div>
+            <button class="btn btn-danger col-md-3 col-md-offset-2" id="cancel">取消</button>
+            <button class="btn btn-success col-md-3 col-md-offset-2" id="ensure">确认</button>
+        </div>
+    </div>
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
                 <a class="navbar-brand" href="#">协作</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -35,18 +43,16 @@
                     </li>
                     <li>
                         <a href="/all_task">任务</a>
-                    </li>  
-
+                    </li>
                     {% if login %}
-                        <li>
-                            <a href= "{{ user_url }}" >我的账号[{{ username }}]</a>
-                        </li>
+                    <li>
+                        <a href="{{ user_url }}">我的账号[{{ username }}]</a>
+                    </li>
                     {% else %}
-                        <li>
-                            <a href="/login">登陆</a>
-                        </li>
+                    <li>
+                        <a href="/login">登陆</a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -75,7 +81,7 @@
                         <td class="col-md-4">
                             纠纷案件审批表(庭后)
                         </td>
-                    </tr>                    
+                    </tr>
                 </table>
             </td>
             <td class="col-md-6">
@@ -86,24 +92,29 @@
                         </td>
                     </tr>
                     {% for url in table_urls %}
-                        <tr class="text-center">
-                            <td class="col-md-4">
-                                <a href="{{ url }}">详情</a>
-                            </td>
-                        </tr> 
+                    <tr class="text-center">
+                        <td class="col-md-4">
+                            <a href="{{ url }}">详情</a>
+                        </td>
+                    </tr>
                     {% endfor %}
-                </table>               
+                </table>
             </td>
         </tr>
     </table>
+    {% if own %}
+    <div style="text-align: center;">
+        <button id="delete" type="button"  class="btn btn-danger">删除案件</button>
+    </div>
+    {% endif %}
     <div class="commit_area">
-    <!--
+        <!--
         <div id="wanna_add">
             <input type="text" class="form-control" id="wanna_add_text" placeholder="添加评论">
         </div>
     -->
         {% if login %}
-        <form action="/comment", method="post" onsubmit="return submit_c()">
+        <form action="/comment" , method="post" onsubmit="return submit_c()">
             <div class="form-group">
                 <label for="name">评论</label>
                 <textarea id="c_content" name="content" class="form-control" rows="3"></textarea>
@@ -114,41 +125,70 @@
             </div>
         </form>
         {% else %}
-            <div style="text-align: center;">登陆后才可以评论</div>
-        {% endif %}
-        {% if comment_list %} 
-            {% for comment in comment_list %}
-                <div class="commit" style="margin-top: 10px; margin-bottom: 10px;">
-                    <p>
-                        <span class="username">
+        <div style="text-align: center;">登陆后才可以评论</div>
+        {% endif %} {% if comment_list %} {% for comment in comment_list %}
+        <div class="commit" style="margin-top: 10px; margin-bottom: 10px;">
+            <p>
+                <span class="username">
                             <a href="{{ comment.user_url }}">
                                 {{ comment.username }}
                             </a>
                         </span>
-                        <span class = "time">{{ comment.c_time }}</span>
-                    </p>
-                    <p class="commit_content">
-                        {{ comment.content }}
-                        </p>
-                </div>
-            {% endfor %}
-        {% endif %}
+                <span class="time">{{ comment.c_time }}</span>
+            </p>
+            <p class="commit_content">
+                {{ comment.content }}
+            </p>
+        </div>
+        {% endfor %} {% endif %}
     </div>
-
     <script type="text/javascript">
-        function submit_c() {
-            if ($("#c_content").val() == "") {
-                $("#sh1").text("评论不能为空!")
-                return false
-            }
-            return true
+    function submit_c() {
+        if ($("#c_content").val() == "") {
+            $("#sh1").text("评论不能为空!")
+            return false
         }
-        $("#c_content").focus(function() {
-            $("#sh1").text("")
-        })
+        return true
+    }
+    $("#c_content").focus(function() {
+        $("#sh1").text("")
+    })
+
+
+
+    $("#delete").click(function() {
+        $("#ensure-delete").css("display", "block");
+    });
+    $("#cancel").click(function() {
+        $("#ensure-delete").css("display", "none");
+    });
+    $("#ensure").click(function() {
+
+        let data = GetData();
+        console.log(data);
+
+        $.post("/delete_case", data, function(data, status) {
+            if ("success" in data) {
+                window.location.href = "/user?username=" + data.username;
+            } else {
+                alert("删除无效案件。");
+            }
+        });
+    });
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+
+    function GetData() {
+        data = {
+            case_id: getUrlParam("case_id")
+        };
+        return data;
+    }
     </script>
-
-
 </body>
 
 </html>

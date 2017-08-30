@@ -100,6 +100,7 @@ class Case_manager(object):
                 cursor.execute("delete from t1 where case_id=%s and case_name=%s;", [case_id, case_name])
                 cursor.execute("delete from t2 where case_id=%s and case_name=%s;", [case_id, case_name])   
                 cursor.execute("delete from t3 where case_id=%s and case_name=%s;", [case_id, case_name]) 
+                cursor.execute("delete from comment where case_id=%s;", [case_id])
                 self._conn.commit()
                 cursor.close()
                 return True

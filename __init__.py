@@ -273,10 +273,14 @@ def case():
         login = True
         username = session["username"]
         user_url = "/user?username=" + username
-        return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list)
+        if manager_name == session["username"]:
+            own = True
+        else:
+            own = False
+        return render_template("case.html", table_urls = table_urls, login = login, user_url = user_url, username = username, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list, own = own)
     else:
         login = False
-        return render_template("case.html", table_urls = table_urls, login = login, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list)
+        return render_template("case.html", table_urls = table_urls, login = login, manager_detail_url = manager_detail_url, manager_name = manager_name, case_id = case_id, comment_list = comment_list, own = False)
 
 
 #展示所有人的所有案件
@@ -450,17 +454,18 @@ def each_day_task():
 
 
 #删除案件
-@application.route("/detele_case", methods = ["POST"])
+@application.route("/delete_case", methods = ["POST"])
 def detele_case():
     #print(request.form)
     case_id = request.form["case_id"]
     target_case = case_data._search_law_case(case_id = case_id)
     if (target_case != []) and ("username" in session) and (session["username"] == target_case[0]["username"]):
         target_case = target_case[0]
-        if case_data._edit_law_case(case_id = case_id, to_do = "delete"):
+        #_edit_law_case(self, username, case_id, case_name, to_do = "create"):
+        if case_data._edit_law_case(username = target_case["username"], case_id = case_id, case_name = target_case["case_name"], to_do = "delete"):
             return jsonify(success = "delete case successfully!", username = target_case["username"])
         else:
-            return jsonify(fail = "delete case failed!", username = target_case["username"])
+            return jsonify(fail = "delete case failed!")
     else:
         abort(401)
 
