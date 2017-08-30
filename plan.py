@@ -31,7 +31,11 @@ def get_week_task_json(manager):
     for i in range(7):
         delta = datetime.timedelta(-i)
         this_week_day = Monday - delta
-        this_week.append(str(this_week_day.day) + " " + str(month_list[this_week_day.month - 1]) + " " + str(this_week_day.year))
+        if len(str(this_week_day.day)) == 1:
+            day = "0" + str(this_week_day.day)
+        else:
+            day = str(this_week_day.day)
+        this_week.append(day + " " + str(month_list[this_week_day.month - 1]) + " " + str(this_week_day.year))
     print("this week", this_week)
     result = {}
     index = 0
