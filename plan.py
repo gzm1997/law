@@ -2,10 +2,10 @@ from law.manager_time import get_month_str, get_localdate_json
 from law.manager_data import task_manager, user_manager, case_manager
 import calendar
 import datetime
-
+from law import setting
 #25 August 2017
 def get_month_task_json(manager):
-    task_data = task_manager.Task_manager(account = "root", password = "Gzm20125")
+    task_data = task_manager.Task_manager(account = setting.MYSQL_ACCOUNT, password = setting.MYSQL_PASSWORD)
     m_str = get_month_str().strip()
     num_day = int(m_str[m_str.rfind(" ") + 1:])
     month_year = m_str[:m_str.find("\n")]
