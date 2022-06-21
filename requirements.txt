@@ -21,7 +21,7 @@ matplotlib==2.0.2
 mccabe==0.6.1
 multidict==2.1.6
 mysql-connector==2.1.6
-numpy==1.12.1
+numpy==1.22.0
 olefile==0.44
 Pillow==4.1.1
 PyInstaller==3.2.1
